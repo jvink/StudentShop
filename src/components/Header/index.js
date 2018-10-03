@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import image from '../../images/normal.png';
+import image from '../../images/header.png';
 import SearchIcon from '@material-ui/icons/Search';
+import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined';
+import AccountIcon from '@material-ui/icons/Face';
+import '../../styles/header.css';
 
 class Header extends Component {
-
-  render() {
-    return (
-      <div style={{backgroundColor: 'white'}}>
-        <div style={{width: '63%', margin: 'auto', display: 'flex'}}>
-            <img src={image} style={{maxHeight: '48px', margin: '4px'}}/>
-            <input style={{marginLeft: '8px', marginTop: '8px', marginBottom: '8px'}} placeholder="Waar ben je naar op zoek?"/>
-            <button style={{marginTop: '8px', marginBottom: '8px', marginLeft: '-3px', borderTopRightRadius: '4px', borderBottomRightRadius: '4px'}}><SearchIcon style={{color: '#7f8c8d'}}/></button>
+    render() {
+        return (
+        <div className="wrapper">
+            <div className="itemsWrapper">
+                <img src={image} className="logo" alt="headerImg"/>
+                <input placeholder="Waar ben je naar op zoek?"/>
+                <button className="searchButton"><SearchIcon className="icon"/></button>
+                <FavoriteIcon className="icon"/>
+                <ShoppingCartIcon className="icon"/>
+                <AccountIcon className="icon"/>
+            </div>
         </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default Header;

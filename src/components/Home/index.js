@@ -34,7 +34,7 @@ class Home extends Component {
     </GridListTile>
     );
     return (
-      <div style={{margin: 'auto', maxWidth: '63%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', overflow: 'hidden'}}>
+      <div style={{margin: 'auto', maxWidth: '63%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', overflow: 'hidden', backgroundColor: 'white', padding: '8px'}}>
         <GridList cellHeight={240} cols={4}>
           {listItems}
         </GridList>

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Root from './containers/Root';
 import Header from './components/Header';
+import CategoryHeader from './components/CategoryHeader';
 import rootReducer from './store/reducers';
 import './styles/index.css';
 
@@ -15,6 +16,7 @@ render(
         <Provider store={store}>
             <div>
                 <Header/>
+                <CategoryHeader/>
                 <Root/>
             </div>
         </Provider>
