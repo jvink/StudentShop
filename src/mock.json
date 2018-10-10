@@ -24,12 +24,6 @@
     "cols": 1
   },
   {
-    "imgUrl": "https://res-3.cloudinary.com/ssenseweb/image/upload/b_white/c_scale,h_820/f_auto,dpr_1.0/182451F121019_1.jpg",
-    "name": "Gucci Slipper",
-    "price": 1130,
-    "cols": 2
-  },
-  {
     "imgUrl": "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
     "name": "Guess connect watch",
     "price": 438.9,
@@ -48,10 +42,28 @@
     "cols": 1
   },
   {
-    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/81qRa8YUn5L._UX695_.jpg",
-    "name": "The North Face Tent Mule",
-    "price": 40,
-    "cols": 2
+    "imgUrl": "https://cdn.shopify.com/s/files/1/2183/9409/products/IMG_6654_grande.jpeg?v=1513777716",
+    "name": "Tommy hilfigher bootleg embroided",
+    "price": 145,
+    "cols": 1
+  },
+  {
+    "imgUrl": "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
+    "name": "Guess connect watch",
+    "price": 438.9,
+    "cols": 1
+  },
+  {
+    "imgUrl": "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+    "name": "'70s retro glam kefiah",
+    "price": 20,
+    "cols": 1
+  },
+  {
+    "imgUrl": "https://cdn.suitableshop.com/img/poriginal/napapijri-rainforest-winterjas-antraciet--55117-1.jpg",
+    "name": "Napapijri Rainforest Winterjas Antraciet",
+    "price": 200,
+    "cols": 1
   },
   {
     "imgUrl": "https://cdn.shopify.com/s/files/1/2183/9409/products/IMG_6654_grande.jpeg?v=1513777716",

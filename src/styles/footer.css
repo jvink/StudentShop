@@ -1,0 +1,28 @@
+.wrapperFooter {
+    background-color: #7f8c8d;
+    color: #fff;
+    margin-top: 24px;
+}
+
+.wrapperFooterItems {
+    width: 63%;
+    padding: 8px;
+    margin: auto;
+}
+
+.footerItems {
+    display: flex;
+    flex-direction: row;
+}
+
+.contact {
+    margin-right: 96px;
+}
+
+.footerHeaderText {
+    color: #ecf0f1;
+}
+
+.footerSubText {
+    color: #bdc3c7;
+}

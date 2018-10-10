@@ -18,14 +18,26 @@
     max-height: 42px;
 }
 
-.itemsWrapper {
+.headerItemsWrapper {
     width: 63%;
     padding: 8px;
     margin: auto;
     display: flex;
 }
 
-.wrapper {
+.subHeaderItemsWrapper {
+    width: 63%;
+    padding: 8px;
+    margin: auto;
+    display: flex;
+}
+
+.wrapperHeader {
+    background-color: #fff;
+    border-bottom: 1px solid #bdc3c7;
+}
+
+.wrapperSubHeader {
     background-color: #fff;
     border-bottom: 1px solid #bdc3c7;
 }

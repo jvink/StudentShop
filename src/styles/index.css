@@ -40,3 +40,7 @@ button:focus {
 button:hover {
   box-shadow: 0 0 0.5pt 0.5pt #bdc3c7;
 }
+
+.productGridList {
+  padding: 8px;
+}

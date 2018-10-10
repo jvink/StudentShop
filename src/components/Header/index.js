@@ -9,9 +9,11 @@ import '../../styles/header.css';
 class Header extends Component {
     render() {
         return (
-        <div className="wrapper">
-            <div className="itemsWrapper">
-                <img src={image} className="logo" alt="headerImg"/>
+        <div className="wrapperHeader">
+            <div className="headerItemsWrapper">
+                <a href="/">
+                    <img src={image} className="logo" alt="headerImg"/>
+                </a>
                 <input placeholder="Waar ben je naar op zoek?"/>
                 <button className="searchButton"><SearchIcon className="icon"/></button>
                 <FavoriteIcon className="icon"/>

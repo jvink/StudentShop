@@ -5,8 +5,8 @@ class CategoryHeader extends Component {
     render() {
         const categories = ['Bezorging', 'Catering', 'Computers', 'Kunst', 'Sport', 'Tuin', 'Verhuizen', 'Verzorging'];
         return (
-        <div className="wrapper">
-            <div className="itemsWrapper">
+        <div className="wrapperSubHeader">
+            <div className="subHeaderItemsWrapper">
                 {categories.map((categorie) => {
                     return (
                         <div className="categoryWrapper">
