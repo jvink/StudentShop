@@ -41,3 +41,8 @@
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
+
+.productItemLink {
+    text-decoration: none;
+    color: #7f8c8d;
+}

@@ -8,15 +8,16 @@ class Service extends Component {
         return (
         <div className="serviceItem">
             <div className="serviceItemPrice">
-                € {service.price}
+                € {Math.round((service.price * 0.75) * 100) / 100}
             </div>
             <div className="serviceItemOldPrice">
-                € 20,99
+                € {service.price}
             </div>
             <FavoriteIcon className="serviceItemFavorite"/>
-            <img src={service.imgUrl} alt={service.name} className="serviceItemImage"/>
-            {service.id}
-            {service.name}
+            <a href={"product/" + service.id} className="productItemLink">
+                <img src={service.imgUrl} alt={service.name} className="serviceItemImage"/>
+                {service.name}
+            </a>
         </div>
         );
     }

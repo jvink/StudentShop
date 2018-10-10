@@ -3,72 +3,84 @@
     "imgUrl": "https://guesseu.scene7.com/is/image/GuessEU/M63H24W7JF0-L302-ALTGHOST?wid=1500&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
     "name": "Check print shirt",
     "price": 110,
-    "cols": 1
+    "cols": 1,
+    "id": 0
   },
   {
     "imgUrl": "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
     "name": "Gloria high logo sneaker",
     "price": 91,
-    "cols": 1
+    "cols": 1,
+    "id": 1
   },
   {
     "imgUrl": "https://guesseu.scene7.com/is/image/GuessEU/HWVG6216060-TAN?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
     "name": "Cate rigid bag",
     "price": 94.5,
-    "cols": 1
+    "cols": 1,
+    "id": 2
   },
   {
     "imgUrl": "https://www.jaguarmode.nl/wp-content/uploads/2016/07/badjas-versace-wit.jpg",
     "name": "Versace Badjas",
     "price": 120,
-    "cols": 1
+    "cols": 1,
+    "id": 3
   },
   {
     "imgUrl": "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
     "name": "Guess connect watch",
     "price": 438.9,
-    "cols": 1
+    "cols": 1,
+    "id": 4
   },
   {
     "imgUrl": "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
     "name": "'70s retro glam kefiah",
     "price": 20,
-    "cols": 1
+    "cols": 1,
+    "id": 5
   },
   {
     "imgUrl": "https://cdn.suitableshop.com/img/poriginal/napapijri-rainforest-winterjas-antraciet--55117-1.jpg",
     "name": "Napapijri Rainforest Winterjas Antraciet",
     "price": 200,
-    "cols": 1
+    "cols": 1,
+    "id": 6
   },
   {
     "imgUrl": "https://cdn.shopify.com/s/files/1/2183/9409/products/IMG_6654_grande.jpeg?v=1513777716",
     "name": "Tommy hilfigher bootleg embroided",
     "price": 145,
-    "cols": 1
+    "cols": 1,
+    "id": 7
   },
   {
     "imgUrl": "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
     "name": "Guess connect watch",
     "price": 438.9,
-    "cols": 1
+    "cols": 1,
+    "id": 8
   },
   {
     "imgUrl": "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
     "name": "'70s retro glam kefiah",
     "price": 20,
-    "cols": 1
+    "cols": 1,
+    "id": 9
   },
   {
     "imgUrl": "https://cdn.suitableshop.com/img/poriginal/napapijri-rainforest-winterjas-antraciet--55117-1.jpg",
     "name": "Napapijri Rainforest Winterjas Antraciet",
     "price": 200,
-    "cols": 1
+    "cols": 1,
+    "id": 10
   },
   {
     "imgUrl": "https://cdn.shopify.com/s/files/1/2183/9409/products/IMG_6654_grande.jpeg?v=1513777716",
     "name": "Tommy hilfigher bootleg embroided",
     "price": 145,
-    "cols": 1
+    "cols": 1,
+    "id": 11
   }
 ]
