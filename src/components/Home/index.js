@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ServiceList from '../ServiceList/ServiceList';
+import ServiceList from '../ServiceList';
 import '../../styles/home.css';
 
 class Home extends Component {
@@ -7,15 +7,18 @@ class Home extends Component {
   render() {
     return (
       <div className="wrapperHome">
+        <div>
         <div className="homeAdvertisment">
           <div className="homeAdvertismentTitle">
-            Laat het doen door een student!
+          <div className="homeAdvertismentTitleText">
+            Alles wat jij nodig hebt om
+            <br/>
+            het jaar door te komen!
           </div>
-          <button className="homeAdvertismentGetStartedButton">
-            Meer info
-          </button>
+          </div>
         </div>
-        <ServiceList />
+          <ServiceList />
+        </div>
       </div>
     );
   }

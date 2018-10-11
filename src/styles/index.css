@@ -1,9 +1,17 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: 'Montserrat', sans-serif;
   color: #7f8c8d;
-  background-color: #ecf0f1;
+}
+
+#root {
+  height: 100%;
+}
+
+.amourfire {
+  height: 100%;
 }
 
 input {
@@ -41,6 +49,13 @@ button:hover {
   box-shadow: 0 0 0.5pt 0.5pt #bdc3c7;
 }
 
-.productGridList {
-  padding: 8px;
+.bodyWrapper {
+  margin: auto;
+  margin-top: 99px; /* Height of the header */
+  max-width: 63%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow: hidden;
+  background-color: #fff;
 }

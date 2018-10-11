@@ -3,7 +3,13 @@ import '../../styles/header.css';
 
 class CategoryHeader extends Component {
     render() {
-        const categories = [{categoryName: 'Bezorging', categoryLink: '/bezorging'}, {categoryName: 'Bezorging', categoryLink: '/bezorging'}, {categoryName: 'Bezorging', categoryLink: '/bezorging'}, {categoryName: 'Bezorging', categoryLink: '/bezorging'}];
+        const categories = [
+            {categoryName: 'Bezorging', categoryLink: '/bezorging'},
+            {categoryName: 'Bezorging', categoryLink: '/bezorging'},
+            {categoryName: 'Bezorging', categoryLink: '/bezorging'},
+            {categoryName: 'Bezorging', categoryLink: '/bezorging'}
+        ];
+        
         return (
         <div className="wrapperSubHeader">
             <div className="subHeaderItemsWrapper">
