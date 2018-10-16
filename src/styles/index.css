@@ -10,10 +10,6 @@ html, body {
   height: 100%;
 }
 
-.amourfire {
-  height: 100%;
-}
-
 input {
   background-color: #ecf0f1;
   border: 1px solid #bdc3c7;
@@ -54,8 +50,5 @@ button:hover {
   margin-top: 99px; /* Height of the header */
   max-width: 63%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  overflow: hidden;
   background-color: #fff;
 }

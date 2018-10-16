@@ -4,10 +4,12 @@ import '../../styles/header.css';
 class CategoryHeader extends Component {
     render() {
         const categories = [
-            {categoryName: 'Bezorging', categoryLink: '/bezorging'},
-            {categoryName: 'Bezorging', categoryLink: '/bezorging'},
-            {categoryName: 'Bezorging', categoryLink: '/bezorging'},
-            {categoryName: 'Bezorging', categoryLink: '/bezorging'}
+            {categoryName: "Agenda's", categoryLink: '/agendas'},
+            {categoryName: "Boeken", categoryLink: '/boeken'},
+            {categoryName: "Schoolspullen", categoryLink: '/schoolspullen'},
+            {categoryName: "Tassen", categoryLink: '/tassen'},
+            {categoryName: "Kleding", categoryLink: '/kleding'},
+            {categoryName: "Laptops en accessoires", categoryLink: '/laptops'}
         ];
         
         return (

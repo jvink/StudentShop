@@ -14,10 +14,10 @@ class Service extends Component {
                 € {service.price}
             </div>
             <FavoriteIcon className="serviceItemFavorite"/>
-            {/* <a href={"product/" + service.id} className="productItemLink"> */}
+            <a href={"product/" + service.id} className="productItemLink">
                 <img src={service.imgUrl} alt={service.name} className="serviceItemImage"/>
                 {service.name}
-            {/* </a> */}
+            </a>
         </div>
         );
     }
