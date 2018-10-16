@@ -16,7 +16,7 @@ class DetailProduct extends Component {
     }
 
     render() {
-        const currentProduct = this.state.data.find(x => x.id === parseInt(this.props.match.params.id));
+        const currentProduct = this.state.data.find(x => (x.id === Number(this.props.match.params.id)));
         return (
             <div className="wrapperDetailProduct">
                 <Service serviceData={currentProduct}/>

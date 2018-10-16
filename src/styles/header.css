@@ -33,11 +33,17 @@
 }
 
 .wrapperHeader {
+    position: fixed;
+    width: 100%;
+    top: 0;
     background-color: #fff;
     border-bottom: 1px solid #bdc3c7;
 }
 
 .wrapperSubHeader {
+    position: fixed;
+    width: 100%;
+    top: 63px;
     background-color: #fff;
     border-bottom: 1px solid #bdc3c7;
 }

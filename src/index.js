@@ -6,7 +6,6 @@ import { createStore } from 'redux';
 import Root from './containers/Root';
 import Header from './components/Header';
 import CategoryHeader from './components/CategoryHeader';
-import Footer from './components/Footer';
 import rootReducer from './store/reducers';
 import './styles/index.css';
 
@@ -15,11 +14,12 @@ const store = createStore(rootReducer);
 render(
     <BrowserRouter>
         <Provider store={store}>
-            <div>
+            <div className="appWrapper">
                 <Header/>
                 <CategoryHeader/>
-                <Root/>
-                <Footer/>
+                <div className="bodyWrapper">
+                    <Root/>
+                </div>
             </div>
         </Provider>
     </BrowserRouter>,
