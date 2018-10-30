@@ -7,8 +7,7 @@ import {
 const creator = (dispatch) => ({
   getUser: async (user) => {
     dispatch({
-      type: REGISTER_USER_REQUEST,
-      user
+      type: REGISTER_USER_REQUEST
     });
     if (true) {
       dispatch({

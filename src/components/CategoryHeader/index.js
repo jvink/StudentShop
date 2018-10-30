@@ -9,14 +9,14 @@ class CategoryHeader extends Component {
                 <div className="subHeaderItemsWrapper">
                     {categories.map((category) => {
                         return (
-                            <div class="categoryDropdown">
-                                <button class="categoryButton">
+                            <div key={category.categoryLink} className="categoryDropdown">
+                                <button className="categoryButton">
                                     <div className="categoryName">{category.categoryName}</div>
                                 </button>
-                                <div class="subCategoryWrapper">
+                                <div className="subCategoryWrapper">
                                     {category.subCategories.map((subCategory) => {
                                         return (
-                                            <a href={category.categoryLink + subCategory.subCategoryLink}>{subCategory.subCategoryName}</a>
+                                            <a key={subCategory.subCategoryLink} href={category.categoryLink + subCategory.subCategoryLink}>{subCategory.subCategoryName}</a>
                                         );
                                     })}
                                 </div>

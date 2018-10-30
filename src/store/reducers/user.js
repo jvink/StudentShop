@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log(action.type);
   switch (action.type) {
     case REGISTER_USER_REQUEST: {
       return Object.assign({}, state, {
