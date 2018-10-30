@@ -1,9 +1,13 @@
 [
     {
         "categoryName": "Agenda's", "categoryLink": "/agendas", "subCategories": [
-            {"subCategoryName": "Schoolagenda's", "subCategoryLink": "/schoolagendas"},
-            {"subCategoryName": "Agenda's voor meisjes", "subCategoryLink": "/meisjesagendas"},
-            {"subCategoryName": "Agenda's voor jongens", "subCategoryLink": "/jongensagendas"}
+            {"subCategoryName": "Schoolagenda's", "subCategoryLink": "/school"},
+            {"subCategoryName": "Agenda's voor meisjes", "subCategoryLink": "/meisje"},
+            {"subCategoryName": "Agenda's voor jongens", "subCategoryLink": "/jongen"},
+            {"subCategoryName": "Agenda's schooljaar 2018/2019", "subCategoryLink": "/2018_2019"},
+            {"subCategoryName": "Inkleuragenda's", "subCategoryLink": "/inkleur"},
+            {"subCategoryName": "Eigen ontwerp agenda's", "subCategoryLink": "/ontwerp"},
+            {"subCategoryName": "Dagboeken", "subCategoryLink": "/dagboek"}
         ]
     },
     {
@@ -11,36 +15,67 @@
             {"subCategoryName": "Nederlandstalig", "subCategoryLink": "/nederlandstalig"},
             {"subCategoryName": "Engelstalig", "subCategoryLink": "/engelstalig"},
             {"subCategoryName": "Duitstalig", "subCategoryLink": "/duitstalig"},
-            {"subCategoryName": "Franstalig", "subCategoryLink": "/franstalig"}
+            {"subCategoryName": "Franstalig", "subCategoryLink": "/franstalig"},
+            {"subCategoryName": "Kookboeken", "subCategoryLink": "/kookboek"},
+            {"subCategoryName": "Ebooks", "subCategoryLink": "/ebook"},
+            {"subCategoryName": "Luisterboeken", "subCategoryLink": "/luisterboek"},
+            {"subCategoryName": "Tweedehands boeken", "subCategoryLink": "/tweedehandsboek"},
+            {"subCategoryName": "Studieboeken", "subCategoryLink": "/studieboek"}
         ]
     },
     {
         "categoryName": "Schoolspullen", "categoryLink": "/schoolspullen", "subCategories": [
-            {"subCategoryName": "Rekenmachines", "subCategoryLink": "/rekenmachines"},
-            {"subCategoryName": "Schoolmappen", "subCategoryLink": "/schoolmappen"},
-            {"subCategoryName": "Schriften", "subCategoryLink": "/schriften"}
+            {"subCategoryName": "Rekenmachines", "subCategoryLink": "/rekenmachine"},
+            {"subCategoryName": "Schoolmappen", "subCategoryLink": "/schoolmap"},
+            {"subCategoryName": "Schriften", "subCategoryLink": "/schrift"},
+            {"subCategoryName": "Etuis", "subCategoryLink": "/etui"},
+            {"subCategoryName": "Collegeblokken", "subCategoryLink": "/collegeblok"},
+            {"subCategoryName": "Notitieboeken", "subCategoryLink": "/notitieboek"},
+            {"subCategoryName": "Markeerstiften", "subCategoryLink": "/markeerstift"},
+            {"subCategoryName": "Pennen & Potloden", "subCategoryLink": "/pen"},
+            {"subCategoryName": "Kaftpapier & Rekbare boekenkaften", "subCategoryLink": "/kaft"}
         ]
     },
     {
         "categoryName": "Tassen", "categoryLink": "/tassen", "subCategories": [
-            {"subCategoryName": "Rugzakken", "subCategoryLink": "/rugzakken"},
-            {"subCategoryName": "Schoudertassen", "subCategoryLink": "/schoudertassen"},
-            {"subCategoryName": "Laptoptassen", "subCategoryLink": "/laptoptassen"},
-            {"subCategoryName": "Sporttassen", "subCategoryLink": "/sporttassen"}
+            {"subCategoryName": "Rugzakken", "subCategoryLink": "/rugzak"},
+            {"subCategoryName": "Schoudertassen", "subCategoryLink": "/schoudertas"},
+            {"subCategoryName": "Laptoptassen", "subCategoryLink": "/laptoptas"},
+            {"subCategoryName": "Sporttassen", "subCategoryLink": "/sporttas"},
+            {"subCategoryName": "Rugzakken voor meisjes", "subCategoryLink": "/meisje"},
+            {"subCategoryName": "Rugzakken voor jongens", "subCategoryLink": "/jongen"},
+            {"subCategoryName": "Eastpak rugzakken", "subCategoryLink": "/eastpak"},
+            {"subCategoryName": "Rugzakken tot 20 liter", "subCategoryLink": "/t20l"},
+            {"subCategoryName": "Rugzakken van 20 liter", "subCategoryLink": "/v20l"},
+            {"subCategoryName": "The North Face rugzakken", "subCategoryLink": "/thenorthface"}
         ]
     },
     {
         "categoryName": "Kleding", "categoryLink": "/kleding", "subCategories": [
-            {"subCategoryName": "Meisjeskleding", "subCategoryLink": "/meisjeskleding"},
-            {"subCategoryName": "Jongenskleding", "subCategoryLink": "/jongenskleding"},
+            {"subCategoryName": "Meisjeskleding", "subCategoryLink": "/meisje"},
+            {"subCategoryName": "Jongenskleding", "subCategoryLink": "/jongen"},
+            {"subCategoryName": "Broeken", "subCategoryLink": "/broek"},
+            {"subCategoryName": "Truien", "subCategoryLink": "/trui"},
+            {"subCategoryName": "Vesten", "subCategoryLink": "/vest"},
+            {"subCategoryName": "Overhemden", "subCategoryLink": "/overhemd"},
+            {"subCategoryName": "Sokken", "subCategoryLink": "/sok"},
+            {"subCategoryName": "Jurken", "subCategoryLink": "/jurk"},
+            {"subCategoryName": "Rokken", "subCategoryLink": "/rok"},
+            {"subCategoryName": "Ondergoed", "subCategoryLink": "/ondergoed"},
             {"subCategoryName": "Accessoires", "subCategoryLink": "/accessoires"}
         ]
     },
     {
         "categoryName": "Laptops en accessoires", "categoryLink": "/laptops", "subCategories": [
-            {"subCategoryName": "School laptops", "subCategoryLink": "/schoollaptops"},
-            {"subCategoryName": "Game laptops", "subCategoryLink": "/gamelaptops"},
-            {"subCategoryName": "Foto/videobewerking", "subCategoryLink": "/edittinglaptops"}
+            {"subCategoryName": "School laptops", "subCategoryLink": "/school"},
+            {"subCategoryName": "Game laptops", "subCategoryLink": "/game"},
+            {"subCategoryName": "2-in-1 laptops", "subCategoryLink": "/2in1"},
+            {"subCategoryName": "Apple laptops", "subCategoryLink": "/apple"},
+            {"subCategoryName": "Chromebooks", "subCategoryLink": "/chromebook"},
+            {"subCategoryName": "Windows laptops", "subCategoryLink": "/windows"},
+            {"subCategoryName": "Laptops met SSD", "subCategoryLink": "/ssd"},
+            {"subCategoryName": "Zakelijke laptops", "subCategoryLink": "/zakelijk"},
+            {"subCategoryName": "Foto/videobewerking", "subCategoryLink": "/videobewerking"}
         ]
     }
 ]
