@@ -17,7 +17,7 @@ const creator = (dispatch) => ({
     } else {
       dispatch({
         type: REGISTER_USER_ERROR,
-        user
+        error
       });
     }
   }

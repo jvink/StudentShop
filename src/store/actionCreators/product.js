@@ -15,17 +15,16 @@ const creator = (dispatch) => ({
     .then((response) => {
       response.json()
       .then((product) => {
-        console.log(product);
         dispatch({
           type: GETTING_PRODUCT_SUCCESS,
           product
         });
       });
     })
-    .catch((err) => {
+    .catch((error) => {
       dispatch({
         type: GETTING_PRODUCT_ERROR,
-        err
+        error
       });
     });
   }
