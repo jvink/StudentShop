@@ -65,7 +65,7 @@
     margin: 0;
 }
 
-a:hover, .categoryDropdown:hover .categoryButton {
+.class a:hover, .categoryDropdown:hover .categoryButton {
     background-color: #e74c3c;
     color: #fff;
 }
