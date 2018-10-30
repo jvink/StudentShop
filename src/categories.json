@@ -1,0 +1,46 @@
+[
+    {
+        "categoryName": "Agenda's", "categoryLink": "/agendas", "subCategories": [
+            {"subCategoryName": "Schoolagenda's", "subCategoryLink": "/schoolagendas"},
+            {"subCategoryName": "Agenda's voor meisjes", "subCategoryLink": "/meisjesagendas"},
+            {"subCategoryName": "Agenda's voor jongens", "subCategoryLink": "/jongensagendas"}
+        ]
+    },
+    {
+        "categoryName": "Boeken", "categoryLink": "/boeken", "subCategories": [
+            {"subCategoryName": "Nederlandstalig", "subCategoryLink": "/nederlandstalig"},
+            {"subCategoryName": "Engelstalig", "subCategoryLink": "/engelstalig"},
+            {"subCategoryName": "Duitstalig", "subCategoryLink": "/duitstalig"},
+            {"subCategoryName": "Franstalig", "subCategoryLink": "/franstalig"}
+        ]
+    },
+    {
+        "categoryName": "Schoolspullen", "categoryLink": "/schoolspullen", "subCategories": [
+            {"subCategoryName": "Rekenmachines", "subCategoryLink": "/rekenmachines"},
+            {"subCategoryName": "Schoolmappen", "subCategoryLink": "/schoolmappen"},
+            {"subCategoryName": "Schriften", "subCategoryLink": "/schriften"}
+        ]
+    },
+    {
+        "categoryName": "Tassen", "categoryLink": "/tassen", "subCategories": [
+            {"subCategoryName": "Rugzakken", "subCategoryLink": "/rugzakken"},
+            {"subCategoryName": "Schoudertassen", "subCategoryLink": "/schoudertassen"},
+            {"subCategoryName": "Laptoptassen", "subCategoryLink": "/laptoptassen"},
+            {"subCategoryName": "Sporttassen", "subCategoryLink": "/sporttassen"}
+        ]
+    },
+    {
+        "categoryName": "Kleding", "categoryLink": "/kleding", "subCategories": [
+            {"subCategoryName": "Meisjeskleding", "subCategoryLink": "/meisjeskleding"},
+            {"subCategoryName": "Jongenskleding", "subCategoryLink": "/jongenskleding"},
+            {"subCategoryName": "Accessoires", "subCategoryLink": "/accessoires"}
+        ]
+    },
+    {
+        "categoryName": "Laptops en accessoires", "categoryLink": "/laptops", "subCategories": [
+            {"subCategoryName": "School laptops", "subCategoryLink": "/schoollaptops"},
+            {"subCategoryName": "Game laptops", "subCategoryLink": "/gamelaptops"},
+            {"subCategoryName": "Foto/videobewerking", "subCategoryLink": "/edittinglaptops"}
+        ]
+    }
+]
