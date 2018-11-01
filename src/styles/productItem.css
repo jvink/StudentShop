@@ -1,14 +1,14 @@
-.serviceItem {
+.productItem {
     display: relative;
     text-align: center;
-    width: 220px;
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.20);
+    height: 300px;
     margin: 4px;
     padding: 4px;
 }
 
-.serviceItemPrice {
+.productItemPrice {
     position: absolute;
     border-radius: 4px;
     background-color: #e74c3c;
@@ -16,7 +16,7 @@
     padding: 3px;
 }
 
-.serviceItemOldPrice {
+.productItemOldPrice {
     position: absolute;
     margin-top: 28px;
     border-radius: 4px;
@@ -25,19 +25,19 @@
     padding: 3px;
 }
 
-.serviceItemFavorite {
+.productItemFavorite {
     float: right;
     color: #7f8c8d;
 }
 
-.serviceItemImage {
+.productItemImage {
     max-height: 220px;
     margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
 
-.serviceListGrid {
+.productListGrid {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
 }

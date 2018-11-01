@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ServiceList from '../ServiceList';
+import Product from '../../containers/Product';
 import '../../styles/home.css';
 
 class Home extends Component {
@@ -17,7 +17,7 @@ class Home extends Component {
           </div>
           </div>
         </div>
-          <ServiceList />
+          <Product />
         </div>
       </div>
     );

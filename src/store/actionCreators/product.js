@@ -5,13 +5,13 @@ import {
 } from '../actions/product';
 
 const creator = (dispatch) => ({
-  getProduct: async () => {
+  getProduct: async (category, subcategory) => {
     const url = "http://127.0.0.1:5000/api/products";
 
     dispatch({
       type: GETTING_PRODUCT_REQUEST
     });
-    fetch(url)
+    await fetch(url)
     .then((response) => {
       response.json()
       .then((product) => {

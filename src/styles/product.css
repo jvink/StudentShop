@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 25%;
+    margin-bottom: 1em;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.productContainer:after {
+    content: "";
+    display: table;
+    clear: both;
+}
