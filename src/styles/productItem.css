@@ -1,7 +1,6 @@
 .productItem {
-    display: relative;
-    text-align: center;
-    background-color: #fff;
+    position: relative;
+    background-color: #ffffff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.20);
     height: 300px;
     margin: 4px;
@@ -14,6 +13,7 @@
     background-color: #e74c3c;
     color: #fff;
     padding: 3px;
+    margin: 12px;
 }
 
 .productItemOldPrice {
@@ -26,23 +26,35 @@
 }
 
 .productItemFavorite {
-    float: right;
-    color: #7f8c8d;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    margin: 4px;
+}
+
+.productItemFavorite:hover {
+    cursor: pointer;
 }
 
 .productItemImage {
-    max-height: 220px;
+    max-height: 240px;
     margin-left: auto;
-	margin-right: auto;
-	display: block;
-}
-
-.productListGrid {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    margin-right: auto;
 }
 
 .productItemLink {
     text-decoration: none;
     color: #7f8c8d;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.productName {
+    width: 100%;
+    text-align: center;
+}
+
+.isFavorite {
+    color: #e74c3c;
 }
