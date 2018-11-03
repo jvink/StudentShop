@@ -25,6 +25,9 @@ render(
                 <ReduxToastr
                     timeOut={2000}
                     position="bottom-center"
+                    preventDuplicates
+                    transitionIn="fadeIn"
+                    transitionOut="fadeOut"
                     closeOnToastrClick/>
             </div>
         </Provider>

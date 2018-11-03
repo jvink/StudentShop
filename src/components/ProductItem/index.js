@@ -7,6 +7,11 @@ import PriceLabel from './price';
 import ProductNameLabel from './name';
 import '../../styles/productItem.css';
 
+const toastrOptions = {
+    icon: 'success',
+    status: 'success'
+};
+
 export default class ProductItem extends Component {
     state = {
         isFavorite: false
@@ -15,7 +20,7 @@ export default class ProductItem extends Component {
     onChange() {
         let { isFavorite } = this.state;
         this.setState({isFavorite: !isFavorite});
-        isFavorite ? toastr.success('Removed from favorites') : toastr.success('Added to favorites');
+        isFavorite ? toastr.light('Removed from favorites', toastrOptions) : toastr.light('Added to favorites', toastrOptions);
     }
 
     render() {
