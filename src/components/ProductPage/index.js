@@ -5,10 +5,9 @@ import '../../styles/productPage.css';
 class ProductPage extends Component {
 
   render() {
-    //   console.log(this.props.category);
     return (
       <div className="productWrapper">
-        <Product />
+        <Product display="column"/>
       </div>
     );
   }

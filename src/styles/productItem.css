@@ -7,6 +7,14 @@
     padding: 4px;
 }
 
+.productItemHorizontal {
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.20);
+    margin: 4px;
+    padding: 4px;
+}
+
 .productItemPrice {
     position: absolute;
     border-radius: 4px;
@@ -42,6 +50,11 @@
     margin-right: auto;
 }
 
+.productItemImageHorizontal {
+    max-height: 160px;
+    width: auto;
+}
+
 .productItemLink {
     text-decoration: none;
     color: #7f8c8d;
@@ -50,9 +63,23 @@
     height: 100%;
 }
 
+.productItemLinkHorizontal {
+    text-decoration: none;
+    color: #7f8c8d;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
 .productName {
     width: 100%;
     text-align: center;
+}
+
+.productNameHorizontal {
+    margin: 0.5em;
+    font-size: 2em;
+    width: 100%;
 }
 
 .isFavorite {

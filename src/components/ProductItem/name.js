@@ -1,10 +1,15 @@
 import React from 'react';
 import '../../styles/productItem.css';
 
-const ProductNameLabel = ({name}) => (
-    <div className="productName">
-        {name}
-    </div>
-);
+const ProductNameLabel = ({display, name}) => {
+    switch (display) {
+        case "column":
+            return <div className="productName">{name}</div>
+        case "horizontal":
+            return <div className="productNameHorizontal">{name}</div>
+        default:
+            return <div className="productName">{name}</div>
+    }
+};
 
 export default ProductNameLabel;

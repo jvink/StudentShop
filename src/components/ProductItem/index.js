@@ -24,6 +24,28 @@ export default class ProductItem extends Component {
     }
 
     render() {
+        
+
+        return (
+            <div>
+                {this.renderDisplay()}
+            </div>
+        )
+    }
+
+    renderDisplay() {
+        const { display } = this.props;
+        switch (display) {
+            case "column":
+                return this.blockDisplay();
+            case "horizontal":
+                return this.horizontalDisplay();
+            default:
+                return this.blockDisplay();
+        }
+    }
+
+    blockDisplay() {
         const productItem = this.props.productItemData;
         return (
             <div className="productItem">
@@ -33,7 +55,20 @@ export default class ProductItem extends Component {
                 </div>
                 <Link to={"product/" + productItem.id} className="productItemLink">
                     <img src={productItem.imgUrl} alt={productItem.name} className="productItemImage"/>
-                    <ProductNameLabel name={productItem.name}/>
+                    <ProductNameLabel display={this.props.display} name={productItem.name}/>
+                </Link>
+            </div>
+        );
+    }
+
+    horizontalDisplay() {
+        const productItem = this.props.productItemData;
+        return (
+            <div className="productItemHorizontal">
+                <PriceLabel price={productItem.price}/>
+                <Link to={"product/" + productItem.id} className="productItemLinkHorizontal">
+                    <img src={productItem.imgUrl} alt={productItem.name} className="productItemImageHorizontal"/>
+                    <ProductNameLabel display={this.props.display} name={productItem.name}/>
                 </Link>
             </div>
         );

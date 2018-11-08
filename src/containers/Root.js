@@ -7,11 +7,6 @@ import ProductPage from '../components/ProductPage';
 import NotFound from '../components/NotFound';
 
 export default class Root extends Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-  }
-
   render() {
     return (
       <Switch>

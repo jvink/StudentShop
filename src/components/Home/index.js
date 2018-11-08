@@ -16,7 +16,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <Product />
+        <Product display="column"/>
       </div>
     );
   }
