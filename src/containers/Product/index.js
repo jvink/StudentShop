@@ -8,7 +8,7 @@ import '../../styles/product.css';
 class Product extends Component {
     constructor(props) {
         super(props);
-
+        console.log(props);
         this.state = {
             productData: {
                 category: this.props.match ? this.props.match.params.category : null,
@@ -23,7 +23,6 @@ class Product extends Component {
 
     render() {
         let products = this.props.productStore.getProductResult;
-        
         return (products) ? (
             <div>
                 <div className="productHeader">

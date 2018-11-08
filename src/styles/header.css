@@ -40,6 +40,7 @@
 }
 
 .wrapperSubHeader {
+    z-index: 5;
     position: fixed;
     width: 100%;
     top: 63px;
@@ -80,7 +81,7 @@
     background-color: #fff;
     width: 63%;
     left: 18.5%;
-    z-index: 1;
+    z-index: 5;
     column-count: 3;
     padding: 8px;
     border-left: 1px solid #bdc3c7;

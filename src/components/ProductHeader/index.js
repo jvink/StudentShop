@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 export default class ProductHeader extends Component {
     render() {
-        const { productHeaderData } = this.props;
-        console.log(productHeaderData);
+        // const { productHeaderData } = this.props;
+
         return (
             <div>
                 

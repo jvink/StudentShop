@@ -20,7 +20,7 @@ export default class ProductItem extends Component {
     onChange() {
         let { isFavorite } = this.state;
         this.setState({isFavorite: !isFavorite});
-        isFavorite ? toastr.light('Removed from favorites', toastrOptions) : toastr.light('Added to favorites', toastrOptions);
+        isFavorite ? toastr.light('Uit favorieten verwijderd', toastrOptions) : toastr.light('Aan favorieten toegevoegd', toastrOptions);
     }
 
     render() {

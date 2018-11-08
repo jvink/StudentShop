@@ -12,11 +12,10 @@ import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import './styles/index.css';
 
 const store = createStore(rootReducer);
-
 render(
     <BrowserRouter>
         <Provider store={store}>
-            <div className="appWrapper">
+            <div className="appWrapper">\
                 <Header/>
                 <CategoryHeader/>
                 <div className="bodyWrapper">
