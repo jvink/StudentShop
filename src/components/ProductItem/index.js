@@ -47,15 +47,16 @@ export default class ProductItem extends Component {
 
     blockDisplay() {
         const productItem = this.props.productItemData;
+        console.log(productItem);
         return (
             <div className="productItem">
-                <PriceLabel price={productItem.price}/>
+                <PriceLabel price={productItem.product.price}/>
                 <div className="productItemFavorite" onClick={() => {this.onChange()}}>
                     {this.state.isFavorite ? <Favorite className="isFavorite"/> : <FavoriteBorder/>}
                 </div>
-                <Link to={"product/" + productItem.id} className="productItemLink">
-                    <img src={productItem.imgUrl} alt={productItem.name} className="productItemImage"/>
-                    <ProductNameLabel display={this.props.display} name={productItem.name}/>
+                <Link to={"product/" + productItem.product.id} className="productItemLink">
+                    {productItem.image[0] ? <img src={productItem.image[0]} alt={productItem.product.id} className="productItemImage"/> : <img src="https://www.unesale.com/ProductImages/Large/notfound.png" alt="NotFound" className="productItemImage"/>}
+                    <ProductNameLabel display={this.props.display} name={productItem.product.name}/>
                 </Link>
             </div>
         );

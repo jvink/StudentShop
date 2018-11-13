@@ -55,13 +55,13 @@ class Product extends Component {
 
     columnDisplay() {
         let products = this.props.productStore.getProductResult;
+
         return (
             <div className='productContainer'>
-                {products.map((product) => {
-                    product.imgUrl = "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0";
+                {products.map((p) => {
                     return (
-                        <div key={product.id} className="column">
-                            <ProductItem display={this.props.display} productItemData={product}/>
+                        <div key={p.product.id} className="column">
+                            <ProductItem display={this.props.display} productItemData={p}/>
                         </div>
                     );
                 })}
