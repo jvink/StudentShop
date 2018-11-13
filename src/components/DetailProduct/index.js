@@ -3,25 +3,15 @@ import StarRatings from 'react-star-ratings';
 import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
 import AddShoppingCartOutlined from '@material-ui/icons/AddShoppingCartOutlined';
 import '../../styles/detailproduct.css';
-var json = require('../../mock.json');
 
 class DetailProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          data: null,
           rating: 0
         };
 
         this.changeRating = this.changeRating.bind(this);
-    }
-
-    componentWillMount() {
-        const foundProduct = json.find(x => (x.id === Number(this.props.match.params.id)));
-        this.setState({
-            product: foundProduct,
-            //rating: foundProduct.rating
-        });
     }
 
     changeRating( newRating ) {
@@ -31,19 +21,20 @@ class DetailProduct extends Component {
     }
 
     render() {
-        const { product } = this.state;
+        const product = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
+
         return (
             <div>
                 <div className="wrapperDetailProductUpperInfo">
-                    <img className="detailProductImage" alt={product.name} src={product.imgUrl}/>
+                    <img className="detailProductImage" alt={product.product.name} src={product.image[0].url}/>
                     <div className="detailProductInfo">
                         <div className="productTitle">
-                            {product.name}
+                            {product.product.name}
                         </div>
                         <div className="productInfoDivider"/>
                         <div className="productUpperInfoUpperWrapper">
                             <div className="productPrice">
-                                €{product.price}
+                                €{product.product.price}
                             </div>
                             <div style={{textAlign: 'right', width: '100%'}}>
                                 <StarRatings
@@ -65,7 +56,7 @@ class DetailProduct extends Component {
                 </div>
                 <div className="wrapperDetailProductLowerInfo">
                     <div className="productDescription">
-                        {product.description}
+                        {product.product.description}
                     </div>
                 </div>
             </div>

@@ -19,11 +19,12 @@ class Product extends Component {
     }
 
     componentWillMount() {
-        this.props.productActions.getProduct(this.state.category, this.state.subcategory);
+        this.props.productActions.getProducts(this.state.category, this.state.subcategory);
     }
 
     render() {
-        if (this.props.productStore.getProductResult) {
+        console.log(this.props.productStore)
+        if (this.props.productStore.getProductsResult) {
             return (
                 <div style={{width:"100%"}}>
                     <div className="productHeader">
@@ -34,7 +35,7 @@ class Product extends Component {
             );
         } else if (this.props.productStore.isGettingProducts) {
             return <p>Loading..</p>
-        } else if (this.props.productStore.productError) {
+        } else if (this.props.productStore.productsError) {
             return <p>Could not receive products</p>
         } else {
             return <p>400</p>
@@ -54,7 +55,7 @@ class Product extends Component {
     }
 
     columnDisplay() {
-        let products = this.props.productStore.getProductResult;
+        let products = this.props.productStore.getProductsResult;
 
         return (
             <div className='productContainer'>
@@ -70,7 +71,7 @@ class Product extends Component {
     }
 
     horizontalDisplay() {
-        let products = this.props.productStore.getProductResult;
+        let products = this.props.productStore.getProductsResult;
         return (
             <div className='productContainerHorizontal'>
                 {products.map((product) => {
