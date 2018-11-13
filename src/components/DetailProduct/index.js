@@ -20,7 +20,7 @@ class DetailProduct extends Component {
         const foundProduct = json.find(x => (x.id === Number(this.props.match.params.id)));
         this.setState({
             product: foundProduct,
-            rating: foundProduct.rating
+            //rating: foundProduct.rating
         });
     }
 

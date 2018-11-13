@@ -20,7 +20,7 @@ export default class Header extends Component {
                 <button className="searchButton"><SearchIcon id="icon"/></button>
                 <IconButton component={Link} to="/favorites"><FavoriteIcon/></IconButton>
                 <IconButton><ShoppingCartIcon/></IconButton>
-                <IconButton><AccountIcon/></IconButton>
+                <IconButton component={Link} to="/register"><AccountIcon/></IconButton>
             </div>
         </div>
         );

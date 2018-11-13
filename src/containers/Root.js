@@ -5,6 +5,7 @@ import Favorites from '../components/Favorites';
 import DetailProduct from '../components/DetailProduct';
 import ProductPage from '../components/ProductPage';
 import NotFound from '../components/NotFound';
+import RegisterPage from '../components/RegisterPage'
 
 export default class Root extends Component {
   render() {
@@ -14,7 +15,8 @@ export default class Root extends Component {
           <Route exact path='/favorites' component={Favorites} />
           <Route path='/product/:id' component={DetailProduct}/>
           <Route path='/category/:category/:subcategory' component={ProductPage}/>
-          <Route path='/category/:category' component={ProductPage}/>
+          <Route path='/category/:category' component={ProductPage} />
+          <Route exact path='/register' component={RegisterPage} />
           <Route path='/' component={NotFound} />
       </Switch>
     );
