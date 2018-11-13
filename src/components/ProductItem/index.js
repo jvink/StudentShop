@@ -47,7 +47,7 @@ export default class ProductItem extends Component {
 
     blockDisplay() {
         const productItem = this.props.productItemData;
-        console.log(productItem);
+        
         return (
             <div className="productItem">
                 <PriceLabel price={productItem.product.price}/>
@@ -55,7 +55,7 @@ export default class ProductItem extends Component {
                     {this.state.isFavorite ? <Favorite className="isFavorite"/> : <FavoriteBorder/>}
                 </div>
                 <Link to={"product/" + productItem.product.id} className="productItemLink">
-                    {productItem.image[0] ? <img src={productItem.image[0]} alt={productItem.product.id} className="productItemImage"/> : <img src="https://www.unesale.com/ProductImages/Large/notfound.png" alt="NotFound" className="productItemImage"/>}
+                    {productItem.image[0] ? <img src={productItem.image[productItem.image.length-1].url} alt={productItem.product.id} className="productItemImage"/> : <img src="https://raw.githubusercontent.com/jvink/project-c/master/src/images/no-image.jpg?token=AafImDyyZnKhuduvH2v0ac9GcDX5zhBhks5b8_FnwA%3D%3D" alt="NotFound" className="productItemImage"/>}
                     <ProductNameLabel display={this.props.display} name={productItem.product.name}/>
                 </Link>
             </div>
