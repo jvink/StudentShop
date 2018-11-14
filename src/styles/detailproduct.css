@@ -5,7 +5,13 @@
 }
 
 .detailProductImage {
-    max-height: 520px;
+    max-height: 390px;
+    max-width: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .detailProductInfo {
@@ -17,7 +23,7 @@
 }
 
 .productTitle {
-    font-size: 3em;
+    font-size: 2.5em;
 }
 
 .productUpperInfoUpperWrapper {
@@ -50,6 +56,7 @@
 
 .productDescription {
     margin-top: 1em;
+    text-align: left
 }
 
 .productInfoDivider {
@@ -57,4 +64,15 @@
     height: 1px;
     width: 100%;
     margin-top: 1em;
+    margin-left: 0,5em;
+}
+
+.wrapperProductImage {
+    height: 390px;
+    width: 500px;
+}
+
+.wrapperArrowButtons {
+    width: 600px;
+    height: 20px;
 }

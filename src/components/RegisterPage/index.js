@@ -4,13 +4,7 @@ import React, { Component } from 'react';
 class RegisterPage extends Component {
     constructor(props) {
     super(props);
-    this.state = {
-    naam: "",
-        straatnaam: "",
-        postcode: "",
-        stad: "",
-        huisnummer: "",
-        toevoeging: ""
+    this.state = {value: ""
 
 };
 
@@ -94,7 +88,7 @@ render() {
                     value={this.state.stad}
                     onChange={this.handleInputChange} />
             </label>
-            <input type="submit" value="submit" />
+            <input type="submit" value="submit" onSubmit={this.handleSubmit} />
         </form>
     );
 }

@@ -3,12 +3,16 @@ import StarRatings from 'react-star-ratings';
 import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
 import AddShoppingCartOutlined from '@material-ui/icons/AddShoppingCartOutlined';
 import '../../styles/detailproduct.css';
+import RightArrowIcon from '@material-ui/icons/ChevronRight';
+import LeftArrowIcon from '@material-ui/icons/ChevronLeft';
+import { IconButton } from '@material-ui/core';
 
 class DetailProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          rating: 0
+          rating: 0,
+          picurl: 0
         };
 
         this.changeRating = this.changeRating.bind(this);
@@ -19,19 +23,37 @@ class DetailProduct extends Component {
           rating: newRating
         });
     }
+    
+    changeUrl(plusOne, oldPicurl){
+        console.log(plusOne);
+        if (plusOne === false && oldPicurl === 0) {
+            let newPicurl=this.props.product[0].image.length -1
+            this.setState({picurl: newPicurl})
+        } else if (plusOne === true && oldPicurl === this.props.product[0].image.length - 1){
+            let newPicurl=0
+            this.setState({picurl: newPicurl})
+        } else if (plusOne === true) {
+            let newPicurl= oldPicurl + 1
+            this.setState({picurl: newPicurl})
+        } else if (plusOne === false) {
+            let newPicurl= oldPicurl - 1
+            this.setState({picurl: newPicurl})
+        }
+    }
 
     render() {
         const product = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
-
+        console.log(product.image[this.state.picurl])
         return (
             <div>
                 <div className="wrapperDetailProductUpperInfo">
-                    <img className="detailProductImage" alt={product.product.name} src={product.image[0].url}/>
+                    <div className="wrapperProductImage">
+                        <img className="detailProductImage" alt={product.product.name} src={product.image[this.state.picurl].url}/>
+                    </div>
                     <div className="detailProductInfo">
                         <div className="productTitle">
                             {product.product.name}
                         </div>
-                        <div className="productInfoDivider"/>
                         <div className="productUpperInfoUpperWrapper">
                             <div className="productPrice">
                                 €{product.product.price}
@@ -48,18 +70,22 @@ class DetailProduct extends Component {
                                     name='rating'
                                 />
                                 <AddShoppingCartOutlined className="productAddToShoppingCartButton"/>
-                                <FavoriteIcon className="productAddToFavoriteButton"/>
+                                <FavoriteIcon className="productAddToFavoriteButton" />
+                                <div className="productInfoDivider" />
+                                <div className="productDescription">
+                        {product.product.description}
+                    </div>
                             </div>
                         </div>
                         
                     </div>
                 </div>
-                <div className="wrapperDetailProductLowerInfo">
-                    <div className="productDescription">
-                        {product.product.description}
-                    </div>
+                <div className="wrapperArrowButtons">
+                        <IconButton className="LeftArrowButton" onClick={() => this.changeUrl(false, this.state.picurl)}><LeftArrowIcon/></IconButton> 
+                        <IconButton style={{marginLeft: '8em'}} onClick={() => this.changeUrl(true, this.state.picurl)}><RightArrowIcon/></IconButton>  
                 </div>
-            </div>
+                </div>
+
         );
     }
 }
