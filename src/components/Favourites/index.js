@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Product from '../../containers/Product';
-import '../../styles/favorites.css';
+import '../../styles/favourites.css';
 
-class Favorites extends Component {
+class Favourites extends Component {
 
     render() {
         return (
@@ -13,4 +13,4 @@ class Favorites extends Component {
     }
 }
 
-export default Favorites;
+export default Favourites;

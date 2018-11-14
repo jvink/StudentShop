@@ -23,7 +23,6 @@ class Product extends Component {
     }
 
     render() {
-        console.log(this.props.productStore)
         if (this.props.productStore.getProductsResult) {
             return (
                 <div style={{width:"100%"}}>
@@ -62,7 +61,7 @@ class Product extends Component {
                 {products.map((p) => {
                     return (
                         <div key={p.product.id} className="column">
-                            <ProductItem display={this.props.display} productItemData={p}/>
+                            <ProductItem display={this.props.display} productItemData={p.product}/>
                         </div>
                     );
                 })}

@@ -9,19 +9,19 @@ import {
 
 const creator = (dispatch) => ({
   getProducts: async (category, subcategory) => {
-    const url = "http://127.0.0.1:5000/api/products";
+    const url = "http://127.0.0.1:5000/api/Products";
 
     dispatch({
       type: GETTING_PRODUCTS_REQUEST
     });
     await fetch(url)
     .then((response) => {
-      response.json()
-      .then((product) => {
-        dispatch({
-          type: GETTING_PRODUCTS_SUCCESS,
-          product
-        });
+      return response.json();
+    })
+    .then((product) => {
+      dispatch({
+        type: GETTING_PRODUCTS_SUCCESS,
+        product
       });
     })
     .catch((error) => {
