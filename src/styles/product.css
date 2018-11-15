@@ -2,28 +2,52 @@
     box-sizing: border-box;
 }
 
-.column {
+.productWrapper {
     float: left;
     width: 25%;
-    margin-bottom: 1em;
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.20);
     height: 300px;
 }
 
-.productContainer:after {
-    content: "";
-    display: table;
-    clear: both;
+.productPriceLabel {
+    position: absolute;
+    border-radius: 4px;
+    padding: 3px;
+    margin: 12px;
+    color: #fff;
+    background-color: #e74c3c;
 }
 
-.productContainerHorizontal {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 100%;
+.productFavorite {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    margin: 4px;
 }
 
-.horizontal {
+.productImage {
+    max-height: 220px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+
+.productLink {
+    text-decoration: none;
+    color: #7f8c8d;
+    display: block;
+    text-align: center;
+}
+
+.productName {
     width: 100%;
-    text-align: left;
-    margin-bottom: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.isFavorite {
+    color: #e74c3c;
 }

@@ -7,6 +7,7 @@ import ReduxToastr from 'react-redux-toastr';
 import Root from './containers/Root';
 import Header from './components/Header';
 import CategoryHeader from './components/CategoryHeader';
+import CategoryContainer from './containers/Category';
 import rootReducer from './store/reducers';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import './styles/index.css';
@@ -18,6 +19,7 @@ render(
             <div className="appWrapper">\
                 <Header/>
                 <CategoryHeader/>
+                <CategoryContainer/>
                 <div className="bodyWrapper">
                     <Root/>
                 </div>

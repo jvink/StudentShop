@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import favouritesActionCreator from '../../store/actionCreators/favourites';
-import ProductItem from '../../components/ProductItem';
+import Product from '../../components/Product';
 import '../../styles/product.css';
 
 class FavouritesContainer extends Component {
 
     componentWillMount() {
-        this.props.favouritesActions.getAllFavourites(1)
+        this.props.favouritesActions.getAllFavourites(1);
     }
 
     render() {
@@ -18,7 +18,7 @@ class FavouritesContainer extends Component {
                     {this.props.favouritesStore.getFavouritesResult.products.map((p) => {
                         return (
                             <div key={p.id} className="column">
-                                <ProductItem display="horizontal" productItemData={p}/>
+                                <Product display="horizontal" data={p}/>
                             </div>
                         );
                     })}
