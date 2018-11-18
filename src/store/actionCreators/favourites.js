@@ -26,7 +26,7 @@ const creator = (dispatch) => ({
         "ProductId": productId
       })
     })
-    .then((favourites) => {  
+    .then((favourites) => {
       dispatch({
         type: ADD_TO_FAVOURITES_SUCCESS,
         favourites
@@ -51,7 +51,7 @@ const creator = (dispatch) => ({
       return response.json();
     })
     .then((results) => {
-      return results[0];
+      return results;
     })
     .then((favourites) => {
       dispatch({

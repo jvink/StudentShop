@@ -19,7 +19,6 @@ class CategoryHeader extends Component {
                                     </button>
                                     <div className="subCategoryWrapper">
                                         {r.subCategory.map((s) => {
-                                            console.log(s)
                                             return (
                                                 <Link key={s.id} to={categoryUrl + r.category.name + "/" + s.subCategory_Name}>{s.subCategory_Name}</Link>
                                             );

@@ -25,17 +25,17 @@ class Product extends Component {
 
     render() {
         const { data } = this.props;
-
-        return data.map(({product}) => {
+        
+        return data.map((products) => {
             return (
-                <div className="productWrapper" key={product.id}>
-                    <PriceLabel price={product.price}/>
+                <div className="productWrapper" key={products.id}>
+                    <PriceLabel price={products.price}/>
                     <div className="productFavorite" onClick={() => {this.onChange()}}>
                         {this.state.isFavorite ? <Favorite className="isFavorite"/> : <FavoriteBorder/>}
                     </div>
-                    <Link to={"product/" + product.id} className="productLink">
-                        {product.firstImg ? <img src={product.firstImg} alt={product.id} className="productImage"/> : <img src="https://raw.githubusercontent.com/jvink/project-c/master/src/images/no-image.jpg?token=AafImDyyZnKhuduvH2v0ac9GcDX5zhBhks5b8_FnwA%3D%3D" alt="NotFound" className="productItemImage"/>}
-                        <ProductNameLabel name={product.name}/>
+                    <Link to={"product/" + products.id} className="productLink">
+                        {products.firstImg ? <img src={products.firstImg} alt={products.id} className="productImage"/> : <img src="https://raw.githubusercontent.com/jvink/project-c/master/src/images/no-image.jpg?token=AafImDyyZnKhuduvH2v0ac9GcDX5zhBhks5b8_FnwA%3D%3D" alt="NotFound" className="productItemImage"/>}
+                        <ProductNameLabel name={products.name}/>
                     </Link>
                 </div>
             );

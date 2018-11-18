@@ -15,13 +15,9 @@ class FavouritesContainer extends Component {
         if (this.props.favouritesStore.getFavouritesResult) {
             return (
                 <div className="productContainerHorizontal">
-                    {this.props.favouritesStore.getFavouritesResult.products.map((p) => {
-                        return (
-                            <div key={p.id} className="column">
-                                <Product display="horizontal" data={p}/>
-                            </div>
-                        );
-                    })}
+                    <div className="column">
+                        <Product display="horizontal" data={this.props.favouritesStore.getFavouritesResult}/>
+                    </div>
                 </div>
             );
         } else if (this.props.favouritesStore.isGettingFavourites) {
