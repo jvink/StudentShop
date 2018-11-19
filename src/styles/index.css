@@ -47,7 +47,7 @@ button:hover {
 
 .bodyWrapper {
   margin: auto;
-  margin-top: 99px; /* Height of the header */
+  margin-top: 3em;
   max-width: 63%;
   display: flex;
   background-color: #fff;

@@ -8,7 +8,7 @@
     position: relative;
     background-color: #ffffff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.10);
-    max-height: 300px;
+    max-height: 320px;
     max-width: 300px;
     text-align: center;
 }
@@ -30,6 +30,10 @@
     cursor: pointer;
 }
 
+.productImageWrapper {
+    height: 200px;
+}
+
 .productImage {
     max-height: 180px;
     max-width: 80%;
@@ -48,6 +52,7 @@
 .productName {
     width: 100%;
     margin-top: 1em;
+    margin-bottom: 1em;
     text-align: center;
 }
 
