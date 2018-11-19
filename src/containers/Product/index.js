@@ -19,7 +19,7 @@ class ProductContainer extends Component {
             return <p>Loading Data...</p>
         } else if (this.props.productStore.getProductsResult) {
             return (
-                <div>
+                <div className="productsWrapper">
                     <Product addToFavourites={(productId) => this.addToFavourites(productId)} data={this.props.productStore.getProductsResult}/>
                 </div>
             );

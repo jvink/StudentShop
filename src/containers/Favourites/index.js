@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import favouritesActionCreator from '../../store/actionCreators/favourites';
 import Product from '../../components/Product';
+import '../../styles/product.css';
 
 class FavouritesContainer extends Component {
     componentWillMount() {
         this.props.favouritesActions.getAllFavourites(1);
-    }
-
-    checkIsFavourite(userId, productId) {
-        this.props.favouritesActions.checkFavourite(userId, productId);
     }
 
     render() {
@@ -18,8 +15,8 @@ class FavouritesContainer extends Component {
             return <p>Loading..</p>
         } else if (this.props.favouritesStore.getFavouritesResult) {
             return (
-                <div>
-                    <Product checkIsFavourite={(userId, productId) => this.checkIsFavourite(userId, productId)} data={this.props.favouritesStore.getFavouritesResult}/>
+                <div className="productsWrapper">
+                    <Product data={this.props.favouritesStore.getFavouritesResult}/>
                 </div>
             );
         } else if (this.props.favouritesStore.productsError) {
