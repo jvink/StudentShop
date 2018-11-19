@@ -1,15 +1,16 @@
 .productsWrapper {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: 300px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .productWrapper {
+    flex: 25%;
     position: relative;
-    display: flex;
     background-color: #ffffff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.10);
-    height: 300px;
+    max-height: 300px;
+    max-width: 300px;
+    text-align: center;
 }
 
 .productPriceLabel {
@@ -26,11 +27,11 @@
     right: 12px;
     top: 12px;
     margin: 4px;
+    cursor: pointer;
 }
 
 .productImage {
-    flex: 4;
-    max-height: 200px;
+    max-height: 180px;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -38,7 +39,6 @@
 }
 
 .productLink {
-    flex: 1;
     text-decoration: none;
     color: #7f8c8d;
     display: block;
@@ -46,7 +46,6 @@
 }
 
 .productName {
-    flex: 1;
     width: 100%;
     margin-top: 1em;
     text-align: center;
