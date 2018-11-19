@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import productActionCreator from '../../store/actionCreators/product';
+import favouritesActionCreator from '../../store/actionCreators/favourites';
 import Product from '../../components/Product';
 
 class ProductContainer extends Component {
     componentWillMount() {
         this.props.productActions.getProducts();
+    }
+
+    addToFavourites(productId) {
+        this.props.favouritesActions.addToFavourites(1, productId);
     }
 
     render() {
@@ -15,7 +20,7 @@ class ProductContainer extends Component {
         } else if (this.props.productStore.getProductsResult) {
             return (
                 <div>
-                    <Product data={this.props.productStore.getProductsResult}/>
+                    <Product addToFavourites={(productId) => this.addToFavourites(productId)} data={this.props.productStore.getProductsResult}/>
                 </div>
             );
         } else if (this.props.productStore.productsError) {
@@ -28,9 +33,11 @@ class ProductContainer extends Component {
 
 export default withRouter(connect(
     (state) => ({
-        productStore: state.product
+        productStore: state.product,
+        favouritesStore: state.favourites
     }),
     (dispatch) => ({
-        productActions: productActionCreator(dispatch)
+        productActions: productActionCreator(dispatch),
+        favouritesActions: favouritesActionCreator(dispatch)
     })
   )(ProductContainer));

@@ -13,9 +13,9 @@ export default class Header extends Component {
         return (
         <div className="wrapperHeader">
             <div className="headerItemsWrapper">
-                <a href="/">
+                <Link to="/">
                     <img src={image} className="logo" alt="headerImg"/>
-                </a>
+                </Link>
                 <input placeholder="Waar ben je naar op zoek?"/>
                 <button className="searchButton"><SearchIcon id="icon"/></button>
                 <IconButton component={Link} to="/favourites"><FavouriteIcon/></IconButton>

@@ -5,6 +5,9 @@ import {
     GET_FAVOURITES_ERROR,
     GET_FAVOURITES_REQUEST,
     GET_FAVOURITES_SUCCESS,
+    IS_FAVOURITE_ERROR,
+    IS_FAVOURITE_REQUEST,
+    IS_FAVOURITE_SUCCESS,
 } from '../actions/favourites';
 
 const initialState = {
@@ -14,6 +17,9 @@ const initialState = {
   isGettingFavourites: false,
   getFavouritesError: undefined,
   getFavouritesResult: undefined,
+  isCheckingFavourite: false,
+  isFavouriteError: undefined,
+  isFavouriteResult: undefined,
 };
 
 const reducer = (state, action) => {
@@ -50,6 +56,23 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         isGettingFavourites: false,
         getFavouritesResult: action.favourites
+      });
+    }
+    case IS_FAVOURITE_REQUEST: {
+      return Object.assign({}, state, {
+        isCheckingFavourite: true,
+      });
+    }
+    case IS_FAVOURITE_ERROR: {
+      return Object.assign({}, state, {
+        isCheckingFavourite: false,
+        isFavouriteError: action.error
+      });
+    }
+    case IS_FAVOURITE_SUCCESS: {
+      return Object.assign({}, state, {
+        isCheckingFavourite: false,
+        isFavouriteResult: action.favourites
       });
     }
     default: {
