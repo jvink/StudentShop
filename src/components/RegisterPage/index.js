@@ -27,6 +27,7 @@ handleInputChange(event) {
         [name]: value
     });
     }
+    
 handleSubmit(event) {
       alert(this.state.value);
       event.preventDefault();
