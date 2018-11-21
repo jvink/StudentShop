@@ -27,7 +27,6 @@ class Product extends Component {
         const { data } = this.props;
         
         return data.map((products) => {
-            console.log(products)
             return (
                 <div className="productWrapper" key={products.id}>
                     <PriceLabel price={products.price}/>
