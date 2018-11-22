@@ -55,7 +55,6 @@ class Product extends Component {
     render() {
         const { data } = this.props;
         return data.map((product) => {
-            console.log(this.props);
             return (
                 <div className="productWrapper" key={product.id}>
                     <PriceLabel price={product.price}/>
