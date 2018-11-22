@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import favouritesActionCreator from '../../store/actionCreators/favourites';
-import Product from '../../components/Product';
+import Favourites from '../../components/Favourites';
 import '../../styles/product.css';
 
 class FavouritesContainer extends Component {
     componentWillMount() {
         this.props.favouritesActions.getAllFavourites(1);
+    }
+
+    removeFromFavourites(productId) {
+        this.props.favouritesActions.flipFavourites(1, productId);
+        // this.props.favouritesActions.getAllFavourites(1);
     }
 
     render() {
@@ -16,7 +21,7 @@ class FavouritesContainer extends Component {
         } else if (this.props.favouritesStore.getFavouritesResult) {
             return (
                 <div className="productsWrapper">
-                    <Product data={this.props.favouritesStore.getFavouritesResult}/>
+                    <Favourites removeFromFavourites={(productId) => this.removeFromFavourites(productId)} data={this.props.favouritesStore.getFavouritesResult}/>
                 </div>
             );
         } else if (this.props.favouritesStore.productsError) {

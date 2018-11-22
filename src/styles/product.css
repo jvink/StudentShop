@@ -1,15 +1,15 @@
 .productsWrapper {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 
 .productWrapper {
-    flex: 25%;
     position: relative;
+    overflow: hidden;
     background-color: #ffffff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.10);
     max-height: 320px;
-    max-width: 25%;
+    width: 300px;
     text-align: center;
 }
 
