@@ -11,7 +11,7 @@ import {
 } from '../actions/favourites';
 
 const creator = (dispatch) => ({
-  addToFavourites: async (userId, productId) => {
+  flipFavourites: async (userId, productId) => {
     
     isFavourite(userId, productId)
     .then((isFavourite)=> {

@@ -40,7 +40,7 @@ class Product extends Component {
                 this.setState(stateCopy);
             }
         }
-        this.props.addToFavourites(productId);
+        this.props.flipFavourites(productId);
         isFavourite ? toastr.light('Uit favorieten verwijderd', toastrOptions) : toastr.light('Aan favorieten toegevoegd', toastrOptions);
     }
 

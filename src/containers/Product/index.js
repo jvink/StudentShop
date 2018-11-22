@@ -6,12 +6,26 @@ import favouritesActionCreator from '../../store/actionCreators/favourites';
 import Product from '../../components/Product';
 
 class ProductContainer extends Component {
-    componentWillMount() {
-        this.props.productActions.getProducts();
+    componentDidMount() {
+        let { category, subcategory, searchQuery } = this.props.match.params;
+        this.props.productActions.getProducts(category, subcategory, searchQuery);
+      }
+   
+    componentDidUpdate(prevProps) {
+        let { category, subcategory, searchQuery } = this.props.match.params;
+        if ((category && subcategory) && (prevProps.match.params.category !== category && prevProps.match.params.subcategory !== subcategory)) {
+            this.props.productActions.getProducts(category, subcategory, null);
+        } else if (category && (prevProps.match.params.category !== category && !subcategory)) {
+            this.props.productActions.getProducts(category, null, null);
+        } else if ((category && subcategory) && (prevProps.match.params.category === category && prevProps.match.params.subcategory !== subcategory)) {
+            this.props.productActions.getProducts(category, subcategory, null);
+        } else if ((searchQuery) && (prevProps.match.params.searchQuery !== searchQuery)) {
+            this.props.productActions.getProducts(null, null, searchQuery);
+        }
     }
 
-    addToFavourites(productId) {
-        this.props.favouritesActions.addToFavourites(1, productId);
+    flipFavourites(productId) {
+        this.props.favouritesActions.flipFavourites(1, productId);
     }
 
     render() {
@@ -20,7 +34,7 @@ class ProductContainer extends Component {
         } else if (this.props.productStore.getProductsResult) {
             return (
                 <div className="productsWrapper">
-                    <Product addToFavourites={(productId) => this.addToFavourites(productId)} data={this.props.productStore.getProductsResult}/>
+                    <Product flipFavourites={(productId) => this.flipFavourites(productId)} data={this.props.productStore.getProductsResult}/>
                 </div>
             );
         } else if (this.props.productStore.productsError) {

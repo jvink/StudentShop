@@ -14,6 +14,7 @@ export default class Root extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/favourites' component={FavouritesContainer} />
           <Route path='/product/:id' component={DetailProductContainer}/>
+          <Route path='/results/:searchQuery' component={ProductContainer}/>
           <Route path='/category/:category/:subcategory' component={ProductContainer}/>
           <Route path='/category/:category' component={ProductContainer} />
           <Route exact path='/register' component={RegisterPage} />

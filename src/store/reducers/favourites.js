@@ -12,8 +12,8 @@ import {
 
 const initialState = {
   isAddingToFavourites: false,
-  addToFavouritesError: undefined,
-  addToFavouritesResult: undefined,
+  flipFavouritesError: undefined,
+  flipFavouritesResult: undefined,
   isGettingFavourites: false,
   getFavouritesError: undefined,
   getFavouritesResult: undefined,
@@ -32,13 +32,13 @@ const reducer = (state, action) => {
     case ADD_TO_FAVOURITES_ERROR: {
       return Object.assign({}, state, {
         isAddingToFavourites: false,
-        addToFavouritesError: action.error
+        flipFavouritesError: action.error
       });
     }
     case ADD_TO_FAVOURITES_SUCCESS: {
       return Object.assign({}, state, {
         isAddingToFavourites: false,
-        addToFavouritesResult: action.favourites
+        flipFavouritesResult: action.favourites
       });
     }
     case GET_FAVOURITES_REQUEST: {

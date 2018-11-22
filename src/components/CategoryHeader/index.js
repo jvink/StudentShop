@@ -15,12 +15,12 @@ class CategoryHeader extends Component {
                             return (
                                 <div key={r.category.id} className="categoryDropdown">
                                     <button className="categoryButton">
-                                        <div className="categoryNameWrapper"><Link className="categoryName" to={categoryUrl + r.category.name}>{r.category.name}</Link></div>
+                                        <div className="categoryNameWrapper"><Link className="categoryName" to={categoryUrl + r.category.id}>{r.category.name}</Link></div>
                                     </button>
                                     <div className="subCategoryWrapper">
                                         {r.subCategory.map((s) => {
                                             return (
-                                                <Link key={s.id} to={categoryUrl + r.category.name + "/" + s.subCategory_Name}>{s.subCategory_Name}</Link>
+                                                <Link key={s.id} to={categoryUrl + r.category.id + "/" + s.id}>{s.subCategory_Name}</Link>
                                             );
                                         })}
                                     </div>
