@@ -2,6 +2,8 @@ import {
     ADD_TO_FAVOURITES_ERROR,
     ADD_TO_FAVOURITES_REQUEST,
     ADD_TO_FAVOURITES_SUCCESS,
+    REMOVE_FROM_FAVOURITES_ERROR,
+    REMOVE_FROM_FAVOURITES_SUCCESS,
     GET_FAVOURITES_ERROR,
     GET_FAVOURITES_REQUEST,
     GET_FAVOURITES_SUCCESS,
@@ -14,6 +16,7 @@ const initialState = {
   isAddingToFavourites: false,
   flipFavouritesError: undefined,
   flipFavouritesResult: undefined,
+  removeFavouritesError: undefined,
   isGettingFavourites: false,
   getFavouritesError: undefined,
   getFavouritesResult: undefined,
@@ -39,6 +42,18 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         isAddingToFavourites: false,
         flipFavouritesResult: action.favourites
+      });
+    }
+    case REMOVE_FROM_FAVOURITES_ERROR: {
+      return Object.assign({}, state, {
+        removeFavouritesError: action.error
+      });
+    }
+    case REMOVE_FROM_FAVOURITES_SUCCESS: {
+      return Object.assign({}, state, {
+        getFavouritesResult: state.getFavouritesResult.filter((favourite) => {
+          return favourite.id !== action.productId;
+        })
       });
     }
     case GET_FAVOURITES_REQUEST: {

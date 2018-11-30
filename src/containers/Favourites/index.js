@@ -6,13 +6,12 @@ import Favourites from '../../components/Favourites';
 import '../../styles/product.css';
 
 class FavouritesContainer extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.favouritesActions.getAllFavourites(1);
     }
 
     removeFromFavourites(productId) {
         this.props.favouritesActions.flipFavourites(1, productId);
-        // this.props.favouritesActions.getAllFavourites(1);
     }
 
     render() {

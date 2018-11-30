@@ -2,6 +2,9 @@ import {
     ADD_TO_FAVOURITES_ERROR,
     ADD_TO_FAVOURITES_REQUEST,
     ADD_TO_FAVOURITES_SUCCESS,
+    REMOVE_FROM_FAVOURITES_ERROR,
+    REMOVE_FROM_FAVOURITES_REQUEST,
+    REMOVE_FROM_FAVOURITES_SUCCESS,
     GET_FAVOURITES_ERROR,
     GET_FAVOURITES_REQUEST,
     GET_FAVOURITES_SUCCESS,
@@ -15,11 +18,11 @@ const creator = (dispatch) => ({
     
     isFavourite(userId, productId)
     .then((isFavourite)=> {
-      dispatch({
-        type: ADD_TO_FAVOURITES_REQUEST
-      });
       
       if (!isFavourite) {
+        dispatch({
+          type: ADD_TO_FAVOURITES_REQUEST
+        });
         const url = "http://127.0.0.1:5000/api/Favourites";
         fetch(url, {
           method: 'POST',
@@ -45,6 +48,9 @@ const creator = (dispatch) => ({
           }); 
         });
       } else {
+        dispatch({
+          type: REMOVE_FROM_FAVOURITES_REQUEST
+        });
         const url = "http://127.0.0.1:5000/api/Favourites/" + userId + "/" + productId;
         fetch(url, {
           method: 'DELETE',
@@ -53,15 +59,15 @@ const creator = (dispatch) => ({
             'Content-Type': 'application/json'
           }
         })
-        .then((favourites) => {
+        .then(() => {
           dispatch({
-            type: ADD_TO_FAVOURITES_SUCCESS,
-            favourites
+            type: REMOVE_FROM_FAVOURITES_SUCCESS,
+            productId
           }); 
         })
         .catch((error) => {
           dispatch({
-            type: ADD_TO_FAVOURITES_ERROR,
+            type: REMOVE_FROM_FAVOURITES_ERROR,
             error
           }); 
         });
