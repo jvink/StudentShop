@@ -5,6 +5,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
 import PriceLabel from './price';
 import ProductNameLabel from './name';
+import notFoundImage from '../../images/no-image.jpg';
 import '../../styles/product.css';
 
 const toastrOptions = {
@@ -62,7 +63,7 @@ class Product extends Component {
                         {this.isFavourite(product.id) ? <Favorite className="isFavorite"/> : <FavoriteBorder/>}
                     </div>
                     <Link to={"product/" + product.id} className="productLink">
-                        <div className="productImageWrapper">{product.firstImg ? <img src={product.firstImg} alt={product.id} className="productImage"/> : <img src="https://raw.githubusercontent.com/jvink/project-c/master/src/images/no-image.jpg?token=AafImDyyZnKhuduvH2v0ac9GcDX5zhBhks5b8_FnwA%3D%3D" alt="NotFound" className="productImage"/>}</div>
+                        <div className="productImageWrapper">{product.firstImg ? <img src={product.firstImg} alt={product.id} className="productImage"/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>}</div>
                         <ProductNameLabel name={product.name}/>
                     </Link>
                 </div>

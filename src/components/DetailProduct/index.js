@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StarRatings from 'react-star-ratings';
 import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
 import AddShoppingCartOutlined from '@material-ui/icons/AddShoppingCartOutlined';
+import notFoundImage from '../../images/no-image.jpg';
 import '../../styles/detailproduct.css';
 
 class DetailProduct extends Component {
@@ -26,7 +27,7 @@ class DetailProduct extends Component {
         return (
             <div>
                 <div className="wrapperDetailProductUpperInfo">
-                {product.firstImg ? <img src={product.firstImg} alt={product.id} className="detailProductImage"/> : <img src="https://raw.githubusercontent.com/jvink/project-c/master/src/images/no-image.jpg?token=AafImDyyZnKhuduvH2v0ac9GcDX5zhBhks5b8_FnwA%3D%3D" alt="NotFound" className="detailProductImage"/>}
+                {product.firstImg ? <img src={product.firstImg} alt={product.id} className="detailProductImage"/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>}
                     <div className="detailProductInfo">
                         <div className="productTitle">
                             {product.product.name}
