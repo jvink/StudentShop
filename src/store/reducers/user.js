@@ -2,12 +2,18 @@ import {
     REGISTER_USER_ERROR,
     REGISTER_USER_REQUEST,
     REGISTER_USER_SUCCESS,
+    LOGIN_USER_ERROR,
+    LOGIN_USER_REQUEST,
+    LOGIN_USER_SUCCESS,
 } from '../actions/user';
 
 const initialState = {
   isRegistering: false,
   registerError: undefined,
   registerUserResult: undefined,
+  isLoggingIn: false,
+  loginError: undefined,
+  loginUserResult: undefined,
 };
 
 const reducer = (state, action) => {
@@ -27,6 +33,25 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         isRegistering: false,
         registerUserResult: action.user
+      });
+    }
+    case LOGIN_USER_REQUEST: {
+      return Object.assign({}, state, {
+        isLoggingIn: true,
+        loginError: false
+      });
+    }
+    case LOGIN_USER_ERROR: {
+      return Object.assign({}, state, {
+        isLoggingIn: false,
+        loginError: true
+      });
+    }
+    case LOGIN_USER_SUCCESS: {
+      return Object.assign({}, state, {
+        isLoggingIn: false,
+        loginUserResult: action.token,
+        loginError: false
       });
     }
     default: {

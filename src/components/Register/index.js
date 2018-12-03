@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import '../../styles/login.css';
+import '../../styles/register.css';
 
 class Register extends Component {
     state = {
@@ -19,9 +19,11 @@ class Register extends Component {
         lastName: undefined,
         dateOfBirth: undefined,
         street: undefined,
+        city: undefined,
         postalCode: undefined,
         houseNumber: undefined,
-        houseNumberSuffix: undefined
+        houseNumberSuffix: undefined,
+        phoneNumber: undefined
     };
     
     handleChange = name => event => {
@@ -32,11 +34,11 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="loginFormCardContainer">
-                <Card className="loginFormCard">
+            <div className="registerFormCardContainer">
+                <Card className="registerFormCard">
                     <CardContent>
                         <h1>Registreren</h1>
-                        <form className="formContainer" autoComplete="off">
+                        <form className="registerFormContainer" autoComplete="off">
                             <TextField
                                 required
                                 id="outlined-email-input"
@@ -106,7 +108,7 @@ class Register extends Component {
                                 />
                                 <TextField
                                     style={{marginLeft: '.5em', marginRight: '.5em'}}
-                                    id="outlined-required"
+                                    id="outlined"
                                     label="Tussenvoegsel"
                                     value={this.state.infix}
                                     onChange={this.handleChange('infix')}
@@ -125,6 +127,7 @@ class Register extends Component {
                             </div>
                             <TextField
                                 id="date"
+                                required
                                 label="Geboortedatum"
                                 value={this.state.dateOfBirth}
                                 onChange={this.handleChange('dateOfBirth')}
@@ -141,6 +144,15 @@ class Register extends Component {
                                 label="Straatnaam"
                                 value={this.state.street}
                                 onChange={this.handleChange('street')}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Plaatsnaam"
+                                value={this.state.city}
+                                onChange={this.handleChange('city')}
                                 margin="normal"
                                 variant="outlined"
                             />
@@ -165,7 +177,7 @@ class Register extends Component {
                                     variant="outlined"
                                 />
                                 <TextField
-                                    id="outlined-required"
+                                    id="outlined"
                                     label="Toevoeging"
                                     value={this.state.houseNumberSuffix}
                                     onChange={this.handleChange('houseNumberSuffix')}
@@ -173,10 +185,18 @@ class Register extends Component {
                                     variant="outlined"
                                 />
                             </div>
+                            <TextField
+                                id="outlined"
+                                label="Telefoonnummer"
+                                value={this.state.phoneNumber}
+                                onChange={this.handleChange('phoneNumber')}
+                                margin="normal"
+                                variant="outlined"
+                            />
                         </form>
                     </CardContent>
                     <CardActions style={{display: 'flex'}}>
-                        <button className="loginButton">Registreren</button>
+                        <button className="primaryButton">Registreren</button>
                     </CardActions>
                 </Card>
             </div>

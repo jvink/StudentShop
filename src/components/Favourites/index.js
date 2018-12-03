@@ -30,6 +30,7 @@ class Favourites extends Component {
             return (
                 <div>
                     <h1>Uw favoriete producten</h1>
+                    <div className="productsWrapper">
                         {data.map((product) => {
                         return (
                             <div className="productWrapper" key={product.id}>
@@ -44,6 +45,7 @@ class Favourites extends Component {
                             </div>
                         );
                     })}
+                    </div>
                 </div>
             );
         }

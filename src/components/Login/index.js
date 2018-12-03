@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import '../../styles/login.css';
 
 class Login extends Component {
@@ -23,7 +24,9 @@ class Login extends Component {
                 <Card className="loginFormCard">
                     <CardContent>
                         <h1>Login</h1>
-                        <form className="formContainer" autoComplete="off">
+                        {this.props.error === true ? <p style={{color: 'red'}}>Invalid credentials</p> : null}
+                        {this.props.loading === true ? <CircularProgress/> : null}
+                        <form className="loginFormContainer" autoComplete="off">
                             <TextField
                                 id="outlined-email-input"
                                 label="Email"
@@ -50,8 +53,8 @@ class Login extends Component {
                         </form>
                     </CardContent>
                     <CardActions style={{display: 'flex'}}>
-                        <button className="registerButton">Registreren</button>
-                        <button className="loginButton">Login</button>
+                        <button className="secondaryButton">Registreren</button>
+                        <button className="primaryButton" onClick={() => this.props.login(this.state.email, this.state.password)}>Login</button>
                     </CardActions>
                 </Card>
             </div>

@@ -45,6 +45,33 @@ button:hover {
   box-shadow: 0 0 0.5pt 0.5pt #bdc3c7;
 }
 
+.primaryButton {
+  border-radius: 4px;
+  padding: .5em 1em .5em 1em;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.secondaryButton {
+  font-family: 'Montserrat', sans-serif;
+  padding: 1em;
+  outline: none;
+  border: none;
+  font-size: 1em;
+}
+
+.secondaryButton:hover {
+  text-decoration: underline;
+  box-shadow: none;
+}
+
+.secondaryButton:focus {
+  text-decoration: underline;
+  box-shadow: none;
+}
+
 .bodyWrapper {
   margin: auto;
   margin-top: 3em;
