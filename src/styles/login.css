@@ -1,0 +1,52 @@
+﻿.loginFormCardContainer {
+    width: 100%;
+}
+
+.loginFormCard {
+    width: 50%;
+    margin: auto;
+    margin-top: 2em;
+}
+
+.formContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.formTextField {
+    margin-left: 1em;
+    margin-right: 1em;
+    border-color: #e74c3c;
+}
+
+.registerButton {
+    font-family: 'Montserrat', sans-serif;
+    padding: 1em;
+    outline: none;
+    border: none;
+    font-size: 1em;
+}
+
+.registerButton:hover {
+    text-decoration: underline;
+    box-shadow: none;
+}
+
+.registerButton:focus {
+    text-decoration: underline;
+    box-shadow: none;
+}
+
+.loginButton {
+    border-radius: 4px;
+    padding: .5em 1em .5em 1em;
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.loginTitle {
+    font-size: 2em;
+}

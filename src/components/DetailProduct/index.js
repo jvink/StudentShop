@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import StarRatings from 'react-star-ratings';
 import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
 import AddShoppingCartOutlined from '@material-ui/icons/AddShoppingCartOutlined';
 import notFoundImage from '../../images/no-image.jpg';
@@ -38,16 +37,6 @@ class DetailProduct extends Component {
                                 €{product.product.price}
                             </div>
                             <div style={{textAlign: 'right', width: '100%'}}>
-                                <StarRatings
-                                    rating={this.state.rating}
-                                    starRatedColor="#f1c40f"
-                                    starHoverColor="#f39c12"
-                                    starDimension="2em"
-                                    starSpacing="0px"
-                                    changeRating={this.changeRating}
-                                    numberOfStars={5}
-                                    name='rating'
-                                />
                                 <AddShoppingCartOutlined className="productAddToShoppingCartButton"/>
                                 <FavoriteIcon className="productAddToFavoriteButton"/>
                             </div>
