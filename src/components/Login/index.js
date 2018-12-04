@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -17,6 +18,10 @@ class Login extends Component {
             [name]: event.target.value,
         });
     };
+
+    goToRegister() {
+        this.props.history.push('/register');
+    }
 
     render() {
         return (
@@ -53,7 +58,7 @@ class Login extends Component {
                         </form>
                     </CardContent>
                     <CardActions style={{display: 'flex'}}>
-                        <button className="secondaryButton">Registreren</button>
+                        <button className="secondaryButton" onClick={() => this.goToRegister()}>Registreren</button>
                         <button className="primaryButton" onClick={() => this.props.login(this.state.email, this.state.password)}>Login</button>
                     </CardActions>
                 </Card>
@@ -62,4 +67,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
