@@ -8,18 +8,44 @@ import {
 } from '../actions/user';
 
 const creator = (dispatch) => ({
-  getUser: async (user) => {
+  register: async (user) => {
+    const url = "http://127.0.0.1:5000/api/accounts/register";
     dispatch({
       type: REGISTER_USER_REQUEST
     });
-    if (true) {
-      dispatch({
-        type: REGISTER_USER_SUCCESS,
-        user
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "Name": user.firstName,
+          "LastName": user.lastName,
+          "Age": user.dateOfBirth,
+          "Password": user.password,
+          "Gender": user.gender,
+          "Street_Name": user.street,
+          "email": user.email,
+          "House_Number": user.houseNumber,
+          "Addition": user.houseNumberAddition,
+          "Postalcode": user.postalCode,
+          "City": user.city,
+          "Telephone_Number": user.phoneNumber
+        })
       });
-    } else {
+
+      console.log(await res.json());
+
       dispatch({
-        type: REGISTER_USER_ERROR
+        type: REGISTER_USER_SUCCESS
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_USER_ERROR,
+        error
       });
     }
   },

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toastr } from 'react-redux-toastr';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,6 +8,11 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import '../../styles/register.css';
+
+const toastrOptions = {
+    icon: 'success',
+    status: 'success'
+};
 
 class Register extends Component {
     state = {
@@ -31,6 +37,28 @@ class Register extends Component {
             [name]: event.target.value,
         });
     };
+
+    onClickRegister() {
+        let user = {
+            email: this.state.email,
+            password: this.state.password,
+            passwordRepeated: this.state.passwordRepeated,
+            gender: this.state.gender,
+            firstName: this.state.firstName,
+            infix: this.state.infix,
+            lastName: this.state.lastName,
+            dateOfBirth: this.state.dateOfBirth,
+            street: this.state.street,
+            city: this.state.city,
+            postalCode: this.state.postalCode,
+            houseNumber: this.state.houseNumber,
+            houseNumberSuffix: this.state.houseNumberSuffix,
+            phoneNumber: this.state.phoneNumber
+        }
+        console.log(user);
+        this.props.register(user);
+        toastr.light('Succesvol geregistreerd! Log nu in om te beginnen.', toastrOptions);
+    }
 
     render() {
         return (
@@ -66,7 +94,7 @@ class Register extends Component {
                             />
                             <TextField
                                 required
-                                id="outlined-password-input"
+                                id="outlined-password-repeat-input"
                                 label="Herhaal wachtwoord"
                                 className="formTextfield"
                                 type="password"
@@ -99,7 +127,7 @@ class Register extends Component {
                             <div style={{display: 'flex'}}>
                                 <TextField
                                     required
-                                    id="outlined-required"
+                                    id="outlined-required-firstname"
                                     label="Voornaam"
                                     value={this.state.firstName}
                                     onChange={this.handleChange('firstName')}
@@ -108,7 +136,7 @@ class Register extends Component {
                                 />
                                 <TextField
                                     style={{marginLeft: '.5em', marginRight: '.5em'}}
-                                    id="outlined"
+                                    id="outlined-infix"
                                     label="Tussenvoegsel"
                                     value={this.state.infix}
                                     onChange={this.handleChange('infix')}
@@ -117,8 +145,8 @@ class Register extends Component {
                                 />
                                 <TextField
                                     required
-                                    id="outlined-required"
-                                    label="Voornaam"
+                                    id="outlined-required-lastname"
+                                    label="Achternaam"
                                     value={this.state.lastName}
                                     onChange={this.handleChange('lastName')}
                                     margin="normal"
@@ -140,7 +168,7 @@ class Register extends Component {
                             />
                             <TextField
                                 required
-                                id="outlined-required"
+                                id="outlined-required-street"
                                 label="Straatnaam"
                                 value={this.state.street}
                                 onChange={this.handleChange('street')}
@@ -149,7 +177,7 @@ class Register extends Component {
                             />
                             <TextField
                                 required
-                                id="outlined-required"
+                                id="outlined-required-city"
                                 label="Plaatsnaam"
                                 value={this.state.city}
                                 onChange={this.handleChange('city')}
@@ -159,7 +187,7 @@ class Register extends Component {
                             <div style={{display: 'flex'}}>
                                 <TextField
                                     required
-                                    id="outlined-required"
+                                    id="outlined-required-postalcode"
                                     label="Postcode"
                                     value={this.state.postalCode}
                                     onChange={this.handleChange('postalCode')}
@@ -169,7 +197,7 @@ class Register extends Component {
                                 <TextField
                                     required
                                     style={{marginLeft: '.5em', marginRight: '.5em'}}
-                                    id="outlined-required"
+                                    id="outlined-required-housenumber"
                                     label="Huisnummer"
                                     value={this.state.houseNumber}
                                     onChange={this.handleChange('houseNumber')}
@@ -177,7 +205,7 @@ class Register extends Component {
                                     variant="outlined"
                                 />
                                 <TextField
-                                    id="outlined"
+                                    id="outlined-housenumberaddition"
                                     label="Toevoeging"
                                     value={this.state.houseNumberSuffix}
                                     onChange={this.handleChange('houseNumberSuffix')}
@@ -186,7 +214,7 @@ class Register extends Component {
                                 />
                             </div>
                             <TextField
-                                id="outlined"
+                                id="outlined-phonenumber"
                                 label="Telefoonnummer"
                                 value={this.state.phoneNumber}
                                 onChange={this.handleChange('phoneNumber')}
