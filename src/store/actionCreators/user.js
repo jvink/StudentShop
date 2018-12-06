@@ -24,7 +24,7 @@ const creator = (dispatch) => ({
         body: JSON.stringify({
           "Name": user.firstName,
           "LastName": user.lastName,
-          "Age": user.dateOfBirth,
+          "Age": user.age,
           "Password": user.password,
           "Gender": user.gender,
           "Street_Name": user.street,

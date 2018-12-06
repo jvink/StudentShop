@@ -6,7 +6,7 @@ import FavouritesContainer from '../containers/Favourites';
 import ProductContainer from '../containers/Product';
 import NotFound from '../components/NotFound';
 import LoginContainer from '../containers/Login';
-import Register from '../components/Register'
+import RegisterContainer from '../containers/Register'
 
 export default class Root extends Component {
   render() {
@@ -19,7 +19,7 @@ export default class Root extends Component {
           <Route path='/category/:category/:subcategory' component={ProductContainer}/>
           <Route path='/category/:category' component={ProductContainer} />
           <Route exact path='/login' component={LoginContainer} />
-          <Route exact path='/register' component={Register} />
+          <Route exact path='/register' component={RegisterContainer} />
           <Route path='/' component={NotFound} />
       </Switch>
     );

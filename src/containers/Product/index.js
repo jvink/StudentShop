@@ -6,6 +6,14 @@ import favouritesActionCreator from '../../store/actionCreators/favourites';
 import Product from '../../components/Product';
 
 class ProductContainer extends Component {
+    constructor(props) {
+        super(props);
+        let token = localStorage.getItem("USER");
+        this.state = {
+            token
+        }
+    }
+
     componentDidMount() {
         let { category, subcategory, searchQuery } = this.props.match.params;
         this.props.productActions.getProducts(category, subcategory, searchQuery);
@@ -25,7 +33,7 @@ class ProductContainer extends Component {
     }
 
     flipFavourites(productId) {
-        this.props.favouritesActions.flipFavourites(1, productId);
+        this.props.favouritesActions.flipFavourites(this.state.token, productId);
     }
 
     render() {

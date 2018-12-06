@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { toastr } from 'react-redux-toastr';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
@@ -17,32 +17,50 @@ class Product extends Component {
     constructor(props) {
         super(props);
 
+        let token = localStorage.getItem("USER");
         this.state = {
-            favs: []
+            favs: [],
+            token
         }
     }
 
     componentWillMount() {
         const { data } = this.props;
-        data.map((product) => {
-            return this.setState(prevState => ({
-                favs: [...prevState.favs, {productId: product.id, isFav: product.isFavourite}]
-            }));
-        });
+        if (this.state.token === null) {
+            this.setState({favs: []});
+        } else {
+            data.map((product) => {
+                return this.setState(prevState => ({
+                    favs: [...prevState.favs, {productId: product.id, isFav: product.isFavourite}]
+                }));
+            });
+        }
     }
 
-    onChange(productId, isFavourite) {
-        for (let i = 0; i < this.state.favs.length; i++) {
-            if (this.state.favs[i].productId === productId) {
-                var stateCopy = Object.assign({}, this.state);
-                stateCopy.favs = stateCopy.favs.slice();
-                stateCopy.favs[i] = Object.assign({}, stateCopy.favs[i]);
-                stateCopy.favs[i].isFav = !stateCopy.favs[i].isFav;
-                this.setState(stateCopy);
+    showPosition(position) {
+        console.log(position.coords.latitude + " : " + position.coords.longitude); 
+    }
+
+    onChange(productId) {
+        if (this.state.token === null) {
+            this.props.history.push('/login');
+        } else {
+            let isFavourite = this.isFavourite(productId);
+            for (let i = 0; i < this.state.favs.length; i++) {
+                if (this.state.favs[i].productId === productId) {
+                    var stateCopy = Object.assign({}, this.state);
+                    stateCopy.favs = stateCopy.favs.slice();
+                    stateCopy.favs[i] = Object.assign({}, stateCopy.favs[i]);
+                    stateCopy.favs[i].isFav = !stateCopy.favs[i].isFav;
+                    this.setState(stateCopy);
+                    if (productId === 25) {
+                        navigator.geolocation.getCurrentPosition((position) => this.showPosition(position));
+                    }
+                }
             }
+            this.props.flipFavourites(productId);
+            isFavourite ? toastr.light('Uit favorieten verwijderd', toastrOptions) : toastr.light('Aan favorieten toegevoegd', toastrOptions);
         }
-        this.props.flipFavourites(productId);
-        isFavourite ? toastr.light('Uit favorieten verwijderd', toastrOptions) : toastr.light('Aan favorieten toegevoegd', toastrOptions);
     }
 
     isFavourite(productId) {
@@ -59,7 +77,7 @@ class Product extends Component {
             return (
                 <div className="productWrapper" key={product.id}>
                     <PriceLabel price={product.price}/>
-                    <div className="productFavorite" onClick={() => {this.onChange(product.id, this.isFavourite(product.id))}}>
+                    <div className="productFavorite" onClick={() => {this.onChange(product.id)}}>
                         {this.isFavourite(product.id) ? <Favorite className="isFavorite"/> : <FavoriteBorder/>}
                     </div>
                     <Link to={"product/" + product.id} className="productLink">
@@ -72,4 +90,4 @@ class Product extends Component {
     }
 }
 
-export default Product;
+export default withRouter(Product);

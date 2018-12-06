@@ -14,16 +14,15 @@ import {
 } from '../actions/favourites';
 
 const creator = (dispatch) => ({
-  flipFavourites: async (userId, productId) => {
-    
-    isFavourite(userId, productId)
+  flipFavourites: async (token, productId) => {
+    isFavourite(token, productId)
     .then((isFavourite)=> {
       
       if (!isFavourite) {
         dispatch({
           type: ADD_TO_FAVOURITES_REQUEST
         });
-        const url = "http://127.0.0.1:5000/api/Favourites";
+        const url = "http://127.0.0.1:5000/api/Favourites/PostFavourite?token=" + token;
         fetch(url, {
           method: 'POST',
           headers: {
@@ -31,7 +30,6 @@ const creator = (dispatch) => ({
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            "UserId": userId,
             "ProductId": productId
           })
         })
@@ -51,7 +49,7 @@ const creator = (dispatch) => ({
         dispatch({
           type: REMOVE_FROM_FAVOURITES_REQUEST
         });
-        const url = "http://127.0.0.1:5000/api/Favourites/" + userId + "/" + productId;
+        const url = "http://127.0.0.1:5000/api/Favourites/RemoveFavourite/" + productId + "?token=" + token;
         fetch(url, {
           method: 'DELETE',
           headers: {
@@ -78,8 +76,8 @@ const creator = (dispatch) => ({
     })
   },
 
-  getAllFavourites: async (userId) => {
-    const url = "http://127.0.0.1:5000/api/Favourites/" + userId;
+  getAllFavourites: async (token) => {
+    const url = "http://127.0.0.1:5000/api/Favourites/MyFavourites/?token=" + token;
 
     dispatch({
       type: GET_FAVOURITES_REQUEST
@@ -105,8 +103,8 @@ const creator = (dispatch) => ({
     });
   },
 
-  checkFavourite: async (userId, productId) => {
-    const url = "http://127.0.0.1:5000/api/Favourites/" + userId + "/" + productId;
+  checkFavourite: async (token, productId) => {
+    const url = "http://127.0.0.1:5000/api/Favourites/MyFavourites/" + productId + "?token=" + token;
 
     dispatch({
       type: IS_FAVOURITE_REQUEST
@@ -133,8 +131,8 @@ const creator = (dispatch) => ({
   },
 });
 
-async function isFavourite(userId, productId) {
-  const url = "http://127.0.0.1:5000/api/Favourites/" + userId + "/" + productId;
+async function isFavourite(token, productId) {
+  const url = "http://127.0.0.1:5000/api/Favourites/MyFavourites/" + productId + "?token=" + token;
 
   try {
 

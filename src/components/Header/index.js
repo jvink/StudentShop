@@ -49,6 +49,7 @@ class Header extends Component {
     handleLogout = () => {
         localStorage.removeItem("USER");
         this.setState({ anchorEl: null });
+        window.location.reload(true);
         toastr.light('U bent uitgelogd', toastrOptions);
     };
 

@@ -26,13 +26,14 @@ const reducer = (state, action) => {
     case REGISTER_USER_ERROR: {
       return Object.assign({}, state, {
         isRegistering: false,
-        registerError: action.error
+        registerError: action.error,
+        registerUserResult: false
       });
     }
     case REGISTER_USER_SUCCESS: {
       return Object.assign({}, state, {
         isRegistering: false,
-        registerUserResult: action.user
+        registerUserResult: true
       });
     }
     case LOGIN_USER_REQUEST: {

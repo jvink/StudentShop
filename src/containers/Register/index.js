@@ -19,13 +19,13 @@ class RegisterContainer extends Component {
 
     render() {
         if (this.props.userStore.isRegistering) {
-            return <Register error={false} loading={true} register={() => this.register(user)}/>;
+            return <Register error={false} loading={true} register={(user) => this.register(user)}/>;
         } else if (this.props.userStore.registerError) {
-            return <Register error={true} loading={false} register={() => this.register(user)}/>;
+            return <Register error={true} loading={false} register={(user) => this.register(user)}/>;
         } else if (this.props.userStore.registerUserResult) {
-            return <Register error={false} loading={false} register={() => this.register(user)}/>;
+            return <Register error={false} loading={false} register={(user) => this.register(user)}/>;
         } else {
-            return <Register error={false} loading={false} register={() => this.register(user)}/>;
+            return <Register error={false} loading={false} register={(user) => this.register(user)}/>;
         }
     }
 }

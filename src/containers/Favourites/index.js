@@ -6,12 +6,21 @@ import Favourites from '../../components/Favourites';
 import '../../styles/product.css';
 
 class FavouritesContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        let token = localStorage.getItem("USER");
+        this.state = {
+            token
+        }
+    }
+    
     componentDidMount() {
-        this.props.favouritesActions.getAllFavourites(1);
+        this.props.favouritesActions.getAllFavourites(this.state.token);
     }
 
     removeFromFavourites(productId) {
-        this.props.favouritesActions.flipFavourites(1, productId);
+        this.props.favouritesActions.flipFavourites(this.state.token, productId);
     }
 
     render() {

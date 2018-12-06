@@ -3,10 +3,11 @@ import { toastr } from 'react-redux-toastr';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import RegisterTextField from '../RegisterTextField';
 import '../../styles/register.css';
 
 const toastrOptions = {
@@ -16,25 +17,26 @@ const toastrOptions = {
 
 class Register extends Component {
     state = {
-        email: undefined,
-        password: undefined,
-        passwordRepeated: undefined,
-        gender: undefined,
-        firstName: undefined,
-        infix: undefined,
-        lastName: undefined,
-        dateOfBirth: undefined,
-        street: undefined,
-        city: undefined,
-        postalCode: undefined,
-        houseNumber: undefined,
-        houseNumberSuffix: undefined,
-        phoneNumber: undefined
+        email: '',
+        password: '',
+        passwordRepeated: '',
+        gender: '',
+        firstName: '',
+        infix: '',
+        lastName: '',
+        dateOfBirth: '',
+        street: '',
+        city: '',
+        postalCode: '',
+        houseNumber: '',
+        houseNumberSuffix: '',
+        phoneNumber: ''
     };
     
-    handleChange = name => event => {
+    handleChange(name, value) {
+        console.log(name, value)
         this.setState({
-            [name]: event.target.value,
+            [name]: value,
         });
     };
 
@@ -47,7 +49,7 @@ class Register extends Component {
             firstName: this.state.firstName,
             infix: this.state.infix,
             lastName: this.state.lastName,
-            dateOfBirth: this.state.dateOfBirth,
+            age: this.state.age,
             street: this.state.street,
             city: this.state.city,
             postalCode: this.state.postalCode,
@@ -55,7 +57,7 @@ class Register extends Component {
             houseNumberSuffix: this.state.houseNumberSuffix,
             phoneNumber: this.state.phoneNumber
         }
-        console.log(user);
+
         this.props.register(user);
         toastr.light('Succesvol geregistreerd! Log nu in om te beginnen.', toastrOptions);
     }
@@ -66,43 +68,29 @@ class Register extends Component {
                 <Card className="registerFormCard">
                     <CardContent>
                         <h1>Registreren</h1>
+                        {this.props.error === true ? <p style={{color: 'red'}}>Er ging iets verkeerd. Probeer het opnieuw alstublieft.</p> : null}
+                        {this.props.loading === true ? <CircularProgress/> : null}
                         <form className="registerFormContainer" autoComplete="off">
-                            <TextField
-                                required
+                            <RegisterTextField
+                                onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-email-input"
                                 label="Email"
-                                value={this.state.email}
                                 type="email"
                                 name="email"
-                                fullWidth
-                                onChange={this.handleChange('email')}
-                                autoComplete="email"
-                                margin="normal"
-                                variant="outlined"
                             />
-                            <TextField
-                                required
+                            <RegisterTextField
+                                onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-password-input"
                                 label="Wachtwoord"
-                                className="formTextfield"
                                 type="password"
-                                value={this.state.password}
-                                onChange={this.handleChange('password')}
-                                fullWidth
-                                variant="outlined"
-                                margin="normal"
+                                name="password"
                             />
-                            <TextField
-                                required
+                            <RegisterTextField
+                                onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-password-repeat-input"
                                 label="Herhaal wachtwoord"
-                                className="formTextfield"
-                                type="password"
-                                value={this.state.passwordRepeated}
-                                onChange={this.handleChange('passwordRepeated')}
-                                fullWidth
-                                variant="outlined"
-                                margin="normal"
+                                type="passwordRepeated"
+                                name="passwordRepeated"
                             />
                             <RadioGroup
                                 aria-label="gender"
@@ -125,106 +113,83 @@ class Register extends Component {
                                 />
                             </RadioGroup>
                             <div style={{display: 'flex'}}>
-                                <TextField
-                                    required
+                                <RegisterTextField
+                                    onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-required-firstname"
                                     label="Voornaam"
-                                    value={this.state.firstName}
-                                    onChange={this.handleChange('firstName')}
-                                    margin="normal"
-                                    variant="outlined"
+                                    type="firstName"
+                                    name="firstName"
                                 />
-                                <TextField
-                                    style={{marginLeft: '.5em', marginRight: '.5em'}}
+                                <RegisterTextField
+                                    onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-infix"
                                     label="Tussenvoegsel"
-                                    value={this.state.infix}
-                                    onChange={this.handleChange('infix')}
-                                    margin="normal"
-                                    variant="outlined"
+                                    type="infix"
+                                    name="infix"
                                 />
-                                <TextField
-                                    required
-                                    id="outlined-required-lastname"
+                                <RegisterTextField
+                                    onRegister={(name, value) => this.handleChange(name, value)}
+                                    id="outlined-required-lastName"
                                     label="Achternaam"
-                                    value={this.state.lastName}
-                                    onChange={this.handleChange('lastName')}
-                                    margin="normal"
-                                    variant="outlined"
+                                    type="lastName"
+                                    name="lastName"
                                 />
                             </div>
-                            <TextField
-                                id="date"
-                                required
-                                label="Geboortedatum"
-                                value={this.state.dateOfBirth}
-                                onChange={this.handleChange('dateOfBirth')}
-                                type="date"
-                                variant="outlined"
-                                margin="normal"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
+                            <RegisterTextField
+                                onRegister={(name, value) => this.handleChange(name, value)}
+                                id="outlined-required-age"
+                                label="Leeftijd"
+                                type="age"
+                                name="age"
                             />
-                            <TextField
-                                required
+                            <RegisterTextField
+                                onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-required-street"
                                 label="Straatnaam"
-                                value={this.state.street}
-                                onChange={this.handleChange('street')}
-                                margin="normal"
-                                variant="outlined"
+                                type="street"
+                                name="street"
                             />
-                            <TextField
-                                required
+                            <RegisterTextField
+                                onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-required-city"
                                 label="Plaatsnaam"
-                                value={this.state.city}
-                                onChange={this.handleChange('city')}
-                                margin="normal"
-                                variant="outlined"
+                                type="city"
+                                name="city"
                             />
                             <div style={{display: 'flex'}}>
-                                <TextField
-                                    required
+                                <RegisterTextField
+                                    onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-required-postalcode"
                                     label="Postcode"
-                                    value={this.state.postalCode}
-                                    onChange={this.handleChange('postalCode')}
-                                    margin="normal"
-                                    variant="outlined"
+                                    type="postalCode"
+                                    name="postalCode"
                                 />
-                                <TextField
-                                    required
-                                    style={{marginLeft: '.5em', marginRight: '.5em'}}
+                                <RegisterTextField
+                                    onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-required-housenumber"
                                     label="Huisnummer"
-                                    value={this.state.houseNumber}
-                                    onChange={this.handleChange('houseNumber')}
-                                    margin="normal"
-                                    variant="outlined"
+                                    type="housenumber"
+                                    name="housenumber"
                                 />
-                                <TextField
+                                <RegisterTextField
+                                    onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-housenumberaddition"
                                     label="Toevoeging"
-                                    value={this.state.houseNumberSuffix}
-                                    onChange={this.handleChange('houseNumberSuffix')}
-                                    margin="normal"
-                                    variant="outlined"
+                                    type="houseNumberSuffix"
+                                    name="houseNumberSuffix"
                                 />
                             </div>
-                            <TextField
+                            <RegisterTextField
+                                onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-phonenumber"
                                 label="Telefoonnummer"
-                                value={this.state.phoneNumber}
-                                onChange={this.handleChange('phoneNumber')}
-                                margin="normal"
-                                variant="outlined"
+                                type="phoneNumber"
+                                name="phoneNumber"
                             />
                         </form>
                     </CardContent>
                     <CardActions style={{display: 'flex'}}>
-                        <button className="primaryButton">Registreren</button>
+                        <button onClick={() => this.onClickRegister()} className="primaryButton">Registreren</button>
                     </CardActions>
                 </Card>
             </div>
