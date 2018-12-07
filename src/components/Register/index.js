@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { toastr } from 'react-redux-toastr';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import RegisterTextField from '../RegisterTextField';
+import RegisterRadioGroup from '../RegisterRadioGroup';
+import { ValidatorForm } from 'react-material-ui-form-validator';
 import '../../styles/register.css';
 
 const toastrOptions = {
@@ -24,17 +22,25 @@ class Register extends Component {
         firstName: '',
         infix: '',
         lastName: '',
-        dateOfBirth: '',
+        age: -1,
         street: '',
         city: '',
         postalCode: '',
-        houseNumber: '',
+        houseNumber: -1,
         houseNumberSuffix: '',
-        phoneNumber: ''
+        phoneNumber: -1
     };
+
+    componentDidMount() {
+        ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+            if (value !== this.state.password) {
+                return false;
+            }
+            return true;
+        });
+    }
     
     handleChange(name, value) {
-        console.log(name, value)
         this.setState({
             [name]: value,
         });
@@ -62,6 +68,10 @@ class Register extends Component {
         toastr.light('Succesvol geregistreerd! Log nu in om te beginnen.', toastrOptions);
     }
 
+    shouldComponentUpdate() {
+        return false;
+    }
+
     render() {
         return (
             <div className="registerFormCardContainer">
@@ -70,10 +80,16 @@ class Register extends Component {
                         <h1>Registreren</h1>
                         {this.props.error === true ? <p style={{color: 'red'}}>Er ging iets verkeerd. Probeer het opnieuw alstublieft.</p> : null}
                         {this.props.loading === true ? <CircularProgress/> : null}
-                        <form className="registerFormContainer" autoComplete="off">
+                        <ValidatorForm
+                            ref="form"
+                            onSubmit={() => this.onClickRegister()}
+                        >
                             <RegisterTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-email-input"
+                                validators={['required', 'isEmail']}
+                                errorMessages={['Dit veld is vereist', 'Ongeldig emailadres']}
+                                error="errorEmail"
                                 label="Email"
                                 type="email"
                                 name="email"
@@ -81,6 +97,8 @@ class Register extends Component {
                             <RegisterTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-password-input"
+                                validators={['required']}
+                                errorMessages={['Dit veld is vereist']}
                                 label="Wachtwoord"
                                 type="password"
                                 name="password"
@@ -88,34 +106,23 @@ class Register extends Component {
                             <RegisterTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-password-repeat-input"
+                                validators={['isPasswordMatch', 'required']}
+                                errorMessages={['Wachtwoorden zijn niet gelijk aan elkaar', 'Dit veld is vereist']}
                                 label="Herhaal wachtwoord"
                                 type="passwordRepeated"
                                 name="passwordRepeated"
                             />
-                            <RadioGroup
-                                aria-label="gender"
-                                name="gender2"
-                                style={{display: 'flex', flexDirection: 'row'}}
-                                value={this.state.gender}
-                                onChange={this.handleChange('gender')}
-                            >
-                                <FormControlLabel
-                                    value="man"
-                                    control={<Radio color="primary" />}
-                                    label="Man"
-                                    labelPlacement="start"
-                                />
-                                <FormControlLabel
-                                    value="vrouw"
-                                    control={<Radio color="primary" />}
-                                    label="Vrouw"
-                                    labelPlacement="start"
-                                />
-                            </RadioGroup>
+                            <RegisterRadioGroup
+                                name="gender"
+                                onRegister={(name, value) => this.handleChange(name, value)}
+                                options={[{value: "man", label: "Man"}, {value: "vrouw", label: "Vrouw"}]}
+                            />
                             <div style={{display: 'flex'}}>
                                 <RegisterTextField
                                     onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-required-firstname"
+                                    validators={['required']}
+                                    errorMessages={['Dit veld is vereist']}
                                     label="Voornaam"
                                     type="firstName"
                                     name="firstName"
@@ -130,6 +137,8 @@ class Register extends Component {
                                 <RegisterTextField
                                     onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-required-lastName"
+                                    validators={['required']}
+                                    errorMessages={['Dit veld is vereist']}
                                     label="Achternaam"
                                     type="lastName"
                                     name="lastName"
@@ -138,6 +147,8 @@ class Register extends Component {
                             <RegisterTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-required-age"
+                                validators={['required']}
+                                errorMessages={['Dit veld is vereist']}
                                 label="Leeftijd"
                                 type="age"
                                 name="age"
@@ -145,6 +156,8 @@ class Register extends Component {
                             <RegisterTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-required-street"
+                                validators={['required']}
+                                errorMessages={['Dit veld is vereist']}
                                 label="Straatnaam"
                                 type="street"
                                 name="street"
@@ -152,6 +165,8 @@ class Register extends Component {
                             <RegisterTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-required-city"
+                                validators={['required']}
+                                errorMessages={['Dit veld is vereist']}
                                 label="Plaatsnaam"
                                 type="city"
                                 name="city"
@@ -160,6 +175,8 @@ class Register extends Component {
                                 <RegisterTextField
                                     onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-required-postalcode"
+                                    validators={['required']}
+                                    errorMessages={['Dit veld is vereist']}
                                     label="Postcode"
                                     type="postalCode"
                                     name="postalCode"
@@ -167,6 +184,8 @@ class Register extends Component {
                                 <RegisterTextField
                                     onRegister={(name, value) => this.handleChange(name, value)}
                                     id="outlined-required-housenumber"
+                                    validators={['required']}
+                                    errorMessages={['Dit veld is vereist']}
                                     label="Huisnummer"
                                     type="housenumber"
                                     name="housenumber"
@@ -182,15 +201,15 @@ class Register extends Component {
                             <RegisterTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 id="outlined-phonenumber"
+                                validators={['required']}
+                                errorMessages={['Dit veld is vereist']}
                                 label="Telefoonnummer"
                                 type="phoneNumber"
                                 name="phoneNumber"
                             />
-                        </form>
+                            <button type="submit" className="primaryButton">Registreren</button>
+                        </ValidatorForm>
                     </CardContent>
-                    <CardActions style={{display: 'flex'}}>
-                        <button onClick={() => this.onClickRegister()} className="primaryButton">Registreren</button>
-                    </CardActions>
                 </Card>
             </div>
         )

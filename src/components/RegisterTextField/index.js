@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { TextValidator} from 'react-material-ui-form-validator';
 
 export default class RegisterTextField extends Component {
     state = {
         [this.props.name]: '',
+        [this.props.error]: ''
     };
     
     handleChange = name => event => {
@@ -14,9 +15,9 @@ export default class RegisterTextField extends Component {
 
     render() {
         return (
-            <TextField
-                required
-                id={this.props.id}
+            <TextValidator
+                validators={this.props.validators}
+                errorMessages={this.props.errorMessages}
                 label={this.props.label}
                 value={this.state[this.props.name]}
                 type={this.props.type}
