@@ -10,16 +10,17 @@ import RegisterContainer from '../containers/Register'
 
 export default class Root extends Component {
   render() {
+    let token = localStorage.getItem("USER");
     return (
       <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/favourites' component={FavouritesContainer} />
-          <Route path='/product/:id' component={DetailProductContainer}/>
-          <Route path='/results/:searchQuery' component={ProductContainer}/>
-          <Route path='/category/:category/:subcategory' component={ProductContainer}/>
-          <Route path='/category/:category' component={ProductContainer} />
-          <Route exact path='/login' component={LoginContainer} />
-          <Route exact path='/register' component={RegisterContainer} />
+          <Route exact path='/' component={() => <Home token={token}/>} />
+          <Route exact path='/favourites' component={() => <FavouritesContainer token={token}/>} />
+          <Route path='/product/:id' component={() => <DetailProductContainer token={token}/>}/>
+          <Route path='/results/:searchQuery' component={() => <ProductContainer token={token}/>}/>
+          <Route path='/category/:category/:subcategory' component={() => <ProductContainer token={token}/>}/>
+          <Route path='/category/:category' component={() => <ProductContainer token={token}/>} />
+          <Route exact path='/login' component={() => <LoginContainer token={token}/>} />
+          <Route exact path='/register' component={() => <RegisterContainer token={token}/>} />
           <Route path='/' component={NotFound} />
       </Switch>
     );

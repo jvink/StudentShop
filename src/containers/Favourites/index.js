@@ -6,21 +6,17 @@ import Favourites from '../../components/Favourites';
 import '../../styles/product.css';
 
 class FavouritesContainer extends Component {
-    constructor(props) {
-        super(props);
 
-        let token = localStorage.getItem("USER");
-        this.state = {
-            token
+    componentDidMount() {
+        if (this.props.token) {
+            this.props.favouritesActions.getAllFavourites(this.props.token);
+        } else {
+            this.props.history.push('/login');
         }
     }
-    
-    componentDidMount() {
-        this.props.favouritesActions.getAllFavourites(this.state.token);
-    }
 
-    removeFromFavourites(productId) {
-        this.props.favouritesActions.flipFavourites(this.state.token, productId);
+    flipFavourites(productId) {
+        this.props.favouritesActions.flipFavourites(this.props.token, productId);
     }
 
     render() {
@@ -29,7 +25,7 @@ class FavouritesContainer extends Component {
         } else if (this.props.favouritesStore.getFavouritesResult) {
             return (
                 <div className="productsWrapper">
-                    <Favourites removeFromFavourites={(productId) => this.removeFromFavourites(productId)} data={this.props.favouritesStore.getFavouritesResult}/>
+                    <Favourites flipFavourites={(productId) => this.flipFavourites(productId)} data={this.props.favouritesStore.getFavouritesResult}/>
                 </div>
             );
         } else if (this.props.favouritesStore.productsError) {

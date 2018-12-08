@@ -12,8 +12,8 @@ const toastrOptions = {
 };
 
 class Favourites extends Component {
-    onClickRemoveFavourite(productId) {
-        this.props.removeFromFavourites(productId);
+    onClickFlipFavourites(productId) {
+        this.props.flipFavourites(productId);
         toastr.light('Uit favorieten verwijderd', toastrOptions);
     }
 
@@ -35,7 +35,7 @@ class Favourites extends Component {
                         return (
                             <div className="productWrapper" key={product.id}>
                                 <PriceLabel price={product.price}/>
-                                <div className="productFavorite" onClick={() => {this.onClickRemoveFavourite(product.id)}}>
+                                <div className="productFavorite" onClick={() => {this.onClickFlipFavourites(product.id)}}>
                                     <HeartOffIcon/>
                                 </div>
                                 <Link to={"product/" + product.id} className="productLink">

@@ -17,34 +17,26 @@ class Product extends Component {
     constructor(props) {
         super(props);
 
-        let token = localStorage.getItem("USER");
         this.state = {
-            favs: [],
-            token
+            favs: []
         }
     }
 
     componentWillMount() {
-        const { data } = this.props;
-        if (this.state.token === null) {
-            this.setState({favs: []});
-        } else {
+        const { data, token } = this.props;
+        if (token) {
             data.map((product) => {
                 return this.setState(prevState => ({
                     favs: [...prevState.favs, {productId: product.id, isFav: product.isFavourite}]
                 }));
             });
+        } else {
+            this.setState({favs: []});
         }
     }
 
-    showPosition(position) {
-        console.log(position.coords.latitude + " : " + position.coords.longitude); 
-    }
-
     onChange(productId) {
-        if (this.state.token === null) {
-            this.props.history.push('/login');
-        } else {
+        if (this.props.token) {
             let isFavourite = this.isFavourite(productId);
             for (let i = 0; i < this.state.favs.length; i++) {
                 if (this.state.favs[i].productId === productId) {
@@ -53,13 +45,12 @@ class Product extends Component {
                     stateCopy.favs[i] = Object.assign({}, stateCopy.favs[i]);
                     stateCopy.favs[i].isFav = !stateCopy.favs[i].isFav;
                     this.setState(stateCopy);
-                    if (productId === 25) {
-                        navigator.geolocation.getCurrentPosition((position) => this.showPosition(position));
-                    }
                 }
             }
             this.props.flipFavourites(productId);
             isFavourite ? toastr.light('Uit favorieten verwijderd', toastrOptions) : toastr.light('Aan favorieten toegevoegd', toastrOptions);
+        } else {
+            this.props.history.push('/login');
         }
     }
 

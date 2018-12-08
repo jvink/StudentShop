@@ -4,36 +4,34 @@ import { withRouter } from 'react-router-dom';
 import productActionCreator from '../../store/actionCreators/product';
 import favouritesActionCreator from '../../store/actionCreators/favourites';
 import Product from '../../components/Product';
+import '../../styles/product.css';
 
 class ProductContainer extends Component {
-    constructor(props) {
-        super(props);
-        let token = localStorage.getItem("USER");
-        this.state = {
-            token
-        }
-    }
 
     componentDidMount() {
         let { category, subcategory, searchQuery } = this.props.match.params;
-        this.props.productActions.getProducts(category, subcategory, searchQuery);
+        this.props.productActions.getProducts(this.props.token, category, subcategory, searchQuery);
       }
    
     componentDidUpdate(prevProps) {
         let { category, subcategory, searchQuery } = this.props.match.params;
         if ((category && subcategory) && (prevProps.match.params.category !== category && prevProps.match.params.subcategory !== subcategory)) {
-            this.props.productActions.getProducts(category, subcategory, null);
+            this.props.productActions.getProducts(this.props.token, category, subcategory, null);
         } else if (category && (prevProps.match.params.category !== category && !subcategory)) {
-            this.props.productActions.getProducts(category, null, null);
+            this.props.productActions.getProducts(this.props.token, category, null, null);
         } else if ((category && subcategory) && (prevProps.match.params.category === category && prevProps.match.params.subcategory !== subcategory)) {
-            this.props.productActions.getProducts(category, subcategory, null);
+            this.props.productActions.getProducts(this.props.token, category, subcategory, null);
         } else if ((searchQuery) && (prevProps.match.params.searchQuery !== searchQuery)) {
-            this.props.productActions.getProducts(null, null, searchQuery);
+            this.props.productActions.getProducts(this.props.token, null, null, searchQuery);
         }
     }
 
     flipFavourites(productId) {
-        this.props.favouritesActions.flipFavourites(this.state.token, productId);
+        if (this.props.token) {
+            this.props.favouritesActions.flipFavourites(this.props.token, productId);
+        } else {
+            this.props.history.push('/login');
+        }
     }
 
     render() {
@@ -42,7 +40,7 @@ class ProductContainer extends Component {
         } else if (this.props.productStore.getProductsResult) {
             return (
                 <div className="productsWrapper">
-                    <Product flipFavourites={(productId) => this.flipFavourites(productId)} data={this.props.productStore.getProductsResult}/>
+                    <Product flipFavourites={(productId) => this.flipFavourites(productId)} data={this.props.productStore.getProductsResult} token={this.props.token}/>
                 </div>
             );
         } else if (this.props.productStore.productsError) {

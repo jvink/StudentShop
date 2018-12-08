@@ -8,16 +8,16 @@ import {
 } from '../actions/product';
 
 const creator = (dispatch) => ({
-  getProducts: async (category, subcategory, searchQuery) => {
+  getProducts: async (token, category, subcategory, searchQuery) => {
     let url = null;
     if (category && subcategory) {
-      url = "http://127.0.0.1:5000/api/Categories/" + category + "/Subcategories/" + subcategory;
+      url = "http://127.0.0.1:5000/api/Categories/" + category + "/Subcategories/" + subcategory + (token ? "?token=" + token : "");
     } else if (category && !subcategory) {
-      url = "http://127.0.0.1:5000/api/Categories/" + category;
+      url = "http://127.0.0.1:5000/api/Categories/" + category + (token ? "?token=" + token : "");
     } else if (searchQuery) {
-      url = "http://127.0.0.1:5000/api/Products/Search=" + searchQuery;
+      url = "http://127.0.0.1:5000/api/Products/Search=" + searchQuery + (token ? "?token=" + token : "");
     } else {
-      url = "http://127.0.0.1:5000/api/Products";
+      url = "http://127.0.0.1:5000/api/Products" + (token ? "?token=" + token : "");
     }
     if (url) {
       dispatch({

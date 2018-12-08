@@ -17,6 +17,10 @@ class DetailProductContainer extends Component {
         this.props.productActions.getProduct(this.state.productId);
     }
 
+    flipFavourites(productId) {
+        this.props.favouritesActions.flipFavourites(this.state.token, productId);
+    }
+
     render() {
         if (this.props.productStore.getProductResult) {
             return <DetailProduct product={this.props.productStore.getProductResult} />
