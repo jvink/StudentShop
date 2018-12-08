@@ -2,13 +2,58 @@ import React, { Component } from 'react';
 import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
 import AddShoppingCartOutlined from '@material-ui/icons/AddShoppingCartOutlined';
 import notFoundImage from '../../images/no-image.jpg';
+import Chip from '@material-ui/core/Chip';
+import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import DoneIcon from '@material-ui/icons/Done';
+import Typography from '@material-ui/core/Typography';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
 import '../../styles/detailproduct.css';
+
+const styles = theme => ({
+    primaryButton: {
+        backgroundColor: '#f39c12',
+        color: '#fff'
+    },
+    secondaryButton: {
+        backgroundColor: '#e74c3c',
+        color: '#fff'
+    },
+    chip: {
+        marginBottom: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        backgroundColor: '#fff',
+        color: '#e74c3c',
+        borderColor: '#e74c3c'
+    },
+    iconChip: {
+        backgroundColor: '#e74c3c',
+        color: '#fff',
+        borderColor: '#e74c3c'
+    },
+    chevronIcon: {
+        fontSize: '4em',
+        color: '#e74c3c'
+    }
+  });
 
 class DetailProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          rating: 0
+          rating: 0,
+          expanded: false
         };
 
         this.changeRating = this.changeRating.bind(this);
@@ -20,38 +65,76 @@ class DetailProduct extends Component {
         });
     }
 
-    render() {
-        const product = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
+    handleExpandClick = () => {
+        this.setState({expanded: !this.state.expanded });
+    };
 
+    render() {
+        const {classes} = this.props;
+        const {product} = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
         return (
-            <div>
-                <div className="wrapperDetailProductUpperInfo">
-                {product.firstImg ? <img src={product.firstImg} alt={product.id} className="detailProductImage"/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>}
-                    <div className="detailProductInfo">
-                        <div className="productTitle">
-                            {product.product.name}
-                        </div>
-                        <div className="productInfoDivider"/>
-                        <div className="productUpperInfoUpperWrapper">
-                            <div className="productPrice">
-                                €{product.product.price}
-                            </div>
-                            <div style={{textAlign: 'right', width: '100%'}}>
-                                <AddShoppingCartOutlined className="productAddToShoppingCartButton"/>
-                                <FavoriteIcon className="productAddToFavoriteButton"/>
-                            </div>
-                        </div>
-                        
+            <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                <Card style={{flex: 2, margin: '.5em', alignSelf: 'flex-start', display: 'flex'}}>
+                    <div style={{flex: 1, display: 'flex'}}>
+                        {product.firstImg ?
+                        <IconButton component="span" style={{marginLeft: 'auto'}}>
+                            <ChevronLeftIcon className={classes.chevronIcon}/>
+                        </IconButton>
+                        : null}
                     </div>
-                </div>
-                <div className="wrapperDetailProductLowerInfo">
-                    <div className="productDescription">
-                        {product.product.description}
+                    <div style={{flex: 1}}>
+                        {product.firstImg ? <img src={product.firstImg} alt={product.id} style={{maxHeight: '480px', padding: '.5em'}}/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>}
                     </div>
-                </div>
+                    <div style={{flex: 1, display: 'flex'}}>
+                        {product.firstImg ?
+                        <IconButton component="span">
+                            <ChevronRightIcon className={classes.chevronIcon}/>
+                        </IconButton>
+                        : null}
+                    </div>
+                </Card>
+                <Card style={{flex: 1, margin: '.5em', alignSelf: 'flex-start'}}>
+                    <div style={{backgroundColor: '#ecf0f1', display: 'flex', flexDirection: 'column', padding: '1em'}}>
+                        <span style={{fontSize: '1.5em', fontWeight: 'bold', marginBottom: '.5em'}}>
+                            {product.name}
+                        </span>
+                        <div style={{marginBottom: '.5em'}}>
+                            <Chip variant="outlined" avatar={<Avatar className={classes.iconChip}><LocalShippingIcon/></Avatar>} label="vóór 24:00 uur besteld, morgen in huis" color="primary" className={classes.chip}/>
+                            <br/><Chip variant="outlined" avatar={<Avatar className={classes.iconChip}><DoneIcon/></Avatar>} label="30 dagen bedenktijd" color="primary" className={classes.chip}/>
+                            <br/><Chip variant="outlined" avatar={<Avatar className={classes.iconChip}><AttachMoneyIcon/></Avatar>} label="betaal zoals je wilt: vooraf, achteraf of gespreid" color="primary" className={classes.chip}/>
+                        </div>
+                        <div style={{display: 'flex'}}>
+                            <Button variant="contained" className={classes.primaryButton} style={{flex: 1, marginRight: '.3em'}}>
+                                In wagentje
+                                <AddShoppingCartOutlined style={{marginLeft: '.1em'}}/>
+                            </Button>
+                            <Button variant="contained" className={classes.secondaryButton} style={{flex: 1}}>
+                                In favorieten
+                                <FavoriteIcon style={{marginLeft: '.1em'}}/>
+                            </Button>
+                        </div>
+                    </div>
+                    <CardActions disableActionSpacing>
+                        <Button
+                            onClick={this.handleExpandClick}
+                            aria-expanded={this.state.expanded}
+                            aria-label="Show more"
+                        >
+                            Beschrijving
+                            {this.state.expanded ? <ExpandLessIcon/> : <ExpandMoreIcon />}
+                        </Button>
+                    </CardActions>
+                    <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                        <CardContent>
+                            <Typography paragraph>
+                                {product.description}
+                            </Typography>
+                        </CardContent>
+                    </Collapse>
+                </Card>
             </div>
         );
     }
 }
 
-export default DetailProduct;
+export default withStyles(styles)(DetailProduct);

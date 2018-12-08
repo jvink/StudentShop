@@ -71,7 +71,7 @@ class Product extends Component {
                     <div className="productFavorite" onClick={() => {this.onChange(product.id)}}>
                         {this.isFavourite(product.id) ? <Favorite className="isFavorite"/> : <FavoriteBorder/>}
                     </div>
-                    <Link to={"product/" + product.id} className="productLink">
+                    <Link to={"/product/" + product.id} className="productLink">
                         <div className="productImageWrapper">{product.firstImg ? <img src={product.firstImg} alt={product.id} className="productImage"/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>}</div>
                         <ProductNameLabel name={product.name}/>
                     </Link>
