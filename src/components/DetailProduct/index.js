@@ -114,6 +114,9 @@ class DetailProduct extends Component {
                             </Button>
                         </div>
                     </div>
+                    <h2 style={{color: '#e74c3c', marginLeft: '1em'}}>
+                        € {product.price}
+                    </h2>
                     <CardActions disableActionSpacing>
                         <Button
                             onClick={this.handleExpandClick}
