@@ -98,6 +98,7 @@ class DetailProduct extends Component {
                         <span style={{fontSize: '1.5em', fontWeight: 'bold', marginBottom: '.5em'}}>
                             {product.name}
                         </span>
+                        <h5>Gratis bezorging bij bestellingen boven de 50 euro!</h5>
                         <div style={{marginBottom: '.5em'}}>
                             <Chip variant="outlined" avatar={<Avatar className={classes.iconChip}><LocalShippingIcon/></Avatar>} label="vóór 24:00 uur besteld, morgen in huis" color="primary" className={classes.chip}/>
                             <br/><Chip variant="outlined" avatar={<Avatar className={classes.iconChip}><DoneIcon/></Avatar>} label="30 dagen bedenktijd" color="primary" className={classes.chip}/>
@@ -114,9 +115,13 @@ class DetailProduct extends Component {
                             </Button>
                         </div>
                     </div>
-                    <h2 style={{color: '#e74c3c', marginLeft: '1em'}}>
+                    <h3 style={{marginLeft: '1em'}}>
+                        Productprijs
+                    </h3>
+                    <h3 style={{color: '#e74c3c', marginLeft: '1em'}}>
                         € {product.price}
-                    </h2>
+                    </h3>
+                    <hr/>
                     <CardActions disableActionSpacing>
                         <Button
                             onClick={this.handleExpandClick}
