@@ -1,6 +1,22 @@
-.productsWrapper {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+@media screen and (min-width: 1900px) {
+    .productsWrapper {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+    }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1899px) {
+    .productsWrapper {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media screen and (min-width: 940px) and (max-width: 1439px) {
+    .productsWrapper {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
 }
 
 .productWrapper {
