@@ -53,7 +53,8 @@ class DetailProduct extends Component {
         super(props);
         this.state = {
           rating: 0,
-          expanded: false
+          expanded: false,
+          imageIndex: 0
         };
 
         this.changeRating = this.changeRating.bind(this);
@@ -69,25 +70,44 @@ class DetailProduct extends Component {
         this.setState({expanded: !this.state.expanded });
     };
 
+    handleImageControl(forward) {
+        const {image} = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
+        let begin = 0;
+        let end = image.length;
+        if (forward) {
+            if (this.state.imageIndex === (end - 1)) {
+                this.setState({imageIndex: begin});
+            } else {
+                this.setState({imageIndex: this.state.imageIndex + 1});
+            }
+        } else {
+            if (this.state.imageIndex === begin) {
+                this.setState({imageIndex: (end - 1)});
+            } else {
+                this.setState({imageIndex: this.state.imageIndex - 1});
+            }
+        }
+    }
+
     render() {
         const {classes} = this.props;
-        const {product} = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
+        const {product, image} = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
         return (
             <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
                 <Card style={{flex: 2, margin: '.5em', alignSelf: 'flex-start', display: 'flex'}}>
                     <div style={{flex: 1, display: 'flex'}}>
                         {product.firstImg ?
-                        <IconButton component="span" style={{marginLeft: 'auto'}}>
+                        <IconButton onClick={() => this.handleImageControl(false)} style={{marginLeft: 'auto'}}>
                             <ChevronLeftIcon className={classes.chevronIcon}/>
                         </IconButton>
                         : null}
                     </div>
                     <div style={{flex: 1}}>
-                        {product.firstImg ? <img src={product.firstImg} alt={product.id} style={{maxHeight: '480px', padding: '.5em'}}/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>}
+                        {image.length !== 0 ? <img alt={image[this.state.imageIndex].id} src={image[this.state.imageIndex].url} style={{maxHeight: '480px', padding: '.5em'}}/> : (product.firstImg ? <img src={product.firstImg} alt={product.id} style={{maxHeight: '480px', padding: '.5em'}}/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>)}
                     </div>
                     <div style={{flex: 1, display: 'flex'}}>
                         {product.firstImg ?
-                        <IconButton component="span">
+                        <IconButton onClick={() => this.handleImageControl(true)}>
                             <ChevronRightIcon className={classes.chevronIcon}/>
                         </IconButton>
                         : null}
