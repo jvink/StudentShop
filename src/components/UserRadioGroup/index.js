@@ -3,7 +3,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 
-export default class RegisterTextField extends Component {
+export default class UserTextField extends Component {
     state = {
         [this.props.name]: '',
     };

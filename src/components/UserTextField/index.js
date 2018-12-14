@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
 import { TextValidator} from 'react-material-ui-form-validator';
 
-export default class RegisterTextField extends Component {
+export default class UserTextField extends Component {
     state = {
         [this.props.name]: '',
         [this.props.error]: ''
     };
     
     handleChange = name => event => {
-        this.setState({
-            [name]: event.target.value,
-        }, () => this.props.onRegister(this.props.name, this.state[this.props.name]));
+        switch (this.props.textFieldType) {
+            case "register":
+                this.setState({
+                    [name]: event.target.value,
+                }, () => this.props.onRegister(this.props.name, this.state[this.props.name]));
+                break;
+            case "editUser":
+                this.setState({
+                    [name]: event.target.value,
+                });
+                break;
+            default:
+                this.setState({
+                    [name]: event.target.value,
+                });
+                break;
+        }
     };
 
     render() {

@@ -16,6 +16,11 @@ const toastrOptions = {
     status: 'success'
 };
 
+const toastrOptionsError = {
+    icon: 'error',
+    status: 'warning'
+};
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -38,7 +43,7 @@ class Header extends Component {
             this.setState({searchQuery: ""});
             event.preventDefault();
         } else {
-            toastr.light('Vul een zoekterm in aub', toastrOptions);
+            toastr.light('Vul een zoekterm in aub', toastrOptionsError);
             event.preventDefault();
         }
     }
@@ -87,7 +92,7 @@ class Header extends Component {
                         onClose={this.handleClose}>
                         {user ?
                         <div className="menuWrapper">
-                            <MenuItem style={{overflow: 'hidden'}} onClick={this.handleClose}>My account</MenuItem>
+                            <MenuItem component={Link} to="/account" style={{overflow: 'hidden'}} onClick={this.handleClose}>My account</MenuItem>
                             <MenuItem style={{overflow: 'hidden'}} onClick={this.handleLogout}>Logout</MenuItem>
                         </div>:
                         <div className="menuWrapper">
