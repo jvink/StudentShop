@@ -5,6 +5,9 @@ import {
     LOGIN_USER_ERROR,
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
+    EDIT_USER_ERROR,
+    EDIT_USER_REQUEST,
+    EDIT_USER_SUCCESS
 } from '../actions/user';
 
 const creator = (dispatch) => ({
@@ -85,7 +88,45 @@ const creator = (dispatch) => ({
         type: LOGIN_USER_ERROR
       });
     }
-  }
+  },
+
+  editUser: async (token, user) => {
+    const url = "http://127.0.0.1:5000/api/accounts/edit?token=" + token;
+    dispatch({
+      type: EDIT_USER_REQUEST
+    });
+
+    try {
+      const res = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "Password": user.password,
+          "Street_Name": user.street,
+          "email": user.email,
+          "House_Number": user.houseNumber,
+          "Addition": user.houseNumberAddition,
+          "Postalcode": user.postalCode,
+          "City": user.city,
+          "Telephone_Number": user.phoneNumber
+        })
+      });
+
+      console.log(await res.json());
+
+      dispatch({
+        type: EDIT_USER_SUCCESS
+      });
+    } catch (error) {
+      dispatch({
+        type: EDIT_USER_ERROR,
+        error
+      });
+    }
+  },
 });
 
 export default creator;

@@ -5,6 +5,9 @@ import {
     LOGIN_USER_ERROR,
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
+    EDIT_USER_ERROR,
+    EDIT_USER_REQUEST,
+    EDIT_USER_SUCCESS
 } from '../actions/user';
 
 const initialState = {
@@ -14,6 +17,9 @@ const initialState = {
   isLoggingIn: false,
   loginError: undefined,
   loginUserResult: undefined,
+  isEdittingUser: false,
+  editUserError: undefined,
+  editUserResult: undefined
 };
 
 const reducer = (state, action) => {
@@ -53,6 +59,23 @@ const reducer = (state, action) => {
         isLoggingIn: false,
         loginUserResult: action.token,
         loginError: false
+      });
+    }
+    case EDIT_USER_REQUEST: {
+      return Object.assign({}, state, {
+        isEdittingUser: true,
+      });
+    }
+    case EDIT_USER_ERROR: {
+      return Object.assign({}, state, {
+        isEdittingUser: false,
+        editUserError: action.error
+      });
+    }
+    case EDIT_USER_SUCCESS: {
+      return Object.assign({}, state, {
+        isEdittingUser: false,
+        editUserResult: action.token,
       });
     }
     default: {

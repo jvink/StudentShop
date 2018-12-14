@@ -33,9 +33,14 @@ class Header extends Component {
     }
     
     handleSubmit(event) {
-        this.setState({searchQuery: ""});
-        this.props.history.push('/results/' + this.state.searchQuery);
-        event.preventDefault();
+        if (this.state.searchQuery !== "") {
+            this.props.history.push('/results/' + this.state.searchQuery);
+            this.setState({searchQuery: ""});
+            event.preventDefault();
+        } else {
+            toastr.light('Vul een zoekterm in aub', toastrOptions);
+            event.preventDefault();
+        }
     }
 
     handleClick = event => {
@@ -66,7 +71,7 @@ class Header extends Component {
                 <input placeholder="Waar ben je naar op zoek?" value={this.state.searchQuery} onChange={this.handleChange}/>
                 <button className="searchButton"><SearchIcon id="icon"/></button>
                 <IconButton component={Link} to="/favourites"><FavouriteIcon/></IconButton>
-                <IconButton><ShoppingCartIcon/></IconButton>
+                <IconButton component={Link} to="/cart"><ShoppingCartIcon/></IconButton>
                 <div>
                     <IconButton 
                         aria-owns={anchorEl ? 'simple-menu' : undefined}

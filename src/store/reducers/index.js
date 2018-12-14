@@ -4,13 +4,15 @@ import userReducer from './user';
 import productReducer from './product';
 import favouritesReducer from './favourites';
 import categoryReducer from './category';
+import cartReducer from './cart';
 
 const rootReducer = combineReducers({
     toastr: toastrReducer,
     user: userReducer,
     product: productReducer,
     favourites: favouritesReducer,
-    category: categoryReducer
+    category: categoryReducer,
+    cart: cartReducer
 });
 
 export default rootReducer;

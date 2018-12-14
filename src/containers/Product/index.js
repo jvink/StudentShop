@@ -35,12 +35,17 @@ class ProductContainer extends Component {
     }
 
     render() {
+        let { searchQuery } = this.props.match.params;
         if (this.props.productStore.isGettingProducts) {
             return <p>Loading Data...</p>
         } else if (this.props.productStore.getProductsResult) {
             return (
-                <div className="productsWrapper">
-                    <Product flipFavourites={(productId) => this.flipFavourites(productId)} data={this.props.productStore.getProductsResult} token={this.props.token}/>
+                <div>
+                    {(searchQuery && (this.props.productStore.getProductsResult.length !== 0)) ? <p>Resultaten voor: <i><b>{searchQuery}</b></i></p> : null}
+                    {(searchQuery && (this.props.productStore.getProductsResult.length === 0)) ? <p>Geen resultaten gevonden voor: <i><b>{searchQuery}</b></i></p> : null}
+                    <div className="productsWrapper">
+                        <Product flipFavourites={(productId) => this.flipFavourites(productId)} data={this.props.productStore.getProductsResult} token={this.props.token}/>
+                    </div>
                 </div>
             );
         } else if (this.props.productStore.productsError) {
