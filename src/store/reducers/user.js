@@ -7,7 +7,10 @@ import {
     LOGIN_USER_SUCCESS,
     EDIT_USER_ERROR,
     EDIT_USER_REQUEST,
-    EDIT_USER_SUCCESS
+    EDIT_USER_SUCCESS,
+    IS_ADMIN_REQUEST,
+    IS_ADMIN_ERROR,
+    IS_ADMIN_SUCCESS
 } from '../actions/user';
 
 const initialState = {
@@ -19,7 +22,10 @@ const initialState = {
   loginUserResult: undefined,
   isEdittingUser: false,
   editUserError: undefined,
-  editUserResult: undefined
+  editUserResult: undefined,
+  isCheckingAdmin: false,
+  checkAdminError: undefined,
+  checkAdminResult: undefined
 };
 
 const reducer = (state, action) => {
@@ -76,6 +82,23 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         isEdittingUser: false,
         editUserResult: action.token,
+      });
+    }
+    case IS_ADMIN_REQUEST: {
+      return Object.assign({}, state, {
+        isCheckingAdmin: true,
+      });
+    }
+    case IS_ADMIN_ERROR: {
+      return Object.assign({}, state, {
+        isCheckingAdmin: false,
+        checkAdminError: action.error
+      });
+    }
+    case IS_ADMIN_SUCCESS: {
+      return Object.assign({}, state, {
+        isEdittingUser: false,
+        checkAdminResult: action.user,
       });
     }
     default: {

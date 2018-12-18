@@ -7,3 +7,6 @@ export const LOGIN_USER_SUCCESS     = 'LOGIN_USER_SUCCESS';
 export const EDIT_USER_REQUEST      = 'EDIT_USER_REQUEST';
 export const EDIT_USER_ERROR        = 'EDIT_USER_ERROR';
 export const EDIT_USER_SUCCESS      = 'EDIT_USER_SUCCESS';
+export const IS_ADMIN_REQUEST       = 'IS_ADMIN_REQUEST';
+export const IS_ADMIN_ERROR         = 'IS_ADMIN_ERROR';
+export const IS_ADMIN_SUCCESS       = 'IS_ADMIN_SUCCESS';

@@ -7,7 +7,10 @@ import {
     LOGIN_USER_SUCCESS,
     EDIT_USER_ERROR,
     EDIT_USER_REQUEST,
-    EDIT_USER_SUCCESS
+    EDIT_USER_SUCCESS,
+    IS_ADMIN_SUCCESS,
+    IS_ADMIN_REQUEST,
+    IS_ADMIN_ERROR
 } from '../actions/user';
 
 const creator = (dispatch) => ({
@@ -90,6 +93,27 @@ const creator = (dispatch) => ({
     }
   },
 
+  isAdmin: async(token) => {
+    const url = "http://127.0.0.1:5000/api/admin/Status?token=" + token;
+    dispatch({
+      type: IS_ADMIN_REQUEST
+    });
+
+    try {
+      const res = await fetch(url);
+      console.log(res);
+      dispatch({
+        type: IS_ADMIN_SUCCESS,
+        res
+      })
+    } catch (error) {
+      dispatch({
+        type: IS_ADMIN_ERROR,
+        error
+      })
+    }
+  },
+
   editUser: async (token, user) => {
     const url = "http://127.0.0.1:5000/api/accounts/edit?token=" + token;
     dispatch({
@@ -115,12 +139,13 @@ const creator = (dispatch) => ({
         })
       });
 
-      console.log(await res.json());
+      console.log(await res);
 
       dispatch({
         type: EDIT_USER_SUCCESS
       });
     } catch (error) {
+      console.log(error);
       dispatch({
         type: EDIT_USER_ERROR,
         error

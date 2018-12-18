@@ -14,26 +14,15 @@ const toastrOptions = {
 
 class Account extends Component {
     state = {
-        email: '',
-        firstName: '',
-        infix: '',
-        lastName: '',
-        street: '',
-        city: '',
-        postalCode: '',
-        houseNumber: -1,
-        houseNumberSuffix: '',
-        phoneNumber: -1
+        email: null,
+        password: null,
+        street: null,
+        city: null,
+        postalCode: null,
+        houseNumber: null,
+        houseNumberSuffix: null,
+        phoneNumber: null
     };
-
-    componentDidMount() {
-        ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
-            if (value !== this.state.password) {
-                return false;
-            }
-            return true;
-        });
-    }
     
     handleChange(name, value) {
         this.setState({
@@ -42,20 +31,19 @@ class Account extends Component {
     };
 
     onClickEditUser() {
-        let user = {
-            password: this.state.password,
-            firstName: this.state.firstName,
-            infix: this.state.infix,
-            lastName: this.state.lastName,
-            street: this.state.street,
-            city: this.state.city,
-            postalCode: this.state.postalCode,
-            houseNumber: this.state.houseNumber,
-            houseNumberSuffix: this.state.houseNumberSuffix,
-            phoneNumber: this.state.phoneNumber
-        }
+        let {email, password, street, city, postalCode, houseNumber, houseNumberSuffix, phoneNumber} = this.state;
 
-        this.props.register(user);
+        let user = {
+            email: (email === '' ? null : email),
+            password: (password === '' ? null : password),
+            street: (street === '' ? null : street),
+            city: (city === '' ? null : city),
+            postalCode: (postalCode === '' ? null : postalCode),
+            houseNumber: (houseNumber === -1 ? null : houseNumber),
+            houseNumberSuffix: (houseNumberSuffix === '' ? null : houseNumberSuffix),
+            phoneNumber: (phoneNumber === -1 ? null : phoneNumber),
+        }
+        this.props.editUser(user);
         toastr.light('Account gegevens succesvol veranderd.', toastrOptions);
     }
 
@@ -76,29 +64,36 @@ class Account extends Component {
                             onSubmit={() => this.onClickEditUser()}
                         >
                             <UserTextField
-                                onRegister={(name, value) => this.handleChange(name, value)}
+                                onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-email-input"
-                                validators={['required', 'isEmail']}
-                                errorMessages={['Dit veld is vereist', 'Ongeldig emailadres']}
+                                validators={['isEmail']}
+                                errorMessages={['Ongeldig emailadres']}
                                 error="errorEmail"
                                 label="Email"
                                 type="email"
                                 name="email"
                             />
+                            <UserTextField
+                                onEditUser={(name, value) => this.handleChange(name, value)}
+                                textFieldType="editUser"
+                                id="outlined-password-input"
+                                error="errorPassword"
+                                label="Password"
+                                type="password"
+                                name="password"
+                            />
                             <div style={{display: 'flex'}}>
                                 <UserTextField
-                                    onRegister={(name, value) => this.handleChange(name, value)}
+                                    onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-firstname"
-                                    validators={['required']}
-                                    errorMessages={['Dit veld is vereist']}
                                     label="Voornaam"
                                     type="firstName"
                                     name="firstName"
                                 />
                                 <UserTextField
-                                    onRegister={(name, value) => this.handleChange(name, value)}
+                                    onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-infix"
                                     label="Tussenvoegsel"
@@ -106,59 +101,49 @@ class Account extends Component {
                                     name="infix"
                                 />
                                 <UserTextField
-                                    onRegister={(name, value) => this.handleChange(name, value)}
+                                    onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-lastName"
-                                    validators={['required']}
-                                    errorMessages={['Dit veld is vereist']}
                                     label="Achternaam"
                                     type="lastName"
                                     name="lastName"
                                 />
                             </div>
                             <UserTextField
-                                onRegister={(name, value) => this.handleChange(name, value)}
+                                onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-required-street"
-                                validators={['required']}
-                                errorMessages={['Dit veld is vereist']}
                                 label="Straatnaam"
                                 type="street"
                                 name="street"
                             />
                             <UserTextField
-                                onRegister={(name, value) => this.handleChange(name, value)}
+                                onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-required-city"
-                                validators={['required']}
-                                errorMessages={['Dit veld is vereist']}
                                 label="Plaatsnaam"
                                 type="city"
                                 name="city"
                             />
                             <div style={{display: 'flex'}}>
                                 <UserTextField
-                                    onRegister={(name, value) => this.handleChange(name, value)}
+                                    onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-postalcode"
-                                    validators={['required']}
-                                    errorMessages={['Dit veld is vereist']}
                                     label="Postcode"
                                     type="postalCode"
                                     name="postalCode"
                                 />
                                 <UserTextField
-                                    onRegister={(name, value) => this.handleChange(name, value)}
+                                    onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-housenumber"
-                                    validators={['required']}
-                                    errorMessages={['Dit veld is vereist']}
                                     label="Huisnummer"
                                     type="housenumber"
                                     name="housenumber"
                                 />
                                 <UserTextField
-                                    onRegister={(name, value) => this.handleChange(name, value)}
+                                    onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-housenumberaddition"
                                     label="Toevoeging"
@@ -167,11 +152,9 @@ class Account extends Component {
                                 />
                             </div>
                             <UserTextField
-                                onRegister={(name, value) => this.handleChange(name, value)}
+                                onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-phonenumber"
-                                validators={['required']}
-                                errorMessages={['Dit veld is vereist']}
                                 label="Telefoonnummer"
                                 type="phoneNumber"
                                 name="phoneNumber"

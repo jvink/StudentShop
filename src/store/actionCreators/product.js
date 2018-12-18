@@ -8,9 +8,11 @@ import {
 } from '../actions/product';
 
 const creator = (dispatch) => ({
-  getProducts: async (token, category, subcategory, searchQuery) => {
+  getProducts: async (token, category, subcategory, searchQuery, isHomePage) => {
     let url = null;
-    if (category && subcategory) {
+    if (isHomePage) {
+      url = "http://127.0.0.1:5000/api/Products/Random" + (token ? "?token=" + token : "");
+    } else if (category && subcategory) {
       url = "http://127.0.0.1:5000/api/Categories/" + category + "/Subcategories/" + subcategory + (token ? "?token=" + token : "");
     } else if (category && !subcategory) {
       url = "http://127.0.0.1:5000/api/Categories/" + category + (token ? "?token=" + token : "");

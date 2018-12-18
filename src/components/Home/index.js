@@ -16,7 +16,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <Product token={this.props.token} display="column"/>
+        <Product token={this.props.token} isHomePage={true} display="column"/>
       </div>
     );
   }

@@ -10,19 +10,20 @@ class ProductContainer extends Component {
 
     componentDidMount() {
         let { category, subcategory, searchQuery } = this.props.match.params;
-        this.props.productActions.getProducts(this.props.token, category, subcategory, searchQuery);
+        let { isHomePage } = this.props;
+        this.props.productActions.getProducts(this.props.token, category, subcategory, searchQuery, isHomePage);
       }
    
     componentDidUpdate(prevProps) {
         let { category, subcategory, searchQuery } = this.props.match.params;
         if ((category && subcategory) && (prevProps.match.params.category !== category && prevProps.match.params.subcategory !== subcategory)) {
-            this.props.productActions.getProducts(this.props.token, category, subcategory, null);
+            this.props.productActions.getProducts(this.props.token, category, subcategory, null, false);
         } else if (category && (prevProps.match.params.category !== category && !subcategory)) {
-            this.props.productActions.getProducts(this.props.token, category, null, null);
+            this.props.productActions.getProducts(this.props.token, category, null, null, false);
         } else if ((category && subcategory) && (prevProps.match.params.category === category && prevProps.match.params.subcategory !== subcategory)) {
-            this.props.productActions.getProducts(this.props.token, category, subcategory, null);
+            this.props.productActions.getProducts(this.props.token, category, subcategory, null, false);
         } else if ((searchQuery) && (prevProps.match.params.searchQuery !== searchQuery)) {
-            this.props.productActions.getProducts(this.props.token, null, null, searchQuery);
+            this.props.productActions.getProducts(this.props.token, null, null, searchQuery, false);
         }
     }
 
