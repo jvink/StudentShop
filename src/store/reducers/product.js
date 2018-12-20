@@ -5,6 +5,9 @@ import {
     GETTING_PRODUCT_ERROR,
     GETTING_PRODUCT_REQUEST,
     GETTING_PRODUCT_SUCCESS,
+    GET_ALL_PRODUCTS_REQUEST,
+    GET_ALL_PRODUCTS_ERROR,
+    GET_ALL_PRODUCTS_SUCCESS
 } from '../actions/product';
 
 const initialState = {
@@ -14,6 +17,9 @@ const initialState = {
   isGettingProduct: false,
   productError: undefined,
   getProductResult: undefined,
+  isGettingAllProduct: false,
+  getAllProductsError: undefined,
+  getAllProductsResult: undefined,
 };
 
 const reducer = (state, action) => {
@@ -50,6 +56,23 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         isGettingProduct: false,
         getProductResult: action.product
+      });
+    }
+    case GET_ALL_PRODUCTS_REQUEST: {
+      return Object.assign({}, state, {
+        isGettingAllProduct: true,
+      });
+    }
+    case GET_ALL_PRODUCTS_ERROR: {
+      return Object.assign({}, state, {
+        isGettingAllProduct: false,
+        getAllProductsError: action.error
+      });
+    }
+    case GET_ALL_PRODUCTS_SUCCESS: {
+      return Object.assign({}, state, {
+        isGettingAllProduct: false,
+        getAllProductsResult: action.product
       });
     }
     default: {

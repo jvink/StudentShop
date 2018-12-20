@@ -5,6 +5,9 @@ import {
     GETTING_PRODUCT_ERROR,
     GETTING_PRODUCT_REQUEST,
     GETTING_PRODUCT_SUCCESS,
+    GET_ALL_PRODUCTS_REQUEST,
+    GET_ALL_PRODUCTS_ERROR,
+    GET_ALL_PRODUCTS_SUCCESS
 } from '../actions/product';
 
 const creator = (dispatch) => ({
@@ -63,6 +66,30 @@ const creator = (dispatch) => ({
     .catch((error) => {
       dispatch({
         type: GETTING_PRODUCT_ERROR,
+        error
+      });
+    });
+  },
+
+  getAllProducts: async () => {
+    const url = "http://127.0.0.1:5000/api/Admin/Products";
+    
+    dispatch({
+      type: GET_ALL_PRODUCTS_REQUEST
+    });
+    await fetch(url)
+    .then((response) => {
+      response.json()
+      .then((product) => {
+        dispatch({
+          type: GET_ALL_PRODUCTS_SUCCESS,
+          product
+        });
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: GET_ALL_PRODUCTS_ERROR,
         error
       });
     });
