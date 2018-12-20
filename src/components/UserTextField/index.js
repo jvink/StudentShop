@@ -19,6 +19,11 @@ export default class UserTextField extends Component {
                     [name]: event.target.value,
                 }, () => this.props.onEditUser(this.props.name, this.state[this.props.name]));
                 break;
+            case "addProduct":
+                this.setState({
+                    [name]: event.target.value,
+                }, () => this.props.onAddProduct(this.props.name, this.state[this.props.name]));
+                break;
             default:
                 this.setState({
                     [name]: event.target.value,

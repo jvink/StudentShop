@@ -112,7 +112,7 @@ class Register extends Component {
                                 validators={['isPasswordMatch', 'required']}
                                 errorMessages={['Wachtwoorden zijn niet gelijk aan elkaar', 'Dit veld is vereist']}
                                 label="Herhaal wachtwoord"
-                                type="passwordRepeated"
+                                type="password"
                                 name="passwordRepeated"
                             />
                             <UserRadioGroup

@@ -7,7 +7,7 @@ import Login from '../../components/Login';
 class LoginContainer extends Component {
     async login(email, password) {
         try {
-            await this.props.usersActions.login(email, password);
+            await this.props.userActions.login(email, password);
             
             if (this.props.userStore.loginUserResult) {
                 localStorage.setItem("USER", this.props.userStore.loginUserResult);
@@ -36,6 +36,6 @@ export default withRouter(connect(
         userStore: state.user
     }),
     (dispatch) => ({
-        usersActions: usersActionCreator(dispatch)
+        userActions: usersActionCreator(dispatch)
     })
   )(LoginContainer));

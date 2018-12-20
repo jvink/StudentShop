@@ -10,7 +10,10 @@ import {
     EDIT_USER_SUCCESS,
     IS_ADMIN_SUCCESS,
     IS_ADMIN_REQUEST,
-    IS_ADMIN_ERROR
+    IS_ADMIN_ERROR,
+    GET_ALL_USERS_REQUEST,
+    GET_ALL_USERS_ERROR,
+    GET_ALL_USERS_SUCCESS
 } from '../actions/user';
 
 const creator = (dispatch) => ({
@@ -101,16 +104,37 @@ const creator = (dispatch) => ({
 
     try {
       const res = await fetch(url);
-      console.log(res);
+      const isAdmin = await res.json();
       dispatch({
         type: IS_ADMIN_SUCCESS,
-        res
-      })
+        isAdmin
+      });
     } catch (error) {
       dispatch({
         type: IS_ADMIN_ERROR,
         error
-      })
+      });
+    }
+  },
+
+  getAllUsers: async() => {
+    const url = "http://127.0.0.1:5000/api/admin/users";
+    dispatch({
+      type: GET_ALL_USERS_REQUEST
+    });
+
+    try {
+      const res = await fetch(url);
+      const users = await res.json();
+      dispatch({
+        type: GET_ALL_USERS_SUCCESS,
+        users
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_USERS_ERROR,
+        error
+      });
     }
   },
 

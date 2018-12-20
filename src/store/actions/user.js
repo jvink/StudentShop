@@ -10,3 +10,6 @@ export const EDIT_USER_SUCCESS      = 'EDIT_USER_SUCCESS';
 export const IS_ADMIN_REQUEST       = 'IS_ADMIN_REQUEST';
 export const IS_ADMIN_ERROR         = 'IS_ADMIN_ERROR';
 export const IS_ADMIN_SUCCESS       = 'IS_ADMIN_SUCCESS';
+export const GET_ALL_USERS_REQUEST  = 'GET_ALL_USERS_REQUEST';
+export const GET_ALL_USERS_ERROR    = 'GET_ALL_USERS_ERROR';
+export const GET_ALL_USERS_SUCCESS  = 'GET_ALL_USERS_SUCCESS';

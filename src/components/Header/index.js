@@ -9,6 +9,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FavouriteIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import AccountIcon from '@material-ui/icons/Face';
+import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
+import TagPlusIcon from 'mdi-react/TagPlusIcon';
+import AccountPlusOutlineIcon from 'mdi-react/AccountPlusOutlineIcon';
+import Tooltip from '@material-ui/core/Tooltip';
 import '../../styles/header.css';
 
 const toastrOptions = {
@@ -66,7 +70,8 @@ class Header extends Component {
     render() {
         const { anchorEl } = this.state;
         let user = localStorage.getItem("USER");
-
+        let { isAdmin } = this.props;
+        console.log(isAdmin);
         return (
         <div className="wrapperHeader">
             <form className="headerItemsWrapper" onSubmit={this.handleSubmit}>
@@ -92,8 +97,11 @@ class Header extends Component {
                         onClose={this.handleClose}>
                         {user ?
                         <div className="menuWrapper">
-                            <MenuItem component={Link} to="/account" style={{overflow: 'hidden'}} onClick={this.handleClose}>My account</MenuItem>
-                            <MenuItem style={{overflow: 'hidden'}} onClick={this.handleLogout}>Logout</MenuItem>
+                            {isAdmin ? <Tooltip title="Statistieken" placement="left"><IconButton component={Link} to="/statistics"><InsertChartIcon/></IconButton></Tooltip> : null}
+                            {isAdmin ? <Tooltip title="Nieuw product" placement="bottom"><IconButton component={Link} to="/addProduct"><TagPlusIcon/></IconButton></Tooltip> : null}
+                            {isAdmin ? <Tooltip title="Nieuwe gebruiker" placement="right"><IconButton component={Link} to="/users"><AccountPlusOutlineIcon/></IconButton></Tooltip> : null}
+                            <MenuItem component={Link} to="/account" style={{overflow: 'hidden'}} onClick={this.handleClose}>Mijn account</MenuItem>
+                            <MenuItem style={{overflow: 'hidden'}} onClick={this.handleLogout}>Uitloggen</MenuItem>
                         </div>:
                         <div className="menuWrapper">
                             <MenuItem component={Link} to="/login" style={{overflow: 'hidden'}} onClick={this.handleClose}>Login</MenuItem>

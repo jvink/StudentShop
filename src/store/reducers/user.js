@@ -10,7 +10,10 @@ import {
     EDIT_USER_SUCCESS,
     IS_ADMIN_REQUEST,
     IS_ADMIN_ERROR,
-    IS_ADMIN_SUCCESS
+    IS_ADMIN_SUCCESS,
+    GET_ALL_USERS_REQUEST,
+    GET_ALL_USERS_SUCCESS,
+    GET_ALL_USERS_ERROR
 } from '../actions/user';
 
 const initialState = {
@@ -25,7 +28,10 @@ const initialState = {
   editUserResult: undefined,
   isCheckingAdmin: false,
   checkAdminError: undefined,
-  checkAdminResult: undefined
+  checkAdminResult: undefined,
+  isGettingUsers: false,
+  getUsersError: undefined,
+  getUsersResult: undefined
 };
 
 const reducer = (state, action) => {
@@ -97,8 +103,25 @@ const reducer = (state, action) => {
     }
     case IS_ADMIN_SUCCESS: {
       return Object.assign({}, state, {
-        isEdittingUser: false,
-        checkAdminResult: action.user,
+        isCheckingAdmin: false,
+        checkAdminResult: action.isAdmin,
+      });
+    }
+    case GET_ALL_USERS_REQUEST: {
+      return Object.assign({}, state, {
+        isGettingUsers: true,
+      });
+    }
+    case GET_ALL_USERS_ERROR: {
+      return Object.assign({}, state, {
+        isGettingUsers: false,
+        getUsersError: action.error
+      });
+    }
+    case GET_ALL_USERS_SUCCESS: {
+      return Object.assign({}, state, {
+        isGettingUsers: false,
+        getUsersResult: action.users,
       });
     }
     default: {
