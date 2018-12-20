@@ -98,7 +98,7 @@ class Header extends Component {
                         {user ?
                         <div className="menuWrapper">
                             {isAdmin ? <Tooltip title="Statistieken" placement="left"><IconButton component={Link} to="/statistics"><InsertChartIcon/></IconButton></Tooltip> : null}
-                            {isAdmin ? <Tooltip title="Nieuw product" placement="bottom"><IconButton component={Link} to="/addProduct"><TagPlusIcon/></IconButton></Tooltip> : null}
+                            {isAdmin ? <Tooltip title="Nieuw product" placement="bottom"><IconButton component={Link} to="/products"><TagPlusIcon/></IconButton></Tooltip> : null}
                             {isAdmin ? <Tooltip title="Nieuwe gebruiker" placement="right"><IconButton component={Link} to="/users"><AccountPlusOutlineIcon/></IconButton></Tooltip> : null}
                             <MenuItem component={Link} to="/account" style={{overflow: 'hidden'}} onClick={this.handleClose}>Mijn account</MenuItem>
                             <MenuItem style={{overflow: 'hidden'}} onClick={this.handleLogout}>Uitloggen</MenuItem>

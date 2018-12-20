@@ -7,7 +7,10 @@ import {
     GETTING_PRODUCT_SUCCESS,
     GET_ALL_PRODUCTS_REQUEST,
     GET_ALL_PRODUCTS_ERROR,
-    GET_ALL_PRODUCTS_SUCCESS
+    GET_ALL_PRODUCTS_SUCCESS,
+    DELETE_PRODUCT_ERROR,
+    DELETE_PRODUCT_REQUEST,
+    DELETE_PRODUCT_SUCCESS
 } from '../actions/product';
 
 const creator = (dispatch) => ({
@@ -68,6 +71,33 @@ const creator = (dispatch) => ({
         type: GETTING_PRODUCT_ERROR,
         error
       });
+    });
+  },
+
+  deleteProduct: async (productId) => {
+    const url = "http://127.0.0.1:5000/api/products/" + productId;
+    
+    dispatch({
+      type: DELETE_PRODUCT_REQUEST
+    });
+    await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(() => {
+      dispatch({
+        type: DELETE_PRODUCT_SUCCESS,
+        productId
+      }); 
+    })
+    .catch((error) => {
+      dispatch({
+        type: DELETE_PRODUCT_ERROR,
+        error
+      }); 
     });
   },
 
