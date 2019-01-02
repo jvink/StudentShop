@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import productActionCreator from '../../store/actionCreators/product';
+import favouritesActionCreator from '../../store/actionCreators/favourites';
 import DetailProduct from '../../components/DetailProduct';
 
 class DetailProductContainer extends Component {
@@ -14,16 +15,16 @@ class DetailProductContainer extends Component {
 }
 
     componentWillMount() {
-        this.props.productActions.getProduct(this.state.productId);
+        this.props.productActions.getProduct(this.state.productId, this.props.token);
     }
 
     flipFavourites(productId) {
-        this.props.favouritesActions.flipFavourites(this.state.token, productId);
+        this.props.favouritesActions.flipFavourites(this.props.token, productId);
     }
 
     render() {
         if (this.props.productStore.getProductResult) {
-            return <DetailProduct product={this.props.productStore.getProductResult} />
+            return <DetailProduct product={this.props.productStore.getProductResult} flipFavourites={(productId) => this.flipFavourites(productId)}/>
         } else if (this.props.productStore.isGettingProduct) {
             return <p>Loading..</p>
         } else if (this.props.productStore.productError) {
@@ -36,9 +37,11 @@ class DetailProductContainer extends Component {
 
 export default withRouter(connect(
     (state) => ({
-        productStore: state.product
+        productStore: state.product,
+        favouritesStore: state.favourites
     }),
     (dispatch) => ({
-        productActions: productActionCreator(dispatch)
+        productActions: productActionCreator(dispatch),
+        favouritesActions: favouritesActionCreator(dispatch)
     })
   )(DetailProductContainer));

@@ -7,7 +7,7 @@ import Products from '../../components/Products';
 class ProductsContainer extends Component {
 
     componentDidMount() {
-        this.props.productActions.getAllProducts();
+        this.props.productActions.getAllProducts(this.props.token);
     }
 
     deleteProduct(productId) {
@@ -15,7 +15,6 @@ class ProductsContainer extends Component {
     }
 
     render() {
-        console.log(this.props.productStore);
         if (this.props.productStore.isGettingAllProduct) {
             return <p>Loading Data...</p>
         } else if (this.props.productStore.getAllProductsResult) {

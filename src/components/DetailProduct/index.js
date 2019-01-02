@@ -19,7 +19,14 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
+import HeartOffIcon from 'mdi-react/HeartOffIcon';
+import { toastr } from 'react-redux-toastr';
 import '../../styles/detailproduct.css';
+
+const toastrOptions = {
+    icon: 'success',
+    status: 'success'
+};
 
 const styles = theme => ({
     primaryButton: {
@@ -54,7 +61,8 @@ class DetailProduct extends Component {
         this.state = {
           rating: 0,
           expanded: false,
-          imageIndex: 0
+          imageIndex: 0,
+          isFavourite: this.props.product[0].isFavourite
         };
 
         this.changeRating = this.changeRating.bind(this);
@@ -87,6 +95,13 @@ class DetailProduct extends Component {
                 this.setState({imageIndex: this.state.imageIndex - 1});
             }
         }
+    }
+
+    onFlipFavourites(product, isFavourite) {
+        console.log(isFavourite);
+        this.props.flipFavourites(product.id);
+        this.setState({isFavourite: !isFavourite});
+        isFavourite ? toastr.light('Uit favorieten verwijderd', toastrOptions) : toastr.light('Aan favorieten toegevoegd', toastrOptions);
     }
 
     render() {
@@ -129,10 +144,17 @@ class DetailProduct extends Component {
                                 In wagentje
                                 <AddShoppingCartOutlined style={{marginLeft: '.1em'}}/>
                             </Button>
-                            <Button variant="contained" className={classes.secondaryButton} style={{flex: 1}}>
-                                In favorieten
-                                <FavoriteIcon style={{marginLeft: '.1em'}}/>
-                            </Button>
+                            {this.state.isFavourite ?
+                                <Button variant="contained" className={classes.secondaryButton} onClick={() => this.onFlipFavourites(product, this.state.isFavourite)} style={{flex: 1}}>
+                                    Uit favorieten
+                                    <HeartOffIcon style={{marginLeft: '.1em'}}/>
+                                </Button>
+                                :
+                                <Button variant="contained" className={classes.secondaryButton} onClick={() => this.onFlipFavourites(product, this.state.isFavourite)} style={{flex: 1}}>
+                                    In favorieten
+                                    <FavoriteIcon style={{marginLeft: '.1em'}}/>
+                                </Button>
+                            }
                         </div>
                     </div>
                     <h3 style={{marginLeft: '1em'}}>

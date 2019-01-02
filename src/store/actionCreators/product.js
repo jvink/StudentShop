@@ -50,8 +50,8 @@ const creator = (dispatch) => ({
     }
   },
 
-  getProduct: async (productId) => {
-    const url = "http://127.0.0.1:5000/api/products/" + productId;
+  getProduct: async (productId, token) => {
+    const url = "http://127.0.0.1:5000/api/products/" + productId + (token ? "?token=" + token : null);
     
     dispatch({
       type: GETTING_PRODUCT_REQUEST
@@ -101,8 +101,8 @@ const creator = (dispatch) => ({
     });
   },
 
-  getAllProducts: async () => {
-    const url = "http://127.0.0.1:5000/api/Admin/Products";
+  getAllProducts: async (token) => {
+    const url = "http://127.0.0.1:5000/api/Admin/Product?token=" + token;
     
     dispatch({
       type: GET_ALL_PRODUCTS_REQUEST

@@ -13,7 +13,10 @@ import {
     IS_ADMIN_SUCCESS,
     GET_ALL_USERS_REQUEST,
     GET_ALL_USERS_SUCCESS,
-    GET_ALL_USERS_ERROR
+    GET_ALL_USERS_ERROR,
+    DELETE_USER_REQUEST,
+    DELETE_USER_ERROR,
+    DELETE_USER_SUCCESS
 } from '../actions/user';
 
 const initialState = {
@@ -31,7 +34,9 @@ const initialState = {
   checkAdminResult: undefined,
   isGettingUsers: false,
   getUsersError: undefined,
-  getUsersResult: undefined
+  getUsersResult: undefined,
+  isDeletingUser: false,
+  deleteUserError: undefined
 };
 
 const reducer = (state, action) => {
@@ -122,6 +127,25 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         isGettingUsers: false,
         getUsersResult: action.users,
+      });
+    }
+    case DELETE_USER_REQUEST: {
+      return Object.assign({}, state, {
+        isDeletingUser: true,
+      });
+    }
+    case DELETE_USER_ERROR: {
+      return Object.assign({}, state, {
+        isDeletingUser: false,
+        deleteUserError: action.error
+      });
+    }
+    case DELETE_USER_SUCCESS: {
+      return Object.assign({}, state, {
+        isDeletingUser: false,
+        getUsersResult: state.getUsersResult.filter((user) => {
+          return user.id !== action.userId;
+        })
       });
     }
     default: {

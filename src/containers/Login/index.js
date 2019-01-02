@@ -11,7 +11,7 @@ class LoginContainer extends Component {
             
             if (this.props.userStore.loginUserResult) {
                 localStorage.setItem("USER", this.props.userStore.loginUserResult);
-                this.props.history.push('/');
+                window.location.replace("/");
             }
         } catch (error) {
             console.log(error);

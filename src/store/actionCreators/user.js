@@ -13,7 +13,10 @@ import {
     IS_ADMIN_ERROR,
     GET_ALL_USERS_REQUEST,
     GET_ALL_USERS_ERROR,
-    GET_ALL_USERS_SUCCESS
+    GET_ALL_USERS_SUCCESS,
+    DELETE_USER_ERROR,
+    DELETE_USER_REQUEST,
+    DELETE_USER_SUCCESS
 } from '../actions/user';
 
 const creator = (dispatch) => ({
@@ -33,7 +36,7 @@ const creator = (dispatch) => ({
         body: JSON.stringify({
           "Name": user.firstName,
           "LastName": user.lastName,
-          "Age": user.age,
+          "Birthday": user.birthday,
           "Password": user.password,
           "Gender": user.gender,
           "Street_Name": user.street,
@@ -46,7 +49,9 @@ const creator = (dispatch) => ({
         })
       });
 
-      console.log(await res.json());
+      const a = await res.json();
+
+      console.log(a);
 
       dispatch({
         type: REGISTER_USER_SUCCESS
@@ -117,8 +122,8 @@ const creator = (dispatch) => ({
     }
   },
 
-  getAllUsers: async() => {
-    const url = "http://127.0.0.1:5000/api/admin/users";
+  getAllUsers: async(token) => {
+    const url = "http://127.0.0.1:5000/api/admin/user?token=" + token;
     dispatch({
       type: GET_ALL_USERS_REQUEST
     });
@@ -175,6 +180,33 @@ const creator = (dispatch) => ({
         error
       });
     }
+  },
+
+  deleteUser: async (userId, token) => {
+    const url = "http://127.0.0.1:5000/api/admin/User/Delete?token=" + token;
+    
+    dispatch({
+      type: DELETE_USER_REQUEST
+    });
+    await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(() => {
+      dispatch({
+        type: DELETE_USER_SUCCESS,
+        userId
+      }); 
+    })
+    .catch((error) => {
+      dispatch({
+        type: DELETE_USER_ERROR,
+        error
+      }); 
+    });
   },
 });
 

@@ -7,11 +7,10 @@ import Users from '../../components/Users';
 class UsersContainer extends Component {
 
     componentDidMount() {
-        this.props.userActions.getAllUsers();
+        this.props.userActions.getAllUsers(this.props.token);
       }
 
     render() {
-        console.log(this.props.userStore);
         if (this.props.userStore.isGettingUsers) {
             return <p>Loading Data...</p>
         } else if (this.props.userStore.getUsersResult) {

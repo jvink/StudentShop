@@ -6,6 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import UserTextField from '../UserTextField';
 import UserRadioGroup from '../UserRadioGroup';
 import { ValidatorForm } from 'react-material-ui-form-validator';
+import { TextValidator} from 'react-material-ui-form-validator';
 import '../../styles/register.css';
 
 const toastrOptions = {
@@ -22,7 +23,7 @@ class Register extends Component {
         firstName: '',
         infix: '',
         lastName: '',
-        age: -1,
+        birthday: undefined,
         street: '',
         city: '',
         postalCode: '',
@@ -38,6 +39,15 @@ class Register extends Component {
             }
             return true;
         });
+
+        ValidatorForm.addValidationRule('isValidDate', () => {
+            var d = new Date(this.state.birthday);
+            if (d instanceof Date && isFinite(d)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
     
     handleChange(name, value) {
@@ -45,6 +55,12 @@ class Register extends Component {
             [name]: value,
         });
     };
+
+    handleChange2 = name => event => {
+        this.setState({
+            [name]: event.target.value
+        });
+    }
 
     onClickRegister() {
         let user = {
@@ -55,7 +71,7 @@ class Register extends Component {
             firstName: this.state.firstName,
             infix: this.state.infix,
             lastName: this.state.lastName,
-            age: this.state.age,
+            birthday: this.state.birthday,
             street: this.state.street,
             city: this.state.city,
             postalCode: this.state.postalCode,
@@ -118,6 +134,8 @@ class Register extends Component {
                             <UserRadioGroup
                                 name="gender"
                                 onRegister={(name, value) => this.handleChange(name, value)}
+                                validators={'required'}
+                                errorMessages={['Dit veld is vereist']}
                                 options={[{value: "man", label: "Man"}, {value: "vrouw", label: "Vrouw"}]}
                             />
                             <div style={{display: 'flex'}}>
@@ -150,15 +168,20 @@ class Register extends Component {
                                     name="lastName"
                                 />
                             </div>
-                            <UserTextField
-                                onRegister={(name, value) => this.handleChange(name, value)}
-                                textFieldType="register"
-                                id="outlined-required-age"
-                                validators={['required']}
-                                errorMessages={['Dit veld is vereist']}
-                                label="Leeftijd"
-                                type="age"
-                                name="age"
+                            <TextValidator
+                                id="birthday"
+                                label="Geboortedatum"
+                                type="date"
+                                value={this.state.birthday}
+                                validators={['isValidDate']}
+                                errorMessages={['Ongeldige geboortedatum']}
+                                variant="outlined"
+                                style={{marginTop: '1em'}}
+                                onChange={this.handleChange2("birthday")}
+                                name="birthday"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             />
                             <UserTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}

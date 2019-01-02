@@ -26,6 +26,9 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+  },
+  addButton: {
+    margin: theme.spacing.unit,
     backgroundColor: '#e74c3c',
     color: 'white'
   },
@@ -42,7 +45,7 @@ class Products extends Component {
         <div style={{marginBottom: '2em', marginTop: '1em'}}>
             <h1 style={{display: 'inline'}}>Producten</h1>
             <Tooltip title="Product toevoegen">
-              <IconButton component={Link} to="/addProduct" style={{display: 'inline', float: 'right'}} className={classes.button} aria-label="Delete">
+              <IconButton component={Link} to="/addProduct" style={{display: 'inline', float: 'right'}} className={classes.addButton} aria-label="Delete">
                 <AddIcon />
               </IconButton>
             </Tooltip>

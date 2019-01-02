@@ -19,7 +19,6 @@ class ShoppingCartContainer extends Component {
         if (this.props.cartStore.isGettingCart) {
             return <p>Loading..</p>
         } else if (this.props.cartStore.getCartResult) {
-            console.log(this.props);
             return (
                 <div className="productsWrapper">
                     <ShoppingCart data={this.props.cartStore.getCartResult}/>
