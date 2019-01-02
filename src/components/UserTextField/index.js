@@ -35,9 +35,9 @@ export default class UserTextField extends Component {
     render() {
         return (
             <TextValidator
+                label={this.props.placeholder ? this.props.placeholder : this.props.label}
                 validators={this.props.validators}
                 errorMessages={this.props.errorMessages}
-                label={this.props.label}
                 value={this.state[this.props.name]}
                 type={this.props.type}
                 name={this.props.name}

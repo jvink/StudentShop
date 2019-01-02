@@ -16,7 +16,10 @@ import {
     GET_ALL_USERS_ERROR,
     DELETE_USER_REQUEST,
     DELETE_USER_ERROR,
-    DELETE_USER_SUCCESS
+    DELETE_USER_SUCCESS,
+    GET_ACCOUNT_REQUEST,
+    GET_ACCOUNT_ERROR,
+    GET_ACCOUNT_SUCCESS
 } from '../actions/user';
 
 const initialState = {
@@ -146,6 +149,23 @@ const reducer = (state, action) => {
         getUsersResult: state.getUsersResult.filter((user) => {
           return user.id !== action.userId;
         })
+      });
+    }
+    case GET_ACCOUNT_REQUEST: {
+      return Object.assign({}, state, {
+        isGettingUser: true,
+      });
+    }
+    case GET_ACCOUNT_ERROR: {
+      return Object.assign({}, state, {
+        isGettingUser: false,
+        getUserError: action.error
+      });
+    }
+    case GET_ACCOUNT_SUCCESS: {
+      return Object.assign({}, state, {
+        isGettingUser: false,
+        getUserResult: action.account,
       });
     }
     default: {

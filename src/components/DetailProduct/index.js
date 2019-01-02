@@ -142,13 +142,13 @@ class DetailProduct extends Component {
                         </div>
                         <div style={{display: 'flex'}}>
                             <div style={{lineHeight: '100px'}}>
-                                <img src={this.getImagePreviewUrl(false)} style={{maxWidth: '72px', maxHeight: '72px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
+                                <img alt="preview" src={this.getImagePreviewUrl(false)} style={{maxWidth: '72px', maxHeight: '72px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
                             </div>
                             <div style={{lineHeight: '100px'}}>
-                                <img src={image[this.state.imageIndex].url} style={{maxWidth: '96px', maxHeight: '96px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
+                                <img alt="preview" src={image[this.state.imageIndex].url} style={{maxWidth: '96px', maxHeight: '96px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
                             </div>
                             <div style={{lineHeight: '100px'}}>
-                                <img src={this.getImagePreviewUrl(true)} style={{maxWidth: '72px', maxHeight: '72px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
+                                <img alt="preview" src={this.getImagePreviewUrl(true)} style={{maxWidth: '72px', maxHeight: '72px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
                             </div>
                         </div>
                         <div style={{}}>

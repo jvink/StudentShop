@@ -48,10 +48,15 @@ class Account extends Component {
     }
 
     shouldComponentUpdate() {
-        return false;
+        if(this.props.currentUser) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     render() {
+        console.log(this.props.currentUser);
         return (
             <div className="registerFormCardContainer">
                 <Card className="registerFormCard">
@@ -64,6 +69,7 @@ class Account extends Component {
                             onSubmit={() => this.onClickEditUser()}
                         >
                             <UserTextField
+                                placeholder={this.props.currentUser ? this.props.currentUser.email : null}
                                 onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-email-input"
@@ -75,6 +81,7 @@ class Account extends Component {
                                 name="email"
                             />
                             <UserTextField
+                                placeholder={this.props.currentUser ? this.props.currentUser.password : null}
                                 onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-password-input"
@@ -85,6 +92,7 @@ class Account extends Component {
                             />
                             <div style={{display: 'flex'}}>
                                 <UserTextField
+                                    placeholder={this.props.currentUser ? this.props.currentUser.name : null}
                                     onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-firstname"
@@ -101,6 +109,7 @@ class Account extends Component {
                                     name="infix"
                                 />
                                 <UserTextField
+                                    placeholder={this.props.currentUser ? this.props.currentUser.lastName : null}
                                     onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-lastName"
@@ -110,6 +119,7 @@ class Account extends Component {
                                 />
                             </div>
                             <UserTextField
+                                placeholder={this.props.currentUser ? this.props.currentUser.street_Name : null}
                                 onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-required-street"
@@ -118,6 +128,7 @@ class Account extends Component {
                                 name="street"
                             />
                             <UserTextField
+                                placeholder={this.props.currentUser ? this.props.currentUser.city : null}
                                 onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-required-city"
@@ -127,6 +138,7 @@ class Account extends Component {
                             />
                             <div style={{display: 'flex'}}>
                                 <UserTextField
+                                    placeholder={this.props.currentUser ? this.props.currentUser.postalcode : null}
                                     onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-postalcode"
@@ -135,6 +147,7 @@ class Account extends Component {
                                     name="postalCode"
                                 />
                                 <UserTextField
+                                    placeholder={this.props.currentUser ? this.props.currentUser.house_Number : null}
                                     onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-required-housenumber"
@@ -143,6 +156,7 @@ class Account extends Component {
                                     name="housenumber"
                                 />
                                 <UserTextField
+                                    placeholder={this.props.currentUser ? this.props.currentUser.addition : null}
                                     onEditUser={(name, value) => this.handleChange(name, value)}
                                     textFieldType="editUser"
                                     id="outlined-housenumberaddition"
@@ -152,6 +166,7 @@ class Account extends Component {
                                 />
                             </div>
                             <UserTextField
+                                placeholder={this.props.currentUser ? this.props.currentUser.telephone_Number : null}
                                 onEditUser={(name, value) => this.handleChange(name, value)}
                                 textFieldType="editUser"
                                 id="outlined-phonenumber"

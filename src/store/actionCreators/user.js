@@ -16,7 +16,10 @@ import {
     GET_ALL_USERS_SUCCESS,
     DELETE_USER_ERROR,
     DELETE_USER_REQUEST,
-    DELETE_USER_SUCCESS
+    DELETE_USER_SUCCESS,
+    GET_ACCOUNT_SUCCESS,
+    GET_ACCOUNT_ERROR,
+    GET_ACCOUNT_REQUEST
 } from '../actions/user';
 
 const creator = (dispatch) => ({
@@ -97,6 +100,27 @@ const creator = (dispatch) => ({
     } catch (error) {
       dispatch({
         type: LOGIN_USER_ERROR
+      });
+    }
+  },
+
+  getAccount: async(token) => {
+    const url = "http://127.0.0.1:5000/api/Accounts/MyAccount?token=" + token;
+    dispatch({
+      type: GET_ACCOUNT_REQUEST
+    });
+
+    try {
+      const res = await fetch(url);
+      const account = await res.json();
+      dispatch({
+        type: GET_ACCOUNT_SUCCESS,
+        account
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_ACCOUNT_ERROR,
+        error
       });
     }
   },
