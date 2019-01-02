@@ -97,6 +97,25 @@ class DetailProduct extends Component {
         }
     }
 
+    getImagePreviewUrl(next) {
+        const {image} = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
+        let begin = 0;
+        let end = image.length;
+        if (next) {
+            if (this.state.imageIndex === (end - 1)) {
+                return image[begin].url;
+            } else {
+                return image[this.state.imageIndex + 1].url;
+            }
+        } else {
+            if (this.state.imageIndex === begin) {
+                return image[end - 1].url;
+            } else {
+                return image[this.state.imageIndex - 1].url;
+            }
+        }
+    }
+
     onFlipFavourites(product, isFavourite) {
         console.log(isFavourite);
         this.props.flipFavourites(product.id);
@@ -109,23 +128,36 @@ class DetailProduct extends Component {
         const {product, image} = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
         return (
             <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
-                <Card style={{flex: 2, margin: '.5em', alignSelf: 'flex-start', display: 'flex'}}>
-                    <div style={{flex: 1, display: 'flex'}}>
-                        {product.firstImg ?
-                        <IconButton onClick={() => this.handleImageControl(false)} style={{marginLeft: 'auto'}}>
-                            <ChevronLeftIcon className={classes.chevronIcon}/>
-                        </IconButton>
-                        : null}
+                <Card style={{flex: 2, flexDirection: 'column', margin: '.5em', alignSelf: 'flex-start', display: 'flex', minHeight: '480px'}}>  
+                    <div style={{flex: 1, minHeight: '500px', whiteSpace: 'nowrap', textAlign: 'center', margin: '1em 0'}}>
+                        <span style={{display: 'inline-block', height: '100%', verticalAlign: 'middle'}}></span>{image.length !== 0 ? <img alt={image[this.state.imageIndex].id} src={image[this.state.imageIndex].url} style={{maxHeight: '480px', padding: '.5em', verticalAlign: 'middle'}}/> : (product.firstImg ? <img src={product.firstImg} alt={product.id} style={{maxHeight: '480px', padding: '.5em'}}/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>)}
                     </div>
-                    <div style={{flex: 1}}>
-                        {image.length !== 0 ? <img alt={image[this.state.imageIndex].id} src={image[this.state.imageIndex].url} style={{maxHeight: '480px', padding: '.5em'}}/> : (product.firstImg ? <img src={product.firstImg} alt={product.id} style={{maxHeight: '480px', padding: '.5em'}}/> : <img src={notFoundImage} alt="NotFound" className="productImage"/>)}
-                    </div>
-                    <div style={{flex: 1, display: 'flex'}}>
-                        {product.firstImg ?
-                        <IconButton onClick={() => this.handleImageControl(true)}>
-                            <ChevronRightIcon className={classes.chevronIcon}/>
-                        </IconButton>
-                        : null}
+                    <div style={{display: 'flex', flexDirection: 'row', margin: 'auto'}}>
+                        <div style={{}}>
+                            {product.firstImg ?
+                            <IconButton onClick={() => this.handleImageControl(false)} style={{marginLeft: 'auto'}}>
+                                <ChevronLeftIcon className={classes.chevronIcon}/>
+                            </IconButton>
+                            : null}
+                        </div>
+                        <div style={{display: 'flex'}}>
+                            <div style={{lineHeight: '100px'}}>
+                                <img src={this.getImagePreviewUrl(false)} style={{maxWidth: '72px', maxHeight: '72px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
+                            </div>
+                            <div style={{lineHeight: '100px'}}>
+                                <img src={image[this.state.imageIndex].url} style={{maxWidth: '96px', maxHeight: '96px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
+                            </div>
+                            <div style={{lineHeight: '100px'}}>
+                                <img src={this.getImagePreviewUrl(true)} style={{maxWidth: '72px', maxHeight: '72px', display: 'inlineBlock', verticalAlign: 'middle', lineHeight: 'normal'}}/>
+                            </div>
+                        </div>
+                        <div style={{}}>
+                            {product.firstImg ?
+                            <IconButton onClick={() => this.handleImageControl(true)}>
+                                <ChevronRightIcon className={classes.chevronIcon}/>
+                            </IconButton>
+                            : null}
+                        </div>
                     </div>
                 </Card>
                 <Card style={{flex: 1, margin: '.5em', alignSelf: 'flex-start'}}>
