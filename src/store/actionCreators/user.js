@@ -21,6 +21,7 @@ import {
     GET_ACCOUNT_ERROR,
     GET_ACCOUNT_REQUEST
 } from '../actions/user';
+import moment from 'moment';
 
 const creator = (dispatch) => ({
   register: async (user) => {
@@ -30,6 +31,8 @@ const creator = (dispatch) => ({
     });
 
     try {
+      let date = moment(user.birthday);
+      let formattedDate = date.format("MM/DD/YYYY");
       const res = await fetch(url, {
         method: 'POST',
         headers: {
@@ -39,7 +42,7 @@ const creator = (dispatch) => ({
         body: JSON.stringify({
           "Name": user.firstName,
           "LastName": user.lastName,
-          "Birthday": user.birthday,
+          "Birthday": formattedDate,
           "Password": user.password,
           "Gender": user.gender,
           "Street_Name": user.street,
@@ -52,17 +55,23 @@ const creator = (dispatch) => ({
         })
       });
 
-      const a = await res.json();
+      const response = await res.json();
 
-      console.log(a);
+      if (response.length > 0) {
+        dispatch({
+          type: REGISTER_USER_ERROR,
+          response
+        });
+      } else {
+        dispatch({
+          type: REGISTER_USER_SUCCESS
+        });
+      }
 
-      dispatch({
-        type: REGISTER_USER_SUCCESS
-      });
-    } catch (error) {
+    } catch (response) {
       dispatch({
         type: REGISTER_USER_ERROR,
-        error
+        response
       });
     }
   },

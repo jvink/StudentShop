@@ -27,7 +27,7 @@ const creator = (dispatch) => ({
         error
       });
     });
-  }
+  },
 });
 
 export default creator;

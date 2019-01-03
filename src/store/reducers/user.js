@@ -52,7 +52,7 @@ const reducer = (state, action) => {
     case REGISTER_USER_ERROR: {
       return Object.assign({}, state, {
         isRegistering: false,
-        registerError: action.error,
+        registerError: action.response,
         registerUserResult: false
       });
     }

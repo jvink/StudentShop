@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { toastr } from 'react-redux-toastr';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,11 +7,6 @@ import UserRadioGroup from '../UserRadioGroup';
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import { TextValidator} from 'react-material-ui-form-validator';
 import '../../styles/register.css';
-
-const toastrOptions = {
-    icon: 'success',
-    status: 'success'
-};
 
 class Register extends Component {
     state = {
@@ -81,20 +75,23 @@ class Register extends Component {
         }
 
         this.props.register(user);
-        toastr.light('Succesvol geregistreerd! Log nu in om te beginnen.', toastrOptions);
-    }
-
-    shouldComponentUpdate() {
-        return false;
     }
 
     render() {
+        const errors = this.props.errors ? this.props.errors : [];
         return (
             <div className="registerFormCardContainer">
                 <Card className="registerFormCard">
                     <CardContent>
                         <h1>Registreren</h1>
                         {this.props.error === true ? <p style={{color: 'red'}}>Er ging iets verkeerd. Probeer het opnieuw alstublieft.</p> : null}
+                        {errors.map((error) => {
+                            return (
+                                <span>{error.map((errorMessages) => {
+                                    return <ul style={{color: 'red'}}>{errorMessages.errorMessage}</ul>
+                                })}</span>
+                            );
+                        })}
                         {this.props.loading === true ? <CircularProgress/> : null}
                         <ValidatorForm
                             ref="form"
@@ -179,6 +176,7 @@ class Register extends Component {
                                 style={{marginTop: '1em'}}
                                 onChange={this.handleChange2("birthday")}
                                 name="birthday"
+                                format={"MM/DD/YYYY"}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
