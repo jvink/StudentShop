@@ -12,6 +12,7 @@ import AccountIcon from '@material-ui/icons/Face';
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
 import TagMultipleIcon from 'mdi-react/TagMultipleIcon';
 import AccountGroupOutlineIcon from 'mdi-react/AccountGroupOutlineIcon';
+import AccountStarIcon from 'mdi-react/SecurityAccountOutlineIcon';
 import Tooltip from '@material-ui/core/Tooltip';
 import '../../styles/header.css';
 
@@ -86,7 +87,7 @@ class Header extends Component {
                         aria-owns={anchorEl ? 'simple-menu' : undefined}
                         aria-haspopup="true"
                         onClick={this.handleClick}>
-                            <AccountIcon/>
+                            {isAdmin ? <AccountStarIcon/> : <AccountIcon/>}
                     </IconButton>
                     <Menu
                         disableAutoFocusItem={true}

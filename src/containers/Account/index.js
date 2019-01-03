@@ -23,18 +23,13 @@ class AccountContainer extends Component {
     }
 
     render() {
-        console.log(this.props.userStore);
         if (this.props.userStore.isGettingUser) {
-            console.log('0')
             return <Account error={false} loading={true} editUser={(user) => this.editUser(this.props.token, user)}/>;
         } else if (this.props.userStore.getUserError) {
-            console.log('1')
             return <Account error={true} loading={false} editUser={(user) => this.editUser(this.props.token, user)}/>;
         } else if (this.props.userStore.getUserResult) {
-            console.log('2')
             return <Account error={false} loading={false} currentUser={this.props.userStore.getUserResult[0]} editUser={(user) => this.editUser(this.props.token, user)}/>;
         } else {
-            console.log('3')
             return <Account error={false} loading={true} editUser={(user) => this.editUser(this.props.token, user)}/>;
         }
     }

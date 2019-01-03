@@ -10,7 +10,10 @@ import {
     GET_ALL_PRODUCTS_SUCCESS,
     DELETE_PRODUCT_ERROR,
     DELETE_PRODUCT_REQUEST,
-    DELETE_PRODUCT_SUCCESS
+    DELETE_PRODUCT_SUCCESS,
+    ADD_PRODUCT_REQUEST,
+    ADD_PRODUCT_ERROR,
+    ADD_PRODUCT_SUCCESS
 } from '../actions/product';
 
 const initialState = {
@@ -26,6 +29,9 @@ const initialState = {
   isDeletingProduct: false,
   deleteProductError: undefined,
   deleteProductResult: undefined,
+  isAddingProduct: false,
+  addProductError: undefined,
+  addProductResult: undefined,
 };
 
 const reducer = (state, action) => {
@@ -97,6 +103,23 @@ const reducer = (state, action) => {
         getAllProductsResult: state.getAllProductsResult.filter((product) => {
           return product.id !== action.productId;
         })
+      });
+    }
+    case ADD_PRODUCT_REQUEST: {
+      return Object.assign({}, state, {
+        isAddingProduct: true,
+      });
+    }
+    case ADD_PRODUCT_ERROR: {
+      return Object.assign({}, state, {
+        isAddingProduct: false,
+        addProductError: action.error
+      });
+    }
+    case ADD_PRODUCT_SUCCESS: {
+      return Object.assign({}, state, {
+        isAddingProduct: false,
+        addProductResult: action.product
       });
     }
     default: {

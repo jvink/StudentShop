@@ -11,8 +11,13 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
+import Badge from '@material-ui/core/Badge';
+import ImagesIcon from '@material-ui/icons/Filter';
 
 const styles = theme => ({
+  margin: {
+    margin: theme.spacing.unit * 2,
+  },
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -40,6 +45,7 @@ const styles = theme => ({
 class Products extends Component {
   render() {
     let { products, classes } = this.props;
+    console.log(products);
     return (
       <div style={{width: '100%'}}>
         <div style={{marginBottom: '2em', marginTop: '1em'}}>
@@ -58,20 +64,28 @@ class Products extends Component {
                 <TableCell>Naam</TableCell>
                 <TableCell>Prijs</TableCell>
                 <TableCell>Stock</TableCell>
+                <TableCell>Aantal afbeeldingen</TableCell>
                 <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {products.map(product => {
                 return (
-                  <TableRow key={product.id}>
-                    <TableCell><img alt={product.name} src={product.firstImg} className={classes.avatar}/></TableCell>
-                    <TableCell>{product.name}</TableCell>
-                    <TableCell>€ {product.price}</TableCell>
-                    <TableCell>{product.stock}</TableCell>
+                  <TableRow key={product.product.id}>
+                    <TableCell><img alt={product.product.name} src={product.product.firstImg} className={classes.avatar}/></TableCell>
+                    <TableCell>{product.product.name}</TableCell>
+                    <TableCell>€ {product.product.price}</TableCell>
+                    <TableCell>{product.product.stock}</TableCell>
+                    <TableCell>
+                      <IconButton component={Link} to={"/manageImages/" + product.product.id} aria-label="4 pending messages" className={classes.margin}>
+                        <Badge badgeContent={product.numberOfImages} color="primary">
+                          <ImagesIcon />
+                        </Badge>
+                      </IconButton>
+                    </TableCell>
                     <TableCell>
                       <Tooltip title="Product verwijderen">
-                        <IconButton className={classes.button} onClick={() => this.props.deleteProduct(product.id)} aria-label="Delete">
+                        <IconButton className={classes.button} onClick={() => this.props.deleteProduct(product.product.id)} aria-label="Delete">
                           <DeleteIcon />
                         </IconButton>
                       </Tooltip>

@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { toastr } from 'react-redux-toastr';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UserTextField from '../UserTextField';
 import { ValidatorForm } from 'react-material-ui-form-validator';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import '../../styles/register.css';
-
-const toastrOptions = {
-    icon: 'success',
-    status: 'success'
-};
 
 class AddProduct extends Component {
     state = {
@@ -19,9 +17,9 @@ class AddProduct extends Component {
         price: null,
         firstImg: null,
         stock: null,
-        imgUrls: [],
-        category: null,
-        subcategory: null
+        category: '',
+        subcategory: null,
+        labelWidth: 0
     };
     
     handleChange(name, value) {
@@ -29,6 +27,13 @@ class AddProduct extends Component {
             [name]: value,
         });
     };
+
+    handleChange2 = name => event => {
+        console.log(name, event.target.value)
+        this.setState({
+            [name]: event.target.value
+        });
+    }
 
     onClickAddProduct() {
         let {name, description, price, firstImg, stock, imgUrls, category, subcategory} = this.state;
@@ -44,11 +49,6 @@ class AddProduct extends Component {
             subcategory: (subcategory === -1 ? null : subcategory),
         }
         this.props.editUser(user);
-        toastr.light('Product toegevoegd.', toastrOptions);
-    }
-
-    shouldComponentUpdate() {
-        return false;
     }
 
     render() {
@@ -95,10 +95,69 @@ class AddProduct extends Component {
                                 textFieldType="addProduct"
                                 id="outlined-firstimg-input"
                                 error="errorFirstimg"
-                                label="Afbeelding"
+                                label="Afbeeldings url"
                                 type="firstimg"
                                 name="firstimg"
                             />
+                            <InputLabel
+                                ref={ref => {
+                                this.InputLabelRef = ref;
+                                }}
+                                htmlFor="outlined-category-simple"
+                            >
+                                Categorie
+                            </InputLabel>
+                            <Select
+                                fullWidth
+                                value={this.state.category}
+                                onChange={this.handleChange2("category")}
+                                input={
+                                <OutlinedInput
+                                    labelWidth={this.state.labelWidth}
+                                    name="category"
+                                    id="outlined-category-simple"
+                                />
+                                }
+                            >
+                                <MenuItem value="">
+                                <em>None</em>
+                                </MenuItem>
+                                {this.props.categories.map((category) => {
+                                    console.log(category);
+                                    return <MenuItem key={category.category.id} value={category.category.name}>{category.category.name}</MenuItem>
+                                })}
+                            </Select>
+                            {(this.state.category === null || this.state.category === '') ? <p>Selecteer een category om een subcategory te kunnen selecteren.</p> :
+                            <div>
+                                <InputLabel
+                                    ref={ref => {
+                                    this.InputLabelRef = ref;
+                                    }}
+                                    htmlFor="outlined-subcategory-simple"
+                                >
+                                    Subcategorie
+                                </InputLabel>
+                                <Select
+                                    fullWidth
+                                    value={this.state.subcategory}
+                                    onChange={this.handleChange2("subcategory")}
+                                    input={
+                                    <OutlinedInput
+                                        labelWidth={this.state.labelWidth}
+                                        name="subcategory"
+                                        id="outlined-subcategory-simple"
+                                    />
+                                    }
+                                >
+                                    <MenuItem value="">
+                                    <em>None</em>
+                                    </MenuItem>
+                                    {this.props.categories.map((category) => {
+                                        return <MenuItem key={category.category.id} value={category.category.name}>{category.category.name}</MenuItem>
+                                    })}
+                                </Select>
+                            </div>
+                            }
                             <button type="submit" className="primaryButton">Bevestigen</button>
                         </ValidatorForm>
                     </CardContent>

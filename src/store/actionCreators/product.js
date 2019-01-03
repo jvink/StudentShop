@@ -10,7 +10,10 @@ import {
     GET_ALL_PRODUCTS_SUCCESS,
     DELETE_PRODUCT_ERROR,
     DELETE_PRODUCT_REQUEST,
-    DELETE_PRODUCT_SUCCESS
+    DELETE_PRODUCT_SUCCESS,
+    ADD_PRODUCT_ERROR,
+    ADD_PRODUCT_REQUEST,
+    ADD_PRODUCT_SUCCESS
 } from '../actions/product';
 
 const creator = (dispatch) => ({
@@ -123,7 +126,44 @@ const creator = (dispatch) => ({
         error
       });
     });
-  }
+  },
+
+  addProduct: async (product, token) => {
+    const url = "http://127.0.0.1:5000/api/products";
+    dispatch({
+      type: ADD_PRODUCT_REQUEST
+    });
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "Name": product.name,
+          "Description": product.description,
+          "Price": product.price,
+          "FirstImg": product.firstImg,
+          "Stock": product.stock,
+          "CategoryId": product.categoryId,
+          "SubCategoryId": product.subCategoryId
+        })
+      });
+
+      console.log(res.json());
+
+      dispatch({
+        type: ADD_PRODUCT_SUCCESS,
+        product
+      });
+    } catch (error) {
+      dispatch({
+        type: ADD_PRODUCT_ERROR
+      });
+    }
+  },
 });
 
 export default creator;
