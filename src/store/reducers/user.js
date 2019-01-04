@@ -95,7 +95,7 @@ const reducer = (state, action) => {
     case EDIT_USER_SUCCESS: {
       return Object.assign({}, state, {
         isEdittingUser: false,
-        editUserResult: action.token,
+        editUserResult: true,
       });
     }
     case IS_ADMIN_REQUEST: {

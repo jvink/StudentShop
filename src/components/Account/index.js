@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { toastr } from 'react-redux-toastr';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UserTextField from '../UserTextField';
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import '../../styles/register.css';
-
-const toastrOptions = {
-    icon: 'success',
-    status: 'success'
-};
 
 class Account extends Component {
     state = {
@@ -44,7 +38,6 @@ class Account extends Component {
             phoneNumber: (phoneNumber === -1 ? null : phoneNumber),
         }
         this.props.editUser(user);
-        toastr.light('Account gegevens succesvol veranderd.', toastrOptions);
     }
 
     shouldComponentUpdate() {
@@ -56,7 +49,6 @@ class Account extends Component {
     }
 
     render() {
-        console.log(this.props.currentUser);
         return (
             <div className="registerFormCardContainer">
                 <Card className="registerFormCard">

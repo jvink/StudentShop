@@ -11,7 +11,7 @@ class ProductsContainer extends Component {
     }
 
     deleteProduct(productId) {
-        this.props.productActions.deleteProduct(productId);
+        this.props.productActions.deleteProduct(productId, this.props.token);
     }
 
     render() {

@@ -10,6 +10,7 @@ import RegisterContainer from '../containers/Register';
 import ShoppingCartContainer from '../containers/ShoppingCart';
 import AccountContainer from '../containers/Account';
 import AddProductContainer from '../containers/AddProduct';
+import AddImagesToProductContainer from '../containers/AddImagesToProduct';
 import UsersContainer from '../containers/Users';
 import ProductsContainer from '../containers/Products';
 
@@ -29,6 +30,7 @@ export default class Root extends Component {
           <Route exact path='/register' component={() => <RegisterContainer token={token}/>} />
           <Route exact path='/account' component={() => <AccountContainer token={token}/>} />
           <Route exact path='/addProduct' component={() => <AddProductContainer token={token}/>} />
+          <Route exact path='/manageImages/:id' component={() => <AddImagesToProductContainer token={token}/>} />
           <Route exact path='/users' component={() => <UsersContainer token={token}/>} />
           <Route exact path='/products' component={() => <ProductsContainer token={token}/>} />
           <Route path='/' component={NotFound} />

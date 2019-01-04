@@ -10,6 +10,11 @@ const toastrOptions = {
     status: 'success'
 };
 
+const toastrOptionsError = {
+    icon: 'error',
+    status: 'error'
+};
+
 class RegisterContainer extends Component {
     async register(user) {
         try {
@@ -20,7 +25,7 @@ class RegisterContainer extends Component {
                 toastr.light('Succesvol geregistreerd! Log nu in om te beginnen.', toastrOptions);
             }
         } catch (error) {
-            console.log(error);
+            toastr.light('Er is iets misgegaan. Probeer het later opnieuw.', toastrOptionsError);
         }
     }
 

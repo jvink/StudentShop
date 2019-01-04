@@ -18,7 +18,7 @@ class AddProduct extends Component {
         firstImg: null,
         stock: null,
         category: '',
-        subcategory: null,
+        subcategory: '',
         labelWidth: 0
     };
     
@@ -29,26 +29,24 @@ class AddProduct extends Component {
     };
 
     handleChange2 = name => event => {
-        console.log(name, event.target.value)
         this.setState({
             [name]: event.target.value
         });
     }
 
     onClickAddProduct() {
-        let {name, description, price, firstImg, stock, imgUrls, category, subcategory} = this.state;
+        let {name, description, price, firstImg, stock, category, subcategory} = this.state;
 
-        let user = {
+        let product = {
             name: (name === '' ? null : name),
             description: (description === '' ? null : description),
             price: (price === '' ? null : price),
             firstImg: (firstImg === '' ? null : firstImg),
             stock: (stock === '' ? null : stock),
-            imgUrls: (imgUrls.length === 0 ? null : imgUrls),
             category: (category === '' ? null : category),
             subcategory: (subcategory === -1 ? null : subcategory),
         }
-        this.props.editUser(user);
+        this.props.addProduct(product);
     }
 
     render() {
@@ -78,8 +76,8 @@ class AddProduct extends Component {
                                 id="outlined-description-input"
                                 error="errorDescription"
                                 label="Beschrijving"
-                                type="name"
-                                name="name"
+                                type="description"
+                                name="description"
                             />
                             <UserTextField
                                 onAddProduct={(name, value) => this.handleChange(name, value)}
@@ -93,11 +91,20 @@ class AddProduct extends Component {
                             <UserTextField
                                 onAddProduct={(name, value) => this.handleChange(name, value)}
                                 textFieldType="addProduct"
-                                id="outlined-firstimg-input"
-                                error="errorFirstimg"
+                                id="outlined-firstImg-input"
+                                error="errorFirstImg"
                                 label="Afbeeldings url"
-                                type="firstimg"
-                                name="firstimg"
+                                type="firstImg"
+                                name="firstImg"
+                            />
+                            <UserTextField
+                                onAddProduct={(name, value) => this.handleChange(name, value)}
+                                textFieldType="addProduct"
+                                id="outlined-stock-input"
+                                error="errorStock"
+                                label="Hoeveelheid op voorraad"
+                                type="stock"
+                                name="stock"
                             />
                             <InputLabel
                                 ref={ref => {
@@ -123,8 +130,7 @@ class AddProduct extends Component {
                                 <em>None</em>
                                 </MenuItem>
                                 {this.props.categories.map((category) => {
-                                    console.log(category);
-                                    return <MenuItem key={category.category.id} value={category.category.name}>{category.category.name}</MenuItem>
+                                    return <MenuItem key={category.category.id} value={category.category.id}>{category.category.name}</MenuItem>
                                 })}
                             </Select>
                             {(this.state.category === null || this.state.category === '') ? <p>Selecteer een category om een subcategory te kunnen selecteren.</p> :
@@ -153,7 +159,13 @@ class AddProduct extends Component {
                                     <em>None</em>
                                     </MenuItem>
                                     {this.props.categories.map((category) => {
-                                        return <MenuItem key={category.category.id} value={category.category.name}>{category.category.name}</MenuItem>
+                                        if (category.category.id === this.state.category) {
+                                            return category.subCategory.map((subCategory) => {
+                                                return <MenuItem key={subCategory.id} value={subCategory.id}>{subCategory.subCategory_Name}</MenuItem>
+                                            });
+                                        } else {
+                                            return null;
+                                        }
                                     })}
                                 </Select>
                             </div>

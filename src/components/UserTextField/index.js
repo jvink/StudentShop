@@ -24,6 +24,11 @@ export default class UserTextField extends Component {
                     [name]: event.target.value,
                 }, () => this.props.onAddProduct(this.props.name, this.state[this.props.name]));
                 break;
+            case "addImagesToProduct":
+                this.setState({
+                    [name]: event.target.value,
+                }, () => this.props.onAddImagesProduct(this.props.name, this.state[this.props.name]));
+                break;
             default:
                 this.setState({
                     [name]: event.target.value,
@@ -35,7 +40,7 @@ export default class UserTextField extends Component {
     render() {
         return (
             <TextValidator
-                label={this.props.placeholder ? this.props.placeholder : this.props.label}
+                label={this.props.placeholder ? this.props.placeholder : (this.props.label ? this.props.label : null)}
                 validators={this.props.validators}
                 errorMessages={this.props.errorMessages}
                 value={this.state[this.props.name]}

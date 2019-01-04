@@ -13,7 +13,10 @@ import {
     DELETE_PRODUCT_SUCCESS,
     ADD_PRODUCT_REQUEST,
     ADD_PRODUCT_ERROR,
-    ADD_PRODUCT_SUCCESS
+    ADD_PRODUCT_SUCCESS,
+    ADD_IMAGES_TO_PRODUCT_REQUEST,
+    ADD_IMAGES_TO_PRODUCT_ERROR,
+    ADD_IMAGES_TO_PRODUCT_SUCCESS
 } from '../actions/product';
 
 const initialState = {
@@ -101,7 +104,7 @@ const reducer = (state, action) => {
     case DELETE_PRODUCT_SUCCESS: {
       return Object.assign({}, state, {
         getAllProductsResult: state.getAllProductsResult.filter((product) => {
-          return product.id !== action.productId;
+          return product.product.id !== action.productId;
         })
       });
     }
@@ -119,7 +122,24 @@ const reducer = (state, action) => {
     case ADD_PRODUCT_SUCCESS: {
       return Object.assign({}, state, {
         isAddingProduct: false,
-        addProductResult: action.product
+        addProductResult: true
+      });
+    }
+    case ADD_IMAGES_TO_PRODUCT_REQUEST: {
+      return Object.assign({}, state, {
+        isAddingImagesToProduct: true,
+      });
+    }
+    case ADD_IMAGES_TO_PRODUCT_ERROR: {
+      return Object.assign({}, state, {
+        isAddingImagesToProduct: false,
+        addImagesToProductError: action.error
+      });
+    }
+    case ADD_IMAGES_TO_PRODUCT_SUCCESS: {
+      return Object.assign({}, state, {
+        isAddingImagesToProduct: false,
+        addImagesToProductResult: true
       });
     }
     default: {

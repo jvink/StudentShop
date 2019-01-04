@@ -201,13 +201,16 @@ const creator = (dispatch) => ({
         })
       });
 
-      console.log(await res);
-
-      dispatch({
-        type: EDIT_USER_SUCCESS
-      });
+      if (res.ok) {
+        dispatch({
+          type: EDIT_USER_SUCCESS
+        });
+      } else {
+        dispatch({
+          type: EDIT_USER_ERROR
+        });
+      }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: EDIT_USER_ERROR,
         error

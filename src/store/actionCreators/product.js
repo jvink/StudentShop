@@ -77,31 +77,35 @@ const creator = (dispatch) => ({
     });
   },
 
-  deleteProduct: async (productId) => {
-    const url = "http://127.0.0.1:5000/api/products/" + productId;
+  deleteProduct: async (productId, token) => {
+    const url = "http://127.0.0.1:5000/api/Admin/Product/Delete?token=" + token;
     
     dispatch({
       type: DELETE_PRODUCT_REQUEST
     });
-    await fetch(url, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+
+    try {
+      const res = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify([{"Id": productId}])
+      });
+      
+      if (res.ok) {
+        dispatch({
+          type: DELETE_PRODUCT_SUCCESS,
+          productId
+        }); 
       }
-    })
-    .then(() => {
-      dispatch({
-        type: DELETE_PRODUCT_SUCCESS,
-        productId
-      }); 
-    })
-    .catch((error) => {
+    } catch (error) {
       dispatch({
         type: DELETE_PRODUCT_ERROR,
         error
-      }); 
-    });
+      });
+    }
   },
 
   getAllProducts: async (token) => {
@@ -129,7 +133,7 @@ const creator = (dispatch) => ({
   },
 
   addProduct: async (product, token) => {
-    const url = "http://127.0.0.1:5000/api/products";
+    const url = "http://127.0.0.1:5000/api/products?token=" + token;
     dispatch({
       type: ADD_PRODUCT_REQUEST
     });
@@ -147,20 +151,61 @@ const creator = (dispatch) => ({
           "Price": product.price,
           "FirstImg": product.firstImg,
           "Stock": product.stock,
-          "CategoryId": product.categoryId,
-          "SubCategoryId": product.subCategoryId
+          "CategoryId": product.category,
+          "SubCategoryId": product.subcategory
         })
       });
 
-      console.log(res.json());
-
-      dispatch({
-        type: ADD_PRODUCT_SUCCESS,
-        product
-      });
+      if (res.ok) {
+        dispatch({
+          type: ADD_PRODUCT_SUCCESS
+        });
+      } else {
+        dispatch({
+          type: ADD_PRODUCT_ERROR
+        });
+      }
     } catch (error) {
       dispatch({
-        type: ADD_PRODUCT_ERROR
+        type: ADD_PRODUCT_ERROR,
+        error
+      });
+    }
+  },
+
+  addImagesToProduct: async (images, productId, token) => {
+    const url = "http://127.0.0.1:5000/api/products?token=" + token;
+    dispatch({
+      type: ADD_PRODUCT_REQUEST
+    });
+    console.log(images);
+    console.log(productId);
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "imageURLs": images,
+          "productid": productId
+        })
+      });
+
+      if (res.ok) {
+        dispatch({
+          type: ADD_PRODUCT_SUCCESS
+        });
+      } else {
+        dispatch({
+          type: ADD_PRODUCT_ERROR
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: ADD_PRODUCT_ERROR,
+        error
       });
     }
   },

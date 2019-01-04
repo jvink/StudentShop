@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { toastr } from 'react-redux-toastr';
 import usersActionCreator from '../../store/actionCreators/user';
 import Login from '../../components/Login';
+
+const toastrOptionsError = {
+    icon: 'error',
+    status: 'error'
+};
 
 class LoginContainer extends Component {
     async login(email, password) {
@@ -14,7 +20,7 @@ class LoginContainer extends Component {
                 window.location.replace("/");
             }
         } catch (error) {
-            console.log(error);
+            toastr.light('Er is iets misgegaan. Probeer het later opnieuw.', toastrOptionsError);
         }
     }
 

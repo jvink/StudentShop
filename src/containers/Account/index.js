@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { toastr } from 'react-redux-toastr';
 import usersActionCreator from '../../store/actionCreators/user';
 import Account from '../../components/Account';
+
+const toastrOptions = {
+    icon: 'success',
+    status: 'success'
+};
+
+const toastrOptionsError = {
+    icon: 'error',
+    status: 'error'
+};
 
 class AccountContainer extends Component {
 
@@ -15,10 +26,13 @@ class AccountContainer extends Component {
             await this.props.usersActions.editUser(token, user);
 
             if (this.props.userStore.editUserResult) {
-                this.props.history.push('/');
+                this.props.usersActions.getAccount(this.props.token);
+                toastr.light('Account gegevens succesvol veranderd.', toastrOptions);
+            } else {
+                toastr.light('Er is iets misgegaan. Probeer het later opnieuw.', toastrOptionsError);
             }
         } catch (error) {
-            console.log(error);
+            toastr.light('Er is iets misgegaan. Probeer het later opnieuw.', toastrOptionsError);
         }
     }
 
