@@ -18,10 +18,10 @@ class Register extends Component {
         infix: '',
         lastName: '',
         birthday: undefined,
-        street: '',
+        Street_Name: '',
         city: '',
         postalCode: '',
-        houseNumber: -1,
+        housenumber: -1,
         houseNumberSuffix: '',
         phoneNumber: -1
     };
@@ -66,10 +66,10 @@ class Register extends Component {
             infix: this.state.infix,
             lastName: this.state.lastName,
             birthday: this.state.birthday,
-            street: this.state.street,
+            Street_Name: this.state.Street_Name,
             city: this.state.city,
             postalCode: this.state.postalCode,
-            houseNumber: this.state.houseNumber,
+            houseNumber: Number(this.state.housenumber),
             houseNumberSuffix: this.state.houseNumberSuffix,
             phoneNumber: this.state.phoneNumber
         }
@@ -78,20 +78,20 @@ class Register extends Component {
     }
 
     render() {
-        const errors = this.props.errors ? this.props.errors : [];
+        const errors = this.props.errors ? this.props.errors : null;
         return (
             <div className="registerFormCardContainer">
                 <Card className="registerFormCard">
                     <CardContent>
                         <h1>Registreren</h1>
                         {this.props.error === true ? <p style={{color: 'red'}}>Er ging iets verkeerd. Probeer het opnieuw alstublieft.</p> : null}
-                        {errors.map((error) => {
+                        {Array.isArray(this.props.errors) ? errors.map((error) => {
                             return (
                                 <span>{error.map((errorMessages) => {
                                     return <ul style={{color: 'red'}}>{errorMessages.errorMessage}</ul>
                                 })}</span>
                             );
-                        })}
+                        }) : <ul style={{color: 'red'}}>{errors}</ul>}
                         {this.props.loading === true ? <CircularProgress/> : null}
                         <ValidatorForm
                             ref="form"
@@ -184,12 +184,12 @@ class Register extends Component {
                             <UserTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}
                                 textFieldType="register"
-                                id="outlined-required-street"
+                                id="outlined-required-Street_Name"
                                 validators={['required']}
                                 errorMessages={['Dit veld is vereist']}
                                 label="Straatnaam"
-                                type="street"
-                                name="street"
+                                type="Street_Name"
+                                name="Street_Name"
                             />
                             <UserTextField
                                 onRegister={(name, value) => this.handleChange(name, value)}

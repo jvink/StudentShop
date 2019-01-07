@@ -41,14 +41,14 @@ const creator = (dispatch) => ({
         },
         body: JSON.stringify({
           "Name": user.firstName,
-          "LastName": user.lastName,
+          "LastName": user.infix !== "" ? user.infix + " " + user.lastName : user.lastName,
           "Birthday": formattedDate,
           "Password": user.password,
           "Gender": user.gender,
-          "Street_Name": user.street,
+          "Street_Name": user.Street_Name,
           "email": user.email,
           "House_Number": user.houseNumber,
-          "Addition": user.houseNumberAddition,
+          "Addition": user.houseNumberSuffix,
           "Postalcode": user.postalCode,
           "City": user.city,
           "Telephone_Number": user.phoneNumber
@@ -56,15 +56,14 @@ const creator = (dispatch) => ({
       });
 
       const response = await res.json();
-
-      if (response.length > 0) {
+      if (res.ok) {
         dispatch({
-          type: REGISTER_USER_ERROR,
-          response
+          type: REGISTER_USER_SUCCESS
         });
       } else {
         dispatch({
-          type: REGISTER_USER_SUCCESS
+          type: REGISTER_USER_ERROR,
+          response
         });
       }
 

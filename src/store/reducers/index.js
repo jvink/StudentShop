@@ -4,6 +4,7 @@ import userReducer from './user';
 import productReducer from './product';
 import favouritesReducer from './favourites';
 import categoryReducer from './category';
+import statisticsReducer from './statistics';
 import cartReducer from './cart';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     product: productReducer,
     favourites: favouritesReducer,
     category: categoryReducer,
+    statistics: statisticsReducer,
     cart: cartReducer
 });
 

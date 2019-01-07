@@ -13,6 +13,7 @@ import AddProductContainer from '../containers/AddProduct';
 import AddImagesToProductContainer from '../containers/AddImagesToProduct';
 import UsersContainer from '../containers/Users';
 import ProductsContainer from '../containers/Products';
+import StatisticsContainer from '../containers/Statistics';
 
 export default class Root extends Component {
   render() {
@@ -33,6 +34,7 @@ export default class Root extends Component {
           <Route exact path='/manageImages/:id' component={() => <AddImagesToProductContainer token={token}/>} />
           <Route exact path='/users' component={() => <UsersContainer token={token}/>} />
           <Route exact path='/products' component={() => <ProductsContainer token={token}/>} />
+          <Route exact path='/statistics' component={() => <StatisticsContainer token={token}/>} />
           <Route path='/' component={NotFound} />
       </Switch>
     );
