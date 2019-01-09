@@ -51,8 +51,8 @@ class AddProduct extends Component {
                             return (
                                 <div key={index} style={{display: 'flex', flexDirection: 'row'}}>
                                     <b><p>{index}.</p></b>
-                                    <img style={{maxHeight: '100px', margin: '1em'}} src={imageRow.url} alt={imageRow.url}/>
-                                    <p>{imageRow.url}</p>
+                                    <img style={{maxWidth: '72px', maxHeight: '72px', margin: '1em'}} src={imageRow.url} alt={imageRow.url}/>
+                                    <span style={{marginRight: '12px'}}>{imageRow.url}</span>
                                 </div>
                             );
                         }) : null}
