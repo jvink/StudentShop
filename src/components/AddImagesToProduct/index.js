@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -17,7 +18,7 @@ const styles = theme => ({
 
 class AddProduct extends Component {
     state = {
-        productId: null,
+        productId: this.props.match.params.id ? this.props.match.params.id : null,
         images: [{url: ''}]
     };
     
@@ -38,11 +39,23 @@ class AddProduct extends Component {
     }
 
     render() {
+        console.log(this.props.currentProduct);
         let {classes} = this.props;
+        let {image, product} = this.props.currentProduct[0];
         return (
             <div className="registerFormCardContainer">
                 <Card className="registerFormCard">
                     <CardContent>
+                        <h2>{product.name}</h2>
+                        {(Array.isArray(image) && image.length > 0) ? image.map((imageRow, index) => {
+                            return (
+                                <div key={index} style={{display: 'flex', flexDirection: 'row'}}>
+                                    <b><p>{index}.</p></b>
+                                    <img style={{maxHeight: '100px', margin: '1em'}} src={imageRow.url} alt={imageRow.url}/>
+                                    <p>{imageRow.url}</p>
+                                </div>
+                            );
+                        }) : null}
                         <h1>Afbeeldingen toevoegen</h1>
                         {this.props.error === true ? <p style={{color: 'red'}}>Er ging iets verkeerd. Probeer het opnieuw alstublieft.</p> : null}
                         {this.props.loading === true ? <CircularProgress/> : null}
@@ -78,4 +91,4 @@ class AddProduct extends Component {
     }
 }
 
-export default withStyles(styles)(AddProduct);
+export default withRouter(withStyles(styles)(AddProduct));

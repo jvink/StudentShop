@@ -13,7 +13,13 @@ import {
     DELETE_PRODUCT_SUCCESS,
     ADD_PRODUCT_ERROR,
     ADD_PRODUCT_REQUEST,
-    ADD_PRODUCT_SUCCESS
+    ADD_PRODUCT_SUCCESS,
+    ADD_IMAGES_TO_PRODUCT_ERROR,
+    ADD_IMAGES_TO_PRODUCT_SUCCESS,
+    ADD_IMAGES_TO_PRODUCT_REQUEST,
+    GET_PRODUCT_IMAGES_ERROR,
+    GET_PRODUCT_IMAGES_REQUEST,
+    GET_PRODUCT_IMAGES_SUCCESS
 } from '../actions/product';
 
 const creator = (dispatch) => ({
@@ -174,12 +180,11 @@ const creator = (dispatch) => ({
   },
 
   addImagesToProduct: async (images, productId, token) => {
-    const url = "http://127.0.0.1:5000/api/products?token=" + token;
+    const url = "http://127.0.0.1:5000/api/Admin/Product/Add/Images/" + productId + "?token=" + token;
     dispatch({
-      type: ADD_PRODUCT_REQUEST
+      type: ADD_IMAGES_TO_PRODUCT_REQUEST
     });
-    console.log(images);
-    console.log(productId);
+
     try {
       const res = await fetch(url, {
         method: 'POST',
@@ -187,24 +192,47 @@ const creator = (dispatch) => ({
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          "imageURLs": images,
-          "productid": productId
-        })
+        body: JSON.stringify(images)
       });
 
       if (res.ok) {
         dispatch({
-          type: ADD_PRODUCT_SUCCESS
+          type: ADD_IMAGES_TO_PRODUCT_SUCCESS
         });
       } else {
         dispatch({
-          type: ADD_PRODUCT_ERROR
+          type: ADD_IMAGES_TO_PRODUCT_ERROR
         });
       }
     } catch (error) {
       dispatch({
-        type: ADD_PRODUCT_ERROR,
+        type: ADD_IMAGES_TO_PRODUCT_ERROR,
+        error
+      });
+    }
+  },
+
+  getImages: async (token) => {
+    const url = "http://127.0.0.1:5000/api/Admin/Images?token=" + token;
+    dispatch({
+      type: GET_PRODUCT_IMAGES_REQUEST
+    });
+
+    try {
+      const res = await fetch(url);
+
+      if (res.ok) {
+        dispatch({
+          type: GET_PRODUCT_IMAGES_SUCCESS
+        });
+      } else {
+        dispatch({
+          type: GET_PRODUCT_IMAGES_ERROR
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: GET_PRODUCT_IMAGES_ERROR,
         error
       });
     }
