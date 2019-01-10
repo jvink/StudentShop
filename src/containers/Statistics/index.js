@@ -6,19 +6,35 @@ import Statistics from '../../components/Statistics';
 
 class StatisticsContainer extends Component {
     componentDidMount() {
-        this.props.statisticsActions.getUsersCount();
+        this.props.statisticsActions.getUsersCount(this.props.token);
+        this.props.statisticsActions.getLowestStockProducts(this.props.token);
+        this.props.statisticsActions.getPendingOrderCount(this.props.token);
+        this.props.statisticsActions.getDeliveredOrderCount(this.props.token);
     }
 
     render() {
-        console.log(this.props);
-        if (this.props.statisticsStore.isGettingUsersCount) {
+        let {
+            isGettingUsersCount,
+            isGettingLowestStockProducts,
+            isGettingPendingOrdersCount,
+            isGettingDeliveredOrdersCount,
+            getUsersCountError,
+            getLowestStockProductsError,
+            getPendingOrdersCountError,
+            getDeliveredOrdersCountError,
+            getUsersCountResult,
+            getLowestStockProductsResult,
+            getPendingOrdersCountResult,
+            getDeliveredOrdersCountResult
+        } = this.props.statisticsStore;
+        if (isGettingUsersCount || isGettingLowestStockProducts || isGettingPendingOrdersCount || isGettingDeliveredOrdersCount) {
             return <p>Loading</p>;
-        } else if (this.props.statisticsStore.getUsersCountError) {
-            return <p>Error</p>;
-        } else if (this.props.statisticsStore.getUsersCountResult) {
-            return <Statistics/>;
+        } else if (getUsersCountError || getLowestStockProductsError || getPendingOrdersCountError || getDeliveredOrdersCountError) {
+            return <p>Error1</p>;
+        } else if (getUsersCountResult !== undefined && getLowestStockProductsResult !== undefined && getPendingOrdersCountResult !== undefined && getDeliveredOrdersCountResult !== undefined) {
+            return <Statistics getUsersCountResult={getUsersCountResult} getLowestStockProductsResult={getLowestStockProductsResult} getPendingOrdersCountResult={getPendingOrdersCountResult} getDeliveredOrdersCountResult={getDeliveredOrdersCountResult}/>;
         } else {
-            return <p>Error</p>;
+            return <p>Error2</p>;
         }
     }
 }
