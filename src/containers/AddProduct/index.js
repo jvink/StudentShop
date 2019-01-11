@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
 import productActionCreator from '../../store/actionCreators/product';
 import categoryActionCreator from '../../store/actionCreators/category';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import AddProduct from '../../components/AddProduct';
 
 const toastrOptions = {
@@ -27,7 +28,7 @@ class AddProductContainer extends Component {
             await this.props.productActions.addProduct(product, this.props.token);
 
             if (this.props.productStore.addProductResult) {
-                this.props.history.push('/products');
+                window.location.replace('/products');
                 toastr.light('Product toegevoegd', toastrOptions);
             }
         } catch (error) {
@@ -41,7 +42,15 @@ class AddProductContainer extends Component {
         } else if (this.props.categoryStore.categoryError) {
             return <p>Error</p>;
         } else if (this.props.categoryStore.getCategoryResult) {
-            return <AddProduct error={false} loading={false} categories={this.props.categoryStore.getCategoryResult} addProduct={(product) => this.addProduct(product)}/>;
+            if (this.props.productStore.isAddingProduct) {
+                return <CircularProgress/>;
+            } else if (this.props.productStore.addProductError) {
+                return <AddProduct error={true} loading={false} errors={this.props.productStore.addProductError} categories={this.props.categoryStore.getCategoryResult} addProduct={(product) => this.addProduct(product)}/>;
+            } else if (this.props.productStore.addProductResult) {
+                return <CircularProgress/>;
+            } else {
+                return <AddProduct error={false} loading={false} categories={this.props.categoryStore.getCategoryResult} addProduct={(product) => this.addProduct(product)}/>;
+            }
         } else {
             return <p>Error</p>;
         }

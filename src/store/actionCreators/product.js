@@ -139,12 +139,14 @@ const creator = (dispatch) => ({
   },
 
   addProduct: async (product, token) => {
-    const url = "http://127.0.0.1:5000/api/products?token=" + token;
+    const url = "http://127.0.0.1:5000/api/admin/Product/Add?token=" + token;
     dispatch({
       type: ADD_PRODUCT_REQUEST
     });
 
     try {
+      console.log(product.price)
+      console.log(parseFloat(product.price))
       const res = await fetch(url, {
         method: 'POST',
         headers: {
@@ -154,27 +156,28 @@ const creator = (dispatch) => ({
         body: JSON.stringify({
           "Name": product.name,
           "Description": product.description,
-          "Price": product.price,
+          "Price": parseFloat(product.price),
           "FirstImg": product.firstImg,
           "Stock": product.stock,
           "CategoryId": product.category,
-          "SubCategoryId": product.subcategory
+          "subCategoryId": product.subcategory
         })
       });
-
+      const result = await res.json();
       if (res.ok) {
         dispatch({
           type: ADD_PRODUCT_SUCCESS
         });
       } else {
         dispatch({
-          type: ADD_PRODUCT_ERROR
+          type: ADD_PRODUCT_ERROR,
+          result
         });
       }
-    } catch (error) {
+    } catch (result) {
       dispatch({
         type: ADD_PRODUCT_ERROR,
-        error
+        result
       });
     }
   },

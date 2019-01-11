@@ -116,7 +116,7 @@ const reducer = (state, action) => {
     case ADD_PRODUCT_ERROR: {
       return Object.assign({}, state, {
         isAddingProduct: false,
-        addProductError: action.error
+        addProductError: action.result
       });
     }
     case ADD_PRODUCT_SUCCESS: {

@@ -40,7 +40,7 @@ class AddProduct extends Component {
         let product = {
             name: (name === '' ? null : name),
             description: (description === '' ? null : description),
-            price: (price === '' ? null : price),
+            price: (price < 0 ? null : price),
             firstImg: (firstImg === '' ? null : firstImg),
             stock: (stock === '' ? null : stock),
             category: (category === '' ? null : category),
@@ -56,6 +56,9 @@ class AddProduct extends Component {
                     <CardContent>
                         <h1>Product toevoegen</h1>
                         {this.props.error === true ? <p style={{color: 'red'}}>Er ging iets verkeerd. Probeer het opnieuw alstublieft.</p> : null}
+                        {this.props.errors ? this.props.errors[0] ? Array.isArray(this.props.errors[0]) ? this.props.errors[0].length > 0 ? this.props.errors[0].map((error) => {
+                            return <li style={{color: 'red'}} key={error.errorMessage}>{error.errorMessage}</li>;
+                        }) : null : <li style={{color: 'red'}}>{this.props.errors}</li> : null : null}
                         {this.props.loading === true ? <CircularProgress/> : null}
                         <ValidatorForm
                             ref="form"
