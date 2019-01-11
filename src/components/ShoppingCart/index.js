@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { toastr } from 'react-redux-toastr';
 import PriceLabel from './price';
 import ProductNameLabel from './name';
 import CartOffIcon from 'mdi-react/CartOffIcon';
@@ -35,17 +36,25 @@ const styles = theme => ({
     }
   });
 
+const toastrOptions = {
+    icon: 'success',
+    status: 'success'
+};
+
 class ShoppingCart extends Component {
     removeFromCart(productId) {
         this.props.removeFromCart(productId);
+        toastr.light('Product uit uw winkelwagen verwijderd', toastrOptions);
     }
 
     removeAllFromCart() {
         this.props.removeAllFromCart();
+        toastr.light('Alle producten zijn verwijderd uit uw winkelwagen', toastrOptions);
     }
 
     payProductsFromCart() {
         this.props.payProductsFromCart();
+        toastr.light('Bestelling voltooid', toastrOptions);
     }
 
     render() {
@@ -80,7 +89,7 @@ class ShoppingCart extends Component {
                         );
                     })}
                     </div>
-                    <h3 style={{marginTop: '1em'}}>Totaalbedrag: <i>€ {total}</i></h3>
+                    <h3 style={{marginTop: '1em'}}>Totaalbedrag: <i>€ {total.toFixed(2)}</i></h3>
                     <Button variant="contained" className={classes.primaryButton} onClick={() => {this.payProductsFromCart()}} style={{flex: 1, margin: '1em', float: 'right'}}>
                         Afrekenen
                         <ChevronRightIcon style={{marginLeft: '.1em'}}/>

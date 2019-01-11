@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
 import HeartOffIcon from 'mdi-react/HeartOffIcon';
 import PriceLabel from './price';

@@ -126,6 +126,7 @@ class DetailProduct extends Component {
 
     addProductToCart(productId) {
         this.props.addToCart(productId);
+        toastr.light('Product aan uw winkelwagen toegevoegd', toastrOptions);
     }
 
     render() {

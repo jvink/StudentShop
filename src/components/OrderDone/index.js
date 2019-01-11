@@ -26,7 +26,7 @@ class OrderDone extends Component {
         <p>
           We hebben een e-mail naar u gestuurd met de gegevens van de bestelling.
         </p>
-        <Button variant="contained" className={classes.primaryButton} onClick={() => this.props.history.push('/')} style={{flex: 1, marginRight: '.3em'}}>
+        <Button variant="contained" className={classes.primaryButton} onClick={() => window.location.replace("/")} style={{flex: 1, marginRight: '.3em'}}>
             Terug naar de webshop
             <HomeIcon style={{marginLeft: '.1em'}}/>
         </Button>
