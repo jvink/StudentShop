@@ -12,6 +12,9 @@ import {
     GET_CART_ERROR,
     GET_CART_REQUEST,
     GET_CART_SUCCESS,
+    PAY_CART_REQUEST,
+    PAY_CART_ERROR,
+    PAY_CART_SUCCESS,
 } from '../actions/cart';
 
 const initialState = {
@@ -27,6 +30,9 @@ const initialState = {
   isGettingCart: false,
   getCartError: undefined,
   getCartResult: undefined,
+  isPayingCart: false,
+  payCartError: undefined,
+  payCartResult: false
 };
 
 const reducer = (state, action) => {
@@ -99,6 +105,23 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         isGettingCart: false,
         getCartResult: action.cart
+      });
+    }
+    case PAY_CART_REQUEST: {
+      return Object.assign({}, state, {
+        isPayingCart: true,
+      });
+    }
+    case PAY_CART_ERROR: {
+      return Object.assign({}, state, {
+        isPayingCart: false,
+        payCartError: action.error
+      });
+    }
+    case PAY_CART_SUCCESS: {
+      return Object.assign({}, state, {
+        isPayingCart: false,
+        payCartResult: true
       });
     }
     default: {

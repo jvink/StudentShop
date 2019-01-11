@@ -10,3 +10,6 @@ export const REMOVE_ALL_FROM_CART_SUCCESS   = 'REMOVE_ALL_FROM_CART_SUCCESS';
 export const GET_CART_REQUEST               = 'GET_CART_REQUEST';
 export const GET_CART_ERROR                 = 'GET_CART_ERROR';
 export const GET_CART_SUCCESS               = 'GET_CART_SUCCESS';
+export const PAY_CART_REQUEST               = 'PAY_CART_REQUEST';
+export const PAY_CART_ERROR                 = 'PAY_CART_ERROR';
+export const PAY_CART_SUCCESS               = 'PAY_CART_SUCCESS';

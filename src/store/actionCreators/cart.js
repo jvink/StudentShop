@@ -14,6 +14,9 @@ import {
   ADD_TO_CART_REQUEST,
   ADD_TO_CART_SUCCESS,
   ADD_TO_CART_ERROR,
+  PAY_CART_REQUEST,
+  PAY_CART_SUCCESS,
+  PAY_CART_ERROR,
 } from '../actions/cart';
 
 const creator = (dispatch) => ({
@@ -122,6 +125,32 @@ const creator = (dispatch) => ({
     } catch (error) {
       dispatch({
         type: REMOVE_ALL_FROM_CART_ERROR,
+        error
+      });
+    }
+  },
+
+  payProductsFromCart: async (token) => {
+    const url = "http://127.0.0.1:5000/api/History/Update?token=" + token;
+    dispatch({
+      type: PAY_CART_REQUEST
+    });
+
+    try {
+      const res = await fetch(url, {method: 'POST'});
+
+      if (res.ok) {
+        dispatch({
+          type: PAY_CART_SUCCESS
+        });
+      } else {
+        dispatch({
+          type: PAY_CART_ERROR
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: PAY_CART_ERROR,
         error
       });
     }
