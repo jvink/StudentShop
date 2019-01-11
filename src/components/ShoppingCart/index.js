@@ -44,6 +44,10 @@ class ShoppingCart extends Component {
         this.props.removeAllFromCart();
     }
 
+    payProductsFromCart() {
+        this.props.payProductsFromCart();
+    }
+
     render() {
         const { data, classes } = this.props;
         if (data.length === 0) {
@@ -54,6 +58,8 @@ class ShoppingCart extends Component {
                 </div>
             );
         } else {
+            var total = 0;
+            for(var i in data) { total += (data[i].p.price * data[i].u_p.amount); }
             return (
                 <div>
                     <h1>Uw winkelwagentje</h1>
@@ -61,7 +67,7 @@ class ShoppingCart extends Component {
                         {data.map((product) => {
                         return (
                             <div className="productWrapper" key={product.p.id}>
-                                <PriceLabel price={product.p.price}/>
+                                <PriceLabel price={parseFloat(product.u_p.amount * product.p.price).toFixed(2)}/>
                                 <p><b>{product.u_p.amount}</b> stuks</p>
                                 <div className="productFavorite" onClick={() => {this.removeFromCart(product.p.id)}}>
                                     <CartOffIcon/>
@@ -74,7 +80,8 @@ class ShoppingCart extends Component {
                         );
                     })}
                     </div>
-                    <Button variant="contained" className={classes.primaryButton} style={{flex: 1, margin: '1em', float: 'right'}}>
+                    <h3 style={{marginTop: '1em'}}>Totaalbedrag: <i>€ {total}</i></h3>
+                    <Button variant="contained" className={classes.primaryButton} onClick={() => {this.payProductsFromCart()}} style={{flex: 1, margin: '1em', float: 'right'}}>
                         Afrekenen
                         <ChevronRightIcon style={{marginLeft: '.1em'}}/>
                     </Button>
