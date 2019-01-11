@@ -100,6 +100,7 @@ class Header extends Component {
                             {isAdmin ? <Tooltip title="Statistieken" placement="left"><IconButton component={Link} to="/statistics"><InsertChartIcon/></IconButton></Tooltip> : null}
                             {isAdmin ? <Tooltip title="Producten" placement="bottom"><IconButton component={Link} to="/products"><TagMultipleIcon/></IconButton></Tooltip> : null}
                             {isAdmin ? <Tooltip title="Gebruikers" placement="right"><IconButton component={Link} to="/users"><AccountGroupOutlineIcon/></IconButton></Tooltip> : null}
+                            <MenuItem component={Link} to="/orderhistory" style={{overflow: 'hidden'}} onClick={this.handleClose}>Bestelgeschiedenis</MenuItem>
                             <MenuItem component={Link} to="/account" style={{overflow: 'hidden'}} onClick={this.handleClose}>Mijn account</MenuItem>
                             <MenuItem style={{overflow: 'hidden'}} onClick={this.handleLogout}>Uitloggen</MenuItem>
                         </div>:

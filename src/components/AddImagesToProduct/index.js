@@ -39,12 +39,11 @@ class AddProduct extends Component {
     }
 
     render() {
-        console.log(this.props.currentProduct);
         let {classes} = this.props;
         let {image, product} = this.props.currentProduct[0];
         return (
-            <div className="registerFormCardContainer">
-                <Card className="registerFormCard">
+            <div style={{width: '100%'}}>
+                <Card style={{width: '100%'}}>
                     <CardContent>
                         <h2>{product.name}</h2>
                         {(Array.isArray(image) && image.length > 0) ? image.map((imageRow, index) => {
