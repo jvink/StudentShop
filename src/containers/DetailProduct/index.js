@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import productActionCreator from '../../store/actionCreators/product';
 import favouritesActionCreator from '../../store/actionCreators/favourites';
+import cartActionCreator from '../../store/actionCreators/cart';
 import DetailProduct from '../../components/DetailProduct';
 
 class DetailProductContainer extends Component {
@@ -22,9 +23,13 @@ class DetailProductContainer extends Component {
         this.props.favouritesActions.flipFavourites(this.props.token, productId);
     }
 
+    addToCart(productId) {
+        this.props.cartActions.addProductToCart(productId, 1, this.props.token);
+    }
+
     render() {
         if (this.props.productStore.getProductResult) {
-            return <DetailProduct product={this.props.productStore.getProductResult} flipFavourites={(productId) => this.flipFavourites(productId)}/>
+            return <DetailProduct product={this.props.productStore.getProductResult} addToCart={(productId) => this.addToCart(productId)} flipFavourites={(productId) => this.flipFavourites(productId)}/>
         } else if (this.props.productStore.isGettingProduct) {
             return <p>Loading..</p>
         } else if (this.props.productStore.productError) {
@@ -38,10 +43,12 @@ class DetailProductContainer extends Component {
 export default withRouter(connect(
     (state) => ({
         productStore: state.product,
-        favouritesStore: state.favourites
+        favouritesStore: state.favourites,
+        cartStore: state.cart
     }),
     (dispatch) => ({
         productActions: productActionCreator(dispatch),
-        favouritesActions: favouritesActionCreator(dispatch)
+        favouritesActions: favouritesActionCreator(dispatch),
+        cartActions: cartActionCreator(dispatch)
     })
   )(DetailProductContainer));

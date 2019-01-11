@@ -124,6 +124,10 @@ class DetailProduct extends Component {
         isFavourite ? toastr.light('Uit favorieten verwijderd', toastrOptions) : toastr.light('Aan favorieten toegevoegd', toastrOptions);
     }
 
+    addProductToCart(productId) {
+        this.props.addToCart(productId);
+    }
+
     render() {
         const {classes} = this.props;
         const {product, image} = this.props.product && this.props.product.length !== 0 ? this.props.product[0] : null;
@@ -177,7 +181,7 @@ class DetailProduct extends Component {
                             <br/><Chip variant="outlined" avatar={<Avatar className={classes.iconChip}><AttachMoneyIcon/></Avatar>} label="betaal zoals je wilt: vooraf, achteraf of gespreid" color="primary" className={classes.chip}/>
                         </div>
                         <div style={{display: 'flex'}}>
-                            <Button variant="contained" className={classes.primaryButton} style={{flex: 1, marginRight: '.3em'}}>
+                            <Button variant="contained" className={classes.primaryButton} onClick={() => this.addProductToCart(product.id)} style={{flex: 1, marginRight: '.3em'}}>
                                 In wagentje
                                 <AddShoppingCartOutlined style={{marginLeft: '.1em'}}/>
                             </Button>

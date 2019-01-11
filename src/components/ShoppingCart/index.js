@@ -2,12 +2,50 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PriceLabel from './price';
 import ProductNameLabel from './name';
+import CartOffIcon from 'mdi-react/CartOffIcon';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import '../../styles/product.css';
 
+const styles = theme => ({
+    primaryButton: {
+        backgroundColor: '#e74c3c',
+        color: '#fff'
+    },
+    secondaryButton: {
+        backgroundColor: '#bdc3c7',
+        color: '#fff'
+    },
+    chip: {
+        marginBottom: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        backgroundColor: '#fff',
+        color: '#e74c3c',
+        borderColor: '#e74c3c'
+    },
+    iconChip: {
+        backgroundColor: '#e74c3c',
+        color: '#fff',
+        borderColor: '#e74c3c'
+    },
+    chevronIcon: {
+        fontSize: '4em',
+        color: '#e74c3c'
+    }
+  });
+
 class ShoppingCart extends Component {
+    removeFromCart(productId) {
+        this.props.removeFromCart(productId);
+    }
+
+    removeAllFromCart() {
+        this.props.removeAllFromCart();
+    }
 
     render() {
-        const { data } = this.props;
+        const { data, classes } = this.props;
         if (data.length === 0) {
             return (
                 <div>
@@ -22,20 +60,32 @@ class ShoppingCart extends Component {
                     <div className="productsWrapper">
                         {data.map((product) => {
                         return (
-                            <div className="productWrapper" key={product.id}>
-                                <PriceLabel price={product.price}/>
-                                <Link to={"product/" + product.id} className="productLink">
-                                    <div className="productImageWrapper">{product.firstImg ? <img src={product.firstImg} alt={product.id} className="productImage"/> : <img src="https://raw.githubusercontent.com/jvink/project-c/master/src/images/no-image.jpg?token=AafImDyyZnKhuduvH2v0ac9GcDX5zhBhks5b8_FnwA%3D%3D" alt="NotFound" className="productImage"/>}</div>
-                                    <ProductNameLabel name={product.name}/>
+                            <div className="productWrapper" key={product.p.id}>
+                                <PriceLabel price={product.p.price}/>
+                                <p><b>{product.u_p.amount}</b> stuks</p>
+                                <div className="productFavorite" onClick={() => {this.removeFromCart(product.p.id)}}>
+                                    <CartOffIcon/>
+                                </div>
+                                <Link to={"product/" + product.p.id} className="productLink">
+                                    <div className="productImageWrapper">{product.p.firstImg ? <img src={product.p.firstImg} alt={product.p.id} className="productImage"/> : <img src="https://raw.githubusercontent.com/jvink/project-c/master/src/images/no-image.jpg?token=AafImDyyZnKhuduvH2v0ac9GcDX5zhBhks5b8_FnwA%3D%3D" alt="NotFound" className="productImage"/>}</div>
+                                    <ProductNameLabel name={product.p.name}/>
                                 </Link>
                             </div>
                         );
                     })}
                     </div>
+                    <Button variant="contained" className={classes.primaryButton} style={{flex: 1, margin: '1em', float: 'right'}}>
+                        Afrekenen
+                        <ChevronRightIcon style={{marginLeft: '.1em'}}/>
+                    </Button>
+                    <Button variant="contained" className={classes.secondaryButton} onClick={() => {this.removeAllFromCart()}} style={{flex: 1, margin: '1em', float: 'right'}}>
+                        Winkelwagen legen
+                        <CartOffIcon style={{marginLeft: '.1em'}}/>
+                    </Button>
                 </div>
             );
         }
     }
 }
 
-export default ShoppingCart;
+export default withStyles(styles)(ShoppingCart);

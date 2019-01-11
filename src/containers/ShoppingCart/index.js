@@ -15,13 +15,21 @@ class ShoppingCartContainer extends Component {
         }
     }
 
+    removeFromCart(productId) {
+        this.props.cartActions.deleteSingleFromCart(productId, this.props.token);
+    }
+
+    removeAllFromCart() {
+        this.props.cartActions.deleteAllFromCart(this.props.token);
+    }
+
     render() {
         if (this.props.cartStore.isGettingCart) {
             return <p>Loading..</p>
         } else if (this.props.cartStore.getCartResult) {
             return (
                 <div className="productsWrapper">
-                    <ShoppingCart data={this.props.cartStore.getCartResult}/>
+                    <ShoppingCart removeAllFromCart={() => this.removeAllFromCart()} removeFromCart={(productId) => this.removeFromCart(productId)} data={this.props.cartStore.getCartResult}/>
                 </div>
             );
         } else if (this.props.cartStore.getCartError) {

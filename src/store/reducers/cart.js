@@ -6,6 +6,9 @@ import {
     REMOVE_FROM_CART_ERROR,
     REMOVE_FROM_CART_REQUEST,
     REMOVE_FROM_CART_SUCCESS,
+    REMOVE_ALL_FROM_CART_ERROR,
+    REMOVE_ALL_FROM_CART_REQUEST,
+    REMOVE_ALL_FROM_CART_SUCCESS,
     GET_CART_ERROR,
     GET_CART_REQUEST,
     GET_CART_SUCCESS,
@@ -18,6 +21,9 @@ const initialState = {
   isRemovingFromCart: false,
   removeCartError: undefined,
   removeCartResult: undefined,
+  isRemovingAllFromCart: false,
+  removeAllCartError: undefined,
+  removeAllCartResult: undefined,
   isGettingCart: false,
   getCartError: undefined,
   getCartResult: undefined,
@@ -39,7 +45,7 @@ const reducer = (state, action) => {
     case ADD_TO_CART_SUCCESS: {
       return Object.assign({}, state, {
         isAddingToCart: false,
-        addCartResult: action.cart
+        addCartResult: true
       });
     }
     case REMOVE_FROM_CART_REQUEST: {
@@ -56,9 +62,26 @@ const reducer = (state, action) => {
     case REMOVE_FROM_CART_SUCCESS: {
       return Object.assign({}, state, {
         isRemovingFromCart: false,
-        removeCartResult: state.getCartResult.filter((cart) => {
-          return cart.id !== action.productId;
+        getCartResult: state.getCartResult.filter((cart) => {
+          return cart.p.id !== action.productId;
         })
+      });
+    }
+    case REMOVE_ALL_FROM_CART_REQUEST: {
+      return Object.assign({}, state, {
+        isRemovingAllFromCart: true,
+      });
+    }
+    case REMOVE_ALL_FROM_CART_ERROR: {
+      return Object.assign({}, state, {
+        isRemovingAllFromCart: false,
+        removeAllCartError: action.error
+      });
+    }
+    case REMOVE_ALL_FROM_CART_SUCCESS: {
+      return Object.assign({}, state, {
+        isRemovingAllFromCart: false,
+        getCartResult: []
       });
     }
     case GET_CART_REQUEST: {
