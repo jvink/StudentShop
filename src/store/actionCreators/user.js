@@ -54,7 +54,6 @@ const creator = (dispatch) => ({
           "Telephone_Number": user.phoneNumber
         })
       });
-
       const response = await res.json();
       if (res.ok) {
         dispatch({
@@ -134,26 +133,32 @@ const creator = (dispatch) => ({
   },
 
   isAdmin: async(token) => {
-    const url = "http://127.0.0.1:5000/api/admin/Status?token=" + token;
-    dispatch({
-      type: IS_ADMIN_REQUEST
-    });
-
-    try {
-      const res = await fetch(url);
-      const isAdmin = await res.json();
+    if (token) {
+      const url = "http://127.0.0.1:5000/api/admin/Status?token=" + token;
       dispatch({
-        type: IS_ADMIN_SUCCESS,
-        isAdmin
+        type: IS_ADMIN_REQUEST
       });
-    } catch (error) {
+      
+      try {
+        const res = await fetch(url);
+        const isAdmin = await res.json();
+        dispatch({
+          type: IS_ADMIN_SUCCESS,
+          isAdmin
+        });
+      } catch (error) {
+        dispatch({
+          type: IS_ADMIN_ERROR,
+          error
+        });
+      }
+    } else {
       dispatch({
-        type: IS_ADMIN_ERROR,
-        error
+        type: IS_ADMIN_ERROR
       });
     }
   },
-
+  
   getAllUsers: async(token) => {
     const url = "http://127.0.0.1:5000/api/admin/user?token=" + token;
     dispatch({

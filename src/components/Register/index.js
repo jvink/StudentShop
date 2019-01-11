@@ -85,10 +85,10 @@ class Register extends Component {
                     <CardContent>
                         <h1>Registreren</h1>
                         {this.props.error === true ? <p style={{color: 'red'}}>Er ging iets verkeerd. Probeer het opnieuw alstublieft.</p> : null}
-                        {Array.isArray(this.props.errors) ? errors.map((error) => {
+                        {Array.isArray(this.props.errors) ? errors.map((error, index) => {
                             return (
-                                <span>{error.map((errorMessages) => {
-                                    return <ul style={{color: 'red'}}>{errorMessages.errorMessage}</ul>
+                                <span key={index}>{error.map((errorMessages, i) => {
+                                    return <ul key={i} style={{color: 'red'}}>{errorMessages.errorMessage}</ul>
                                 })}</span>
                             );
                         }) : <ul style={{color: 'red'}}>{errors}</ul>}
