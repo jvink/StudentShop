@@ -44,6 +44,7 @@ class OrderHistory extends Component {
                                     <TableCell>Naam</TableCell>
                                     <TableCell>Totaalbedrag</TableCell>
                                     <TableCell>Hoeveelheid</TableCell>
+                                    <TableCell>Besteldatum</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -52,8 +53,9 @@ class OrderHistory extends Component {
                                         <TableRow key={product.productName}>
                                             <TableCell><img alt={product.image} src={product.image} className={classes.avatar}/></TableCell>
                                             <TableCell>{product.productName}</TableCell>
-                                            <TableCell>€ {product.totalPrice}</TableCell>
+                                            <TableCell>€ {product.totalPrice.toFixed(2)}</TableCell>
                                             <TableCell>{product.amount}</TableCell>
+                                            <TableCell>14-1-2019</TableCell>
                                         </TableRow>
                                     );
                                 })}
