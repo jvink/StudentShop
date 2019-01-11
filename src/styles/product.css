@@ -38,6 +38,14 @@
     background-color: #e74c3c;
 }
 
+.productPriceLabelOrder {
+    position: absolute;
+    border-radius: 4px;
+    padding: 3px;
+    margin: 14px;
+
+}
+
 .productFavorite {
     position: absolute;
     right: 12px;
