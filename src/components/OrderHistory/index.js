@@ -45,6 +45,7 @@ class OrderHistory extends Component {
                                     <TableCell>Totaalbedrag</TableCell>
                                     <TableCell>Hoeveelheid</TableCell>
                                     <TableCell>Besteldatum</TableCell>
+                                    <TableCell>Status</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -55,7 +56,8 @@ class OrderHistory extends Component {
                                             <TableCell>{product.productName}</TableCell>
                                             <TableCell>€ {product.totalPrice.toFixed(2)}</TableCell>
                                             <TableCell>{product.amount}</TableCell>
-                                            <TableCell>14-1-2019</TableCell>
+                                            <TableCell>{product.purchaseDate}</TableCell>
+                                            <TableCell><span style={{color: product.status === "Pending" ? "orange" : "green"}}>{product.status}</span></TableCell>
                                         </TableRow>
                                     );
                                 })}
