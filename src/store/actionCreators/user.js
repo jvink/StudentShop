@@ -228,25 +228,32 @@ const creator = (dispatch) => ({
     dispatch({
       type: DELETE_USER_REQUEST
     });
-    await fetch(url, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(() => {
+    try {
+      const res = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify([{"Id": userId}])
+      });
+
+    if (res.ok) {
       dispatch({
         type: DELETE_USER_SUCCESS,
         userId
       }); 
-    })
-    .catch((error) => {
+    } else {
       dispatch({
-        type: DELETE_USER_ERROR,
-        error
-      }); 
+        type: DELETE_USER_ERROR
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: DELETE_USER_ERROR,
+      error
     });
+  }
   },
 });
 

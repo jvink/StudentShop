@@ -8,14 +8,18 @@ class UsersContainer extends Component {
 
     componentDidMount() {
         this.props.userActions.getAllUsers(this.props.token);
-      }
+    }
+
+    deleteUser(userId) {
+        this.props.userActions.deleteUser(userId, this.props.token);
+    }
 
     render() {
         if (this.props.userStore.isGettingUsers) {
             return <p>Loading Data...</p>
         } else if (this.props.userStore.getUsersResult) {
             return (
-                <Users users={this.props.userStore.getUsersResult}/>
+                <Users users={this.props.userStore.getUsersResult} deleteUser={(userId) => this.deleteUser(userId)}/>
             );
         } else if (this.props.userStore.getUsersError) {
             return <p>Data Error</p>;
