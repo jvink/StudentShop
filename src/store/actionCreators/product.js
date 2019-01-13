@@ -60,27 +60,34 @@ const creator = (dispatch) => ({
   },
 
   getProduct: async (productId, token) => {
-    const url = "http://127.0.0.1:5000/api/products/" + productId + (token ? "?token=" + token : null);
-    
+    const url = "http://127.0.0.1:5000/api/products/" + productId + "?token=" + (token ? token : "");
     dispatch({
       type: GETTING_PRODUCT_REQUEST
     });
-    await fetch(url)
-    .then((response) => {
-      response.json()
-      .then((product) => {
+    try {
+      await fetch(url)
+      .then(response => {
+        setTimeout(() => null, 0);
+        return response.json();
+      })
+      .then(product => {
         dispatch({
           type: GETTING_PRODUCT_SUCCESS,
           product
         });
+      })
+      .catch((error) => {
+        dispatch({
+          type: GETTING_PRODUCT_ERROR,
+          error
+        });
       });
-    })
-    .catch((error) => {
+    } catch (error) {
       dispatch({
         type: GETTING_PRODUCT_ERROR,
         error
       });
-    });
+    }
   },
 
   deleteProduct: async (productId, token) => {
@@ -145,8 +152,6 @@ const creator = (dispatch) => ({
     });
 
     try {
-      console.log(product.price)
-      console.log(parseFloat(product.price))
       const res = await fetch(url, {
         method: 'POST',
         headers: {
